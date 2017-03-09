@@ -3,11 +3,13 @@
   <groupId>com.heleeos.blog</groupId>
   <artifactId>web</artifactId>
   <version>1.0.0</version>
+  <packaging>war</packaging>
   
-  <parent>
-  	<groupId>com.heleeos</groupId>
-  	<artifactId>blog</artifactId>
-  	<version>${project.verson}</version>
-  </parent>
-  
+  <dependencies>
+    <dependency>
+        <groupId>com.heleeos.blog</groupId>
+        <artifactId>bean</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+  </dependencies>  
 </project>
