@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heleeos.blog.mapper.BlogMapper">
+    <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Blog">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="time" jdbcType="TIMESTAMP" property="time" />
+        <result column="lastTime" jdbcType="TIMESTAMP" property="lasttime" />
+        <result column="managerId" jdbcType="INTEGER" property="managerid" />
+        <result column="typeId" jdbcType="INTEGER" property="typeid" />
+        <result column="count" jdbcType="INTEGER" property="count" />
+        <result column="tags" jdbcType="VARCHAR" property="tags" />
+        <result column="isDelete" jdbcType="BIT" property="isdelete" />
+        <result column="isTop" jdbcType="BIT" property="istop" />
+        <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, title, time, lastTime, managerId, typeId, tags, isDelete, isTop, content
+    </sql>
+        
+    <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
+        insert into t_blog (id, title, time, lastTime, managerId, typeId, tags, isDelete, isTop, content)
+                    values (#{id,jdbcType=INTEGER},        #{title,jdbcType=VARCHAR},
+                            #{time,jdbcType=TIMESTAMP},    #{lasttime,jdbcType=TIMESTAMP},
+                            #{managerid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER},
+                            #{tags,jdbcType=VARCHAR},      #{isdelete,jdbcType=BIT},
+                            #{istop,jdbcType=BIT},         #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    
+    <delete id="delete" parameterType="java.lang.Integer">
+        update t_blog set isDelete = true where id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <update id="update" parameterType="com.heleeos.blog.bean.Blog">
+        update t_blog set title = #{title,jdbcType=VARCHAR},
+                           time = #{time,jdbcType=TIMESTAMP},
+                       lastTime = #{lasttime,jdbcType=TIMESTAMP},
+                      managerId = #{managerid,jdbcType=INTEGER},
+                         typeId = #{typeid,jdbcType=INTEGER},
+                           tags = #{tags,jdbcType=VARCHAR},
+                       isDelete = #{isdelete,jdbcType=BIT},
+                          isTop = #{istop,jdbcType=BIT}
+                       where id = #{id,jdbcType=INTEGER}
+    </update>
+   
+    <update id="updateByPrimaryKeySelective" parameterType="com.heleeos.blog.bean.Blog">
+        update t_blog
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lasttime != null">
+                lastTime = #{lasttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="managerid != null">
+                managerId = #{managerid,jdbcType=INTEGER},
+            </if>
+            <if test="typeid != null">
+                typeId = #{typeid,jdbcType=INTEGER},
+            </if>
+            <if test="tags != null">
+                tags = #{tags,jdbcType=VARCHAR},
+            </if>
+            <if test="isdelete != null">
+                isDelete = #{isdelete,jdbcType=BIT},
+            </if>
+            <if test="istop != null">
+                isTop = #{istop,jdbcType=BIT},
+            </if>
+            
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+     <select id="get" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select <include refid="Base_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} and isdelete = false limit 1
+    </select>
+    
+    <select id="gets" resultMap="ResultMapWithBLOBs">
+        select <include refid="Base_Column_List" /> from t_blog 
+        where isdelete = false
+            <if test="type != null or type != 0">
+                and typeId = #{type,jdbcType=INTEGER}
+            </if>
+            <if test="tags != null">
+                and tags like #{tags,jdbcType=VARCHAR}
+            </if>
+            <if test="managerId != null or managerId != 0">
+                and managerId = #{managerid,jdbcType=INTEGER}
+            </if>
+        limit #{index}, #{rows}
+    </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(0) from t_blog 
+         where isdelete = false
+            <if test="type != null or type != 0">
+                and typeId = #{type,jdbcType=INTEGER}
+            </if>
+            <if test="tags != null">
+                and tags like #{tags,jdbcType=VARCHAR}
+            </if>
+            <if test="managerId != null or managerId != 0">
+                and managerId = #{managerid,jdbcType=INTEGER}
+            </if>
+    </select>
+    
+</mapper>
