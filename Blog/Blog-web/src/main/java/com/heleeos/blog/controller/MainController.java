@@ -17,4 +17,10 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
+    
+    @RequestMapping(value = "kiss.html")
+    public ModelAndView toKiss(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("kiss");
+        return modelAndView;
+    }
 }
