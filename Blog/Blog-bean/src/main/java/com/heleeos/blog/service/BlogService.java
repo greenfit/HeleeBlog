@@ -2,6 +2,8 @@ package com.heleeos.blog.service;
 
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import com.heleeos.blog.mapper.BlogMapper;
 @Service
 public class BlogService {
     
+    private final Logger logger = LogManager.getLogger(getClass());
+    
     @Autowired
     private BlogMapper blogMapper;
     
@@ -25,10 +29,15 @@ public class BlogService {
      * @param bean 文章
      */
     public boolean save(Blog bean) {
-        if(bean.getId() == 0) {
-            return blogMapper.insert(bean) == 1;
-        } else {
-            return blogMapper.update(bean) == 1;
+        try {
+            if(bean.getId() == 0) {
+                return blogMapper.insert(bean) == 1;
+            } else {
+                return blogMapper.update(bean) == 1;
+            }
+        } catch (Exception e) {
+            logger.error("保存[博客文章]异常,原因:" + e.getMessage());
+            return false;
         }
     }
     
@@ -38,8 +47,13 @@ public class BlogService {
      * @param id 文章ID
      */
     public boolean delete(Integer id) {
-        blogMapper.delete(id);
-        return true;
+        try {
+            blogMapper.delete(id);
+            return true;
+        } catch (Exception e) {
+            logger.error("删除[博客文章]异常,原因:" + e.getMessage());
+            return false;
+        }
     }
     
     
@@ -49,7 +63,12 @@ public class BlogService {
      * @param id 文章ID
      */
     public Blog get(Integer id) {
-        return blogMapper.get(id);
+        try {
+            return blogMapper.get(id);
+        } catch (Exception e) {
+            logger.error("获取[博客文章]异常,原因:" + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -64,7 +83,12 @@ public class BlogService {
     public List<Blog> gets(Integer type, String tags, Integer managerId, Integer page, Integer rows) {
         int index = (page - 1) * rows;
         if(index < 0) index = 0;
-        return blogMapper.gets(type, tags, managerId, index, rows);
+        try {
+            return blogMapper.gets(type, tags, managerId, index, rows);
+        } catch (Exception e) {
+            logger.error("获取[博客文章列表]异常,原因:" + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -75,6 +99,11 @@ public class BlogService {
      * @param managerId 管理者ID
      */
     public int getCount(Integer type, String tags, Integer managerId) {
-        return blogMapper.getCount(type, tags, managerId);
+        try {
+            return blogMapper.getCount(type, tags, managerId);
+        } catch (Exception e) {
+            logger.error("获取[博客文章个数]异常,原因:" + e.getMessage());
+            return 0;
+        }
     }    
 }
