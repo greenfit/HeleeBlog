@@ -1,71 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heleeos.blog.mapper.BlogTagMapper">
-  <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.BlogTag">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="count" jdbcType="INTEGER" property="count" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, count
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_blog_tag
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_blog_tag
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.heleeos.blog.bean.BlogTag">
-    insert into t_blog_tag (id, name, count
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.heleeos.blog.bean.BlogTag">
-    insert into t_blog_tag
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="count != null">
-        count,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="count != null">
-        #{count,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heleeos.blog.bean.BlogTag">
-    update t_blog_tag
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="count != null">
-        count = #{count,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.heleeos.blog.bean.BlogTag">
-    update t_blog_tag
-    set name = #{name,jdbcType=VARCHAR},
-      count = #{count,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.BlogTag">
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="count" jdbcType="INTEGER" property="count" />
+    </resultMap>
+    
+    <sql id="Base_Column_List"> name, count </sql>
+
+    <insert id="insert" parameterType="com.heleeos.blog.bean.BlogTag">
+        insert into t_blog_tag (name, count) values (#{name,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER})
+    </insert>
+    
+    <update id="update" parameterType="com.heleeos.blog.bean.BlogTag">
+        update t_blog_tag set count = #{count,jdbcType=INTEGER} where name = #{name,jdbcType=VARCHAR}
+    </update>
+    
+    <select id="gets" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_blog_tag
+    </select>
 </mapper>

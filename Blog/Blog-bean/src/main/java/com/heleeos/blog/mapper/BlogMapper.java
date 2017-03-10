@@ -6,16 +6,16 @@ import com.heleeos.blog.bean.Blog;
 
 public interface BlogMapper {
     
-	public int insert(Blog bean);
-	
-	public int delete(Integer id);
+    public int insert(Blog bean) throws Exception;
     
-	public int update(Blog bean);
+    public int delete(Integer id) throws Exception;
     
-	public Blog get(Integer id);
-	
-	public List<Blog> gets(Integer type, String tags, Integer managerId, Integer index, Integer rows);
+    public int update(Blog bean) throws Exception;
     
-	public int getCount(Integer type, String tags, Integer managerId);
+    public Blog get(Integer id) throws Exception;
+    
+    public List<Blog> gets(Integer type, String tags, Integer managerId, Integer index, Integer rows) throws Exception;
+    
+    public int getCount(Integer type, String tags, Integer managerId) throws Exception;
     
 }

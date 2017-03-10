@@ -1,6 +1,10 @@
 package com.heleeos.blog.service;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.heleeos.blog.bean.Blog;
 import com.heleeos.blog.mapper.BlogMapper;
 
@@ -9,8 +13,10 @@ import com.heleeos.blog.mapper.BlogMapper;
  * 
  * @author liyu
  */
+@Service
 public class BlogService {
     
+    @Autowired
     private BlogMapper blogMapper;
     
     /**
@@ -70,5 +76,5 @@ public class BlogService {
      */
     public int getCount(Integer type, String tags, Integer managerId) {
         return blogMapper.getCount(type, tags, managerId);
-    }
+    }    
 }

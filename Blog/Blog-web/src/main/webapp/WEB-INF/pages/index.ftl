@@ -10,11 +10,11 @@
 			<img src="static/image/banner.jpg">
 		</div>
 		<div class="header-title">
-			<div class="header-title-wrap">
-				<h1>HPSTR Theme</h1>
-				<h2>Latest Posts</h2>
-			</div>
-		</div>
+            <div class="header-title-wrap">
+                <h1>HPSTR Theme</h1>
+                <h2>Latest Posts</h2>
+            </div>
+        </div>
 	</div>
 </body>
 </html>
