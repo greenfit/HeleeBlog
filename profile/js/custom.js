@@ -5,16 +5,13 @@ $(window).load(function(){
 
 $(function(){
     jQuery(document).ready(function() {
-		$('body').backstretch([
-	 		 "images/tm-bg-slide-1.jpg", 
-	 		 "images/tm-bg-slide-2.jpg",
-			 "images/tm-bg-slide-3.jpg"
-	 			], 	{duration: 3200, fade: 1300});
-		});
+        var imgs = ["images/tm-bg-slide-1.jpg", "images/tm-bg-slide-2.jpg", "images/tm-bg-slide-3.jpg"]
+		$('body').backstretch(imgs, {duration: 3200, fade: 1300});
+	});
 })
 
-$(".about").hover(function(){
-    $(".about").css("box-shadow", "0px 0px 10px #222");
+$(".card").hover(function(){
+    $(this).css("box-shadow", "0px 0px 30px #00bcd4");
   }, function(){
-    $(".about").css("box-shadow", "0px 0px 0px #333");
-  });
+    $(this).css("box-shadow", "0px 0px 0px #00bcd4");
+});
