@@ -1,117 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heleeos.blog.mapper.ManagerMapper">
-  <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Manager">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="image" jdbcType="VARCHAR" property="image" />
-    <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
-    <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="state" jdbcType="BIT" property="state" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, username, password, image, loginTime, info, state
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_manager
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_manager
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.heleeos.blog.bean.Manager">
-    insert into t_manager (id, username, password, 
-      image, loginTime, info, 
-      state)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{logintime,jdbcType=TIMESTAMP}, #{info,jdbcType=VARCHAR}, 
-      #{state,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.heleeos.blog.bean.Manager">
-    insert into t_manager
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="image != null">
-        image,
-      </if>
-      <if test="logintime != null">
-        loginTime,
-      </if>
-      <if test="info != null">
-        info,
-      </if>
-      <if test="state != null">
-        state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null">
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="logintime != null">
-        #{logintime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="info != null">
-        #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heleeos.blog.bean.Manager">
-    update t_manager
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null">
-        image = #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="logintime != null">
-        loginTime = #{logintime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="info != null">
-        info = #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        state = #{state,jdbcType=BIT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.heleeos.blog.bean.Manager">
-    update t_manager
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR},
-      loginTime = #{logintime,jdbcType=TIMESTAMP},
-      info = #{info,jdbcType=VARCHAR},
-      state = #{state,jdbcType=BIT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Manager">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
+        <result column="info" jdbcType="VARCHAR" property="info" />
+        <result column="state" jdbcType="BIT" property="state" />
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        id, username, password, nickname, realname, picture, loginTime, info, state
+    </sql>
+    
+    <insert id="insert" parameterType="com.heleeos.blog.bean.Manager">
+        insert into t_manager (id, username, password, nickname, realname, picture, loginTime, info, state)
+                       values (#{id,jdbcType=INTEGER},          #{username,jdbcType=VARCHAR},
+                               #{password,jdbcType=VARCHAR},    #{nickname,jdbcType=VARCHAR}, 
+                               #{realname,jdbcType=VARCHAR},    #{picture,jdbcType=VARCHAR}, 
+                               #{logintime,jdbcType=TIMESTAMP}, #{info,jdbcType=VARCHAR},
+                               #{state,jdbcType=BIT})
+    </insert>
+    
+    <update id="updateByPrimaryKey" parameterType="com.heleeos.blog.bean.Manager">
+        update t_manager set username = #{username,jdbcType=VARCHAR},
+                             password = #{password,jdbcType=VARCHAR},
+                             nickname = #{nickname,jdbcType=VARCHAR},
+                             realname = #{realname,jdbcType=VARCHAR},
+                              picture = #{picture,jdbcType=VARCHAR},
+                            loginTime = #{logintime,jdbcType=TIMESTAMP},
+                                 info = #{info,jdbcType=VARCHAR},
+                                state = #{state,jdbcType=BIT}
+                             where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="delete" parameterType="java.lang.Integer">
+        update t_manager set state = false where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    
+    <select id="get" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_manager where username = #{0} and password = #{1} limit 1
+    </select>
+    
 </mapper>

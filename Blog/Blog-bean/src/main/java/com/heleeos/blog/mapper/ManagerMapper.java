@@ -4,11 +4,11 @@ import com.heleeos.blog.bean.Manager;
 
 public interface ManagerMapper {
 
-    public int insert(Manager bean);
+    public int insert(Manager bean) throws Exception;
     
-    public int delete(Integer id);
+    public int delete(Integer id) throws Exception;
     
-    public int update(Manager bean);
+    public int update(Manager bean) throws Exception;
 
-    public Manager get(String username, String password);
+    public Manager get(String username, String password) throws Exception;
 }

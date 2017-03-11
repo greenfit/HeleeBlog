@@ -13,8 +13,12 @@ public class Manager {
     private String username;
 
     private String password;
+    
+    private String nickname;
+    
+    private String realname;
 
-    private String image;
+    private String picture;
 
     private Date logintime;
 
@@ -50,12 +54,28 @@ public class Manager {
         this.password = password;
     }
 
-    public String getImage() {
-        return image;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Date getLogintime() {

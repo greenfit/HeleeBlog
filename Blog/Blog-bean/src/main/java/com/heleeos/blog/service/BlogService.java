@@ -29,6 +29,7 @@ public class BlogService {
      * @param bean 文章
      */
     public boolean save(Blog bean) {
+        if(bean == null) return false;
         try {
             if(bean.getId() == 0) {
                 return blogMapper.insert(bean) == 1;
@@ -47,6 +48,7 @@ public class BlogService {
      * @param id 文章ID
      */
     public boolean delete(Integer id) {
+        if(id == null || id == 0) return false;
         try {
             blogMapper.delete(id);
             return true;
@@ -63,6 +65,7 @@ public class BlogService {
      * @param id 文章ID
      */
     public Blog get(Integer id) {
+        if(id == null || id == 0) return null;
         try {
             return blogMapper.get(id);
         } catch (Exception e) {

@@ -28,9 +28,9 @@
                             #{istop,jdbcType=BIT},         #{content,jdbcType=LONGVARCHAR})
     </insert>
     
-    <delete id="delete" parameterType="java.lang.Integer">
+    <update id="delete" parameterType="java.lang.Integer">
         update t_blog set isDelete = true where id = #{id,jdbcType=INTEGER}
-    </delete>
+    </update>
     
     <update id="update" parameterType="com.heleeos.blog.bean.Blog">
         update t_blog set title = #{title,jdbcType=VARCHAR},
