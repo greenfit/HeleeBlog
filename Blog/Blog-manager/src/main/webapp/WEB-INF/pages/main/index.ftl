@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>博客管理端</title>
-	<link rel="stylesheet" href="${request.contextPath}/static/lib/layui/css/layui.css">
-	<link rel="stylesheet" href="${request.contextPath}/static/lib/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="${request.contextPath}/static/css/custom.css">
-	<link rel="stylesheet" href="${request.contextPath}/static/css/index.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/lib/layui/css/layui.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/lib/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/blog-manager/css/custom.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/blog-manager/css/index.css">
 </head>
 <body>
 	<div class="layui-layout layui-layout-admin">
@@ -52,9 +52,9 @@
 			</p>
 		</div>
 	</div>
-	<script src="${request.contextPath}/static/lib/jquery-3.1.1.js"></script>
-	<script src="${request.contextPath}/static/lib/vue.js"></script>
-	<script src="${request.contextPath}/static/lib/layui/lay/dest/layui.all.js"></script>
+	<script src="https://static.heleeos.com/lib/jquery.js"></script>
+	<script src="https://static.heleeos.com/lib/vue.js"></script>
+	<script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
 	<script type="text/javascript">
 	   var vm = new Vue({
 	       el : "#bodyDiv",

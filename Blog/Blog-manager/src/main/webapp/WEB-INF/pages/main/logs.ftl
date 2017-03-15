@@ -1,6 +1,6 @@
 <head>
-	<link rel="stylesheet" href="${request.contextPath}/static/lib/layui/css/layui.css">
-	<link rel="stylesheet" href="${request.contextPath}/static/css/style.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/lib/layui/css/layui.css">
+	<link rel="stylesheet" href="https://static.heleeos.com/blog-manager/css/style.css">
 	<style type="text/css">
 	   body {
 	       padding: 0px 10px;
@@ -43,8 +43,8 @@
         Version 0.0.1  (2016-3-9)
         1.[新增]基本的框架
     </div>
-    <script src="${request.contextPath}/static/lib/jquery-3.1.1.js"></script>
-    <script src="${request.contextPath}/static/lib/layui/lay/dest/layui.all.js"></script>
+    <script src="https://static.heleeos.com/lib/jquery.js"></script>
+    <script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
     <script type="text/javascript">
         layui.use('code', function(){ layui.code({ title : "开发日志", about : false }); });
     </script>
