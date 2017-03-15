@@ -1,4 +1,4 @@
-.header {height: 65px;background: #fff;position: relative;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.header {z-index: 1000;height: 65px;background: #fff;position: relative;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
 .header a {white-space: nowrap;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #565a5f;text-decoration: none;}
 .header a:hover {color: #38b7ea;text-decoration: none;}
 .header .logo {display: inline-block;float: left;}
@@ -24,7 +24,7 @@
 .left .card .profile-info {display: block;text-align: center;}
 .left .card .profile-location {font-size: 14px;margin-top: 5px;color: #9a9ea3;display: block;text-align: center;}
 .left .card .profile-location i{margin-right: 5px;}
-.left .card .profile-button {color: #fff;width: 150px;height: 40px;display: block;font-size: 18px;text-align: center;margin: 20px auto 10px;background: #38b7ea;border-radius: 20px;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;}
+.left .card .profile-button {color: #fff;width: 150px;height: 40px;display: block;font-size: 18px;text-align: center;margin: 20px auto 10px;background: #6898ed;border-radius: 20px;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;}
 .left .card .profile-other {height: 60px;padding: 18px 0px;border-top: 1px solid #eceff2;}
 .left .card .profile-other a {font-size: 25px;position: relative;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #898d92;margin-left: 18px;}
 .left .card .profile-other a:hover {color: #565a5f;}
@@ -33,7 +33,7 @@
 .main .card i {margin-right: 8px;}
 .main .card hr {margin: 15px 0;}
 .main .card .title {padding: 20px 20px 0;}
-.main .card .title a {font-size: 2em;color: #009688;text-decoration: none;line-height: 1.3em;}
+.main .card .title a {font-size: 2em;color: #6898ed;text-decoration: none;line-height: 1.3em;}
 .main .card .title a:hover {color: #38b7ea;}
 .main .card .meta {padding: 20px 20px 0;}
 .main .card .meta > div {float: left;margin-right: 30px;}
@@ -43,10 +43,24 @@
 .main .card .tags a:hover {color: #565a5f;}
 .main .card .readCount {float: right;margin-right: 15px;color: #999;}
 
+.right h3 {margin-bottom: 20px;font-size: 20px;}
+.right img {width:100%;margin-bottom: 20px;}
+.right .card {padding: 10px 15px;height: 140px;background: #fcf8e3;margin-bottom: 20px;}
+.right .type {line-height: 20px;word-wrap: break-word;font-size: 10px;margin-bottom: 20px;}
+.right .type .type-list {list-style: none;margin: 0;}
+.right .type .type-list-item {padding: 10px 0;font-size: 16px;}
+.right .type .type-list-link {color: #777;text-decoration: none;}
+.right .type .type-list-link:hover {color: #333;text-decoration: none;}
+.right .type .type-list-link i {margin-right: 8px;color: #ccc;font-size: 14px;}
+.right .type .type-list-count {padding-left: 5px;color: #999;font-size: 0.85em;}
+.right .tags {word-wrap: break-word;}
+.right .tags a{font-size: 10px;margin-right: 5px;color: #6898ed;text-decoration: none;}
+.right .tags a:hover{color: #333;}
+
 .page-nav {margin: 40px auto;text-align: center;color: #999;overflow: hidden;}
 .page-nav .page-number {display: inline-block;height: 32px;padding: 0 10px;line-height: 32px;text-align: center;border-radius: 2px;}
 .page-nav .page-number {color: #999;text-decoration: none;}
-.page-nav .page-number:hover {color: #fff;background: #38b7ea;text-decoration: none;}
+.page-nav .page-number:hover {color: #fff;background: #6898ed;text-decoration: none;}
 .page-nav .current {color: #565a5f;font-weight: bold;}
 .page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
