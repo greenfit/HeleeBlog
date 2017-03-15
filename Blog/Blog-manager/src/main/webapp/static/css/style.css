@@ -1,7 +1,3 @@
-.center{
-	    text-align: center;
-}
-
-.header-logo {
-	height: 60px;
+body {
+    padding: 0px 10px;
 }
