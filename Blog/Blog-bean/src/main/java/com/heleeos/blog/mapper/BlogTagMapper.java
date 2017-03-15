@@ -5,9 +5,9 @@ import com.heleeos.blog.bean.BlogTag;
 
 public interface BlogTagMapper {
     
-    public int insert(BlogTag bean);
+    public int insert(BlogTag bean) throws Exception;
     
-    public int update(BlogTag bean);
+    public int update(BlogTag bean) throws Exception;
 
-    public List<BlogTag> gets();
+    public List<BlogTag> gets() throws Exception;
 }

@@ -5,11 +5,11 @@ import com.heleeos.blog.bean.BlogType;
 
 public interface BlogTypeMapper {
     
-    public int insert(BlogType bean);
+    public int insert(BlogType bean) throws Exception;
     
-    public int update(BlogType bean);
+    public int update(BlogType bean) throws Exception;
     
-    public BlogType get(Integer id);
+    public BlogType get(Integer id) throws Exception;
 
-    public List<BlogType> gets(Integer moduleId);
+    public List<BlogType> gets(Integer moduleId) throws Exception;
 }

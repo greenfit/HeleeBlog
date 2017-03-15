@@ -8,86 +8,24 @@
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, name, url, image, content
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_blog_module
-    where id = #{id,jdbcType=INTEGER}
+  
+  <sql id="Base_Column_List">id, name, url, image, content</sql>
+    
+  <update id="update" parameterType="com.heleeos.blog.bean.BlogModule">
+    update t_blog_module set name = #{name,jdbcType=VARCHAR},
+                              url = #{url,jdbcType=VARCHAR},
+                            image = #{image,jdbcType=VARCHAR},
+                          content = #{content,jdbcType=VARCHAR}
+                         where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from t_blog_module where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_blog_module
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.heleeos.blog.bean.BlogModule">
-    insert into t_blog_module (id, name, url, 
-      image, content)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.heleeos.blog.bean.BlogModule">
-    insert into t_blog_module
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="url != null">
-        url,
-      </if>
-      <if test="image != null">
-        image,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null">
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.heleeos.blog.bean.BlogModule">
-    update t_blog_module
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="image != null">
-        image = #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.heleeos.blog.bean.BlogModule">
-    update t_blog_module
-    set name = #{name,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
+  <select id="gets" resultMap="BaseResultMap">
+    select * from t_blog_module
+  </select>
+  
+  
 </mapper>
