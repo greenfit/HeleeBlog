@@ -1,223 +1,53 @@
-body {
-  width: 100%;
-}
-body:before,
-body:after {
-  content: "";
-  display: table;
-}
-body:after {
-  clear: both;
-}
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-family: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-body {
-  line-height: 1;
-  color: #000;
-  background: #fff;
-}
-ol,
-ul {
-  list-style: none;
-}
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  vertical-align: middle;
-}
-caption,
-th,
-td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-a img {
-  border: none;
-}
-input,
-button {
-  margin: 0;
-  padding: 0;
-}
-input::-moz-focus-inner,
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-html,
-body{
-  height: 100%;
-}
-body {
-  color: #565a5f;
-  background: #f5f8f9;
-  font: 16px "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
-  -webkit-text-size-adjust: 100%;
-}
-a {
-  color: #38b7ea;
-  text-decoration: none;
-}
-a:visited {
-  color: #38b7ea;
-}
+.header {height: 65px;background: #fff;position: relative;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.header a {white-space: nowrap;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #565a5f;text-decoration: none;}
+.header a:hover {color: #38b7ea;text-decoration: none;}
+.header .logo {display: inline-block;float: left;}
+.header .logo .logo-image {margin-right: 5px;display: inline-block;border-radius: 50%;width: 40px;height: 40px;background-repeat: no-repeat;background-image: url(images/logo.jpg);-webkit-background-size: 40px 40px;-moz-background-size: 40px 40px;background-size: 40px 40px;}
+.header .logo .site-title {font-size: 16px;display: inline-block;vertical-align: top;font-weight: 600;line-height: 40px;}
+.header .main-nav {line-height: 40px;padding: 12px 15px;float: left;}
+.header .main-nav .main-nav-link {font-weight: 300;float: left;display: block;padding: 0 15px;}
+.header .profile-nav {float: right;line-height: 40px;padding: 12px 15px;}
+.header .profile-nav i {float: left;line-height: 40px;margin-left: 8px;}
+.header .profile-nav .profile-image {float: left;width: 40px;height: 40px;}
+.header .mobile-nav {line-height: 20px;padding: 15px 15px;float: left;}
+.header .mobile-nav .mobile-nav-link {font-weight: 300;float: left;display: block;padding: 0 15px;}
 
+.card{overflow: hidden;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
 
-.header {
-  height: 65px;
-  background: #fff;
-    position: relative;
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-}
+.container-fluid {position: relative;top: 30px;}
+.container-fluid .left {display: block;float: left;max-width: 281px;min-width: 281px;}
+.container-fluid .main {display: inline;float: left;}
+.container-fluid .right {display: inline;float: left;}
 
-.header a {
-  white-space: nowrap;
-    -webkit-transition: 0.2s ease;
-    -moz-transition: 0.2s ease;
-    -ms-transition: 0.2s ease;
-    transition: 0.2s ease;
-    color: #565a5f;
-    text-decoration: none;
-}
+.left .card .profile-image {display: block;margin: 10px auto 20px;width: 128px;height: 128px;border-radius: 50%;padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;}
+.left .card .profile-name {font-size: 30px;font-weight: 600;display: block;text-align: center;}
+.left .card .profile-info {display: block;text-align: center;}
+.left .card .profile-location {font-size: 14px;margin-top: 5px;color: #9a9ea3;display: block;text-align: center;}
+.left .card .profile-location i{margin-right: 5px;}
+.left .card .profile-button {color: #fff;width: 150px;height: 40px;display: block;font-size: 18px;text-align: center;margin: 20px auto 10px;background: #38b7ea;border-radius: 20px;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;}
+.left .card .profile-other {height: 60px;padding: 18px 0px;border-top: 1px solid #eceff2;}
+.left .card .profile-other a {font-size: 25px;position: relative;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #898d92;margin-left: 18px;}
+.left .card .profile-other a:hover {color: #565a5f;}
 
-.header a:hover {
-    color: #38b7ea;
-    text-decoration: none;
-}
+.main .card {margin-bottom: 30px;}
+.main .card i {margin-right: 8px;}
+.main .card hr {margin: 15px 0;}
+.main .card .title {padding: 20px 20px 0;}
+.main .card .title a {font-size: 2em;color: #009688;text-decoration: none;line-height: 1.3em;}
+.main .card .title a:hover {color: #38b7ea;}
+.main .card .meta {padding: 20px 20px 0;}
+.main .card .meta > div {float: left;margin-right: 30px;}
+.main .card .info {color: #565a5f;line-height: 30px;padding: 10px 20px;margin-top: 20px;}
+.main .card .tags {color: #999;float: left;font-size: 15px;margin: 0 20px 20px;}
+.main .card .tags a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
+.main .card .tags a:hover {color: #565a5f;}
+.main .card .readCount {float: right;margin-right: 15px;color: #999;}
 
-.header .logo {
-      display: inline-block;
-      float: left;
-}
+.page-nav {margin: 40px auto;text-align: center;color: #999;overflow: hidden;}
+.page-nav .page-number {display: inline-block;height: 32px;padding: 0 10px;line-height: 32px;text-align: center;border-radius: 2px;}
+.page-nav .page-number {color: #999;text-decoration: none;}
+.page-nav .page-number:hover {color: #fff;background: #38b7ea;text-decoration: none;}
+.page-nav .current {color: #565a5f;font-weight: bold;}
+.page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
-.header .logo .logo-image {
-  margin-right: 5px;
-    display: inline-block;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-repeat: no-repeat;
-    background-image: url(images/logo.jpg);
-    -webkit-background-size: 40px 40px;
-    -moz-background-size: 40px 40px;
-    background-size: 40px 40px;
-}
-
-.header .logo .site-title {
-  font-size: 16px;
-    display: inline-block;
-    vertical-align: top;
-    font-weight: 600;
-    line-height: 40px;
-}
-
-.header .main-nav {
-    line-height: 40px;
-    padding: 12px 15px;
-      float: left;
-}
-
-.header .main-nav .main-nav-link {
-  font-weight: 300;
-  float: left;
-    display: block;
-    padding: 0 15px;
-}
-
-.header .profile-nav {
-  float: right;
-    line-height: 40px;
-    padding: 12px 15px;
-}
-
-.header .profile-nav i {
-  float: left;
-    line-height: 40px;
-    margin-left: 8px;
-}
-
-.header .profile-nav .profile-image {
-  float: left;
-  width: 40px;
-    height: 40px;
-}
-
-.header .mobile-nav {
-    line-height: 20px;
-    padding: 15px 15px;
-      float: left;
-}
-
-.header .mobile-nav .mobile-nav-link {
-  font-weight: 300;
-  float: left;
-    display: block;
-    padding: 0 15px;
-}
+.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;}
