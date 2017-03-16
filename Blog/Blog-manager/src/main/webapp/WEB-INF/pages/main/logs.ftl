@@ -1,11 +1,6 @@
 <head>
 	<link rel="stylesheet" href="https://static.heleeos.com/lib/layui/css/layui.css">
 	<link rel="stylesheet" href="https://static.heleeos.com/blog-manager/css/style.css">
-	<style type="text/css">
-	   body {
-	       padding: 0px 10px;
-	   }
-	</style>
 </head>
 <body>
 	<div class="layui-code">

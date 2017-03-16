@@ -23,15 +23,12 @@
 		<div class="layui-side layui-bg-black">
 			<ul class="layui-nav layui-nav-tree">
 				<li class="layui-nav-item layui-nav-title"><a>网站设置</a></li>
-				<li class="layui-nav-item layui-nav-link"><a onclick="change('')"><i class="fa fa-puzzle-piece"></i> <cite>公告设置</cite>
-				</a></li>
-				<li class="layui-nav-item layui-nav-link"><a onclick="change('')"><i class="fa fa-puzzle-piece"></i> <cite>权限设置</cite>
-				</a></li>
-				<li class="layui-nav-item layui-nav-title"><a>文章设置</a></li>
-				<li class="layui-nav-item layui-nav-link"><a onclick="change('')"><i class="fa fa-wpforms"></i> <cite>技术干货</cite>
-				</a></li>
-				<li class="layui-nav-item layui-nav-link"><a onclick="change('')"><i class="fa fa-wpforms"></i> <cite>读书感悟</cite>
-				</a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-bullhorn"></i> <cite>公告设置</cite></a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-cogs"></i> <cite>权限设置</cite></a></li>
+				<li class="layui-nav-item layui-nav-title"><a>博客设置</a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('/blog/type.html')"><i class="fa fa-folder-open-o"></i> <cite>分类管理</cite></a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-tags"></i> <cite>标签管理</cite></a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-pencil-square-o"></i> <cite>文章管理</cite></a></li>
 			</ul>
 		</div>
 		<div id="bodyDiv" class="layui-body">
@@ -59,13 +56,12 @@
 	   var vm = new Vue({
 	       el : "#bodyDiv",
 	       data: {
-	           src : ""
+	           src : "logs.html"
 	       }
 	   });
-	   function load() {
-	       vm.src = "logs.html";
+	   function load(page) {
+		    vm.src = page;
 	   }
-	   load();
 	</script>
 </body>
 </html>

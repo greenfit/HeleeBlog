@@ -4,4 +4,6 @@
 .layui-body .layui-tab{margin-top: 0px;}
 .layui-nav-tree .layui-nav-title {cursor: no-drop;}
 .layui-nav-tree .layui-nav-link {cursor: pointer;}
+.layui-nav-tree .layui-this > a, .layui-nav-tree .layui-this > a:hover {background-color: #557db7;}
+.layui-nav-tree .layui-nav-bar {background-color: #557db7;}
 .layui-tab-title .layui-this:after {border-top-color: #fff;}
