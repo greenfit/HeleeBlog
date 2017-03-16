@@ -53,7 +53,7 @@
             var password = $("#password").val();
             var cptcha =   $("#cptcha").val();
             $.post("login.json", { "username" : username, "password" : password, "cptcha" : cptcha }, function(res){
-                if(res.code == 0){
+                if(res.code == 200){
                     //登录成功
                     location.href = "index.html";
                 }else{

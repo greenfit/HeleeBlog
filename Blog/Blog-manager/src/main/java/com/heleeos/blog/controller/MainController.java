@@ -1,10 +1,10 @@
 package com.heleeos.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,10 +71,10 @@ public class MainController {
         Result result = new Result();
         Object obj = request.getSession().getAttribute("KEY_AUTHOR_SESSION");
         if(obj != null && obj instanceof Manager){
-            result.setCode(0);
+            result.setCode(200);
             result.putInfo(System.currentTimeMillis() + "");
         }else{
-            result.setCode(-1);
+            result.setCode(400);
             result.putInfo("未登录");
         }
         return result;
@@ -90,22 +90,28 @@ public class MainController {
     @RequestMapping(value = "login.json")
     public Result login(HttpServletRequest request){
         Result result = new Result();
-        String cptcha = request.getSession().getAttribute("SESSION_CPTCHA").toString();
-        if(cptcha.equals(request.getParameter("cptcha"))) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            Manager manager = managerService.get(username, password);
-            if(manager == null) {
-                result.setCode(-1);
-                result.putInfo("用户名或密码错误!");
-            } else{
-                request.getSession().setAttribute("KEY_AUTHOR_SESSION", manager);
-                result.setCode(0);
-                result.putInfo("");
+        try {
+            String cptcha = request.getSession().getAttribute("SESSION_CPTCHA").toString();
+            if(cptcha != null && cptcha.equals(request.getParameter("cptcha"))) {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                Manager manager = managerService.get(username, DigestUtils.md5DigestAsHex(password.getBytes()));
+                if(manager != null) {
+                    managerService.updateLoginTime(manager.getId());
+                    request.getSession().setAttribute("KEY_AUTHOR_SESSION", manager);
+                    result.setCode(200);
+                    result.putInfo("");
+                } else{
+                    result.setCode(400);
+                    result.putInfo("用户名或密码错误!");
+                }
+            } else {
+                result.setCode(400);
+                result.putInfo("验证码错误!"); 
             }
-        } else {
-            result.setCode(-1);
-            result.putInfo("验证码错误!"); 
+        } catch (Exception e) {
+            result.setCode(403);
+            result.putInfo("请勿非法调用!"); 
         }
         return result;
     }
@@ -118,7 +124,7 @@ public class MainController {
     public Result logout(HttpServletRequest request){
         request.getSession().removeAttribute("KEY_AUTHOR_SESSION");
         Result result = new Result();
-        result.setCode(0);
+        result.setCode(200);
         result.putInfo("");
         return result;
     }
@@ -162,7 +168,7 @@ public class MainController {
         }
         
         if(StringUtils.trimToNull(password) != null){
-            manager.setPassword(DigestUtils.md5Hex(password));
+            manager.setPassword(DigestUtils.md5DigestAsHex("li123456".getBytes()));
         }
         
         manager.setUsername(username);
@@ -171,10 +177,10 @@ public class MainController {
         
         boolean bol = managerService.save(manager);
         if(bol){
-            result.setCode(0);
+            result.setCode(200);
             result.putInfo("");
         }else{
-            result.setCode(-1);
+            result.setCode(400);
             result.putInfo("提交失败");
         }
         return result;
