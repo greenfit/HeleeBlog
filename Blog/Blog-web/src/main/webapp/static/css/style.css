@@ -21,10 +21,11 @@
 
 .left .card .profile-image {display: block;margin: 10px auto 20px;width: 128px;height: 128px;border-radius: 50%;padding: 4px;line-height: 1.42857143;background-color: #fff;border: 1px solid #ddd;}
 .left .card .profile-name {font-size: 30px;font-weight: 600;display: block;text-align: center;}
-.left .card .profile-info {display: block;text-align: center;}
+.left .card .profile-info {display: block;text-align: center;line-height: 30px;}
 .left .card .profile-location {font-size: 14px;margin-top: 5px;color: #9a9ea3;display: block;text-align: center;}
 .left .card .profile-location i{margin-right: 5px;}
 .left .card .profile-button {color: #fff;width: 150px;height: 40px;display: block;font-size: 18px;text-align: center;margin: 20px auto 10px;background: #6898ed;border-radius: 20px;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;}
+.left .card .profile-button:hover {    background: #38b7ea;}
 .left .card .profile-other {height: 60px;padding: 18px 0px;border-top: 1px solid #eceff2;}
 .left .card .profile-other a {font-size: 25px;position: relative;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #898d92;margin-left: 18px;}
 .left .card .profile-other a:hover {color: #565a5f;}

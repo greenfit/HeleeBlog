@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.BlogType;
@@ -19,6 +20,7 @@ public class BlogTypeService {
     
     private final Logger logger = LogManager.getLogger(getClass());
     
+    @Autowired
     private BlogTypeMapper blogTypeMapper;
     
     public boolean save(BlogType bean) {
