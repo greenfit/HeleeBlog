@@ -1,7 +1,6 @@
 package com.heleeos.blog.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.LogManager;
@@ -27,13 +26,9 @@ public class BlogTagService {
     @Autowired
     private BlogTagMapper blogTagMapper;
 
-    public List<BlogTag> gets() {
-        try {
-            return blogTagMapper.gets();
-        } catch (Exception e) {
-            logger.error("获取[博客标签]异常,原因:" + e.getMessage());
-            return null;
-        }
+    public Map<String, BlogTag> getCache() {
+        if(tagCache == null) initCache();
+        return tagCache;
     }
     
     /**

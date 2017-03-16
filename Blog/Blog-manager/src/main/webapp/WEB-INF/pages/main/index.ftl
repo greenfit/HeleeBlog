@@ -28,7 +28,7 @@
 				<li class="layui-nav-item layui-nav-title"><a>博客设置</a></li>
 				<li class="layui-nav-item layui-nav-link"><a onclick="load('/blog/type.html')"><i class="fa fa-folder-open-o"></i> <cite>分类管理</cite></a></li>
 				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-tags"></i> <cite>标签管理</cite></a></li>
-				<li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-pencil-square-o"></i> <cite>文章管理</cite></a></li>
+				<li class="layui-nav-item layui-nav-link"><a onclick="load('/blog/list.html')"><i class="fa fa-pencil-square-o"></i> <cite>文章管理</cite></a></li>
 			</ul>
 		</div>
 		<div id="bodyDiv" class="layui-body">

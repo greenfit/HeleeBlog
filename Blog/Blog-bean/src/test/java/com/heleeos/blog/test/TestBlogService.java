@@ -40,4 +40,12 @@ public class TestBlogService extends TestConfig {
         Arrays.asList(tags.split(",")).forEach(tag -> lists.add(blogTagService.get(tag)));
         return lists;
     }
+    
+    @Test
+    public void getList() {
+        System.out.println("Count:" + blogService.getCount(0, "", 0));
+        blogService.gets(0, "", 0, 1, 10).forEach((blog) -> {
+            System.out.println(blog);
+        });
+    }
 }

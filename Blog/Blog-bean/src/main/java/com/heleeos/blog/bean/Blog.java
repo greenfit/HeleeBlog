@@ -26,6 +26,8 @@ public class Blog {
 
     private Boolean istop;
 
+    private Byte contentType;
+    
     private String content;
     
     private Integer count;
@@ -112,6 +114,14 @@ public class Blog {
         this.istop = istop;
     }
 
+    public void setContentType(Byte contentType) {
+        this.contentType = contentType;
+    }
+    
+    public Byte getContentType() {
+        return contentType;
+    }
+    
     public String getContent() {
         return content;
     }
@@ -119,7 +129,7 @@ public class Blog {
     public void setContent(String content) {
         this.content = content;
     }
-    
+        
     public void setCount(Integer count) {
         this.count = count;
     }

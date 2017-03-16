@@ -51,29 +51,29 @@
     <select id="gets" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from t_blog 
         where isdelete = false
-            <if test="type != null or type != 0">
-                and typeId = #{type,jdbcType=INTEGER}
+            <if test="param1 != null and param1 != 0">
+                and typeId = #{param1}
             </if>
-            <if test="tags != null">
-                and json_contains(tags, #{tags,jdbcType=VARCHAR})
+            <if test="param2 != null">
+                and tags like "%${param2}%"
             </if>
-            <if test="managerId != null or managerId != 0">
-                and managerId = #{managerid,jdbcType=INTEGER}
+            <if test="param3 != null and param3 != 0">
+                and managerId = #{param3}
             </if>
-        limit #{index}, #{rows}
+        limit #{param4}, #{param5}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
         select count(0) from t_blog 
          where isdelete = false
-            <if test="type != null or type != 0">
-                and typeId = #{type,jdbcType=INTEGER}
+            <if test="param1 != null and param1 != 0">
+                and typeId = #{param1}
             </if>
-            <if test="tags != null">
-                and tags like #{tags,jdbcType=VARCHAR}
+            <if test="param2 != null">
+                and tags like "%${param2}%"
             </if>
-            <if test="managerId != null or managerId != 0">
-                and managerId = #{managerid,jdbcType=INTEGER}
+            <if test="param3 != null and param3 != 0">
+                and managerId = #{param3}
             </if>
     </select>
     
