@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.constant.ManagerState;
 import com.heleeos.blog.mapper.ManagerMapper;
 
 /**
@@ -44,13 +45,30 @@ public class ManagerService {
      * 禁用管理员.
      * 
      * @param id 管理员ID
+     * @param state 管理员状态
+     * @see ManagerState
      */
-    public boolean delete(Integer id) {
+    public boolean updataState(Integer id, Byte state) {
         if(id == null || id == 0) return false;
         try {
-            return managerMapper.delete(id) == 1;
+            return managerMapper.updataState(id, state) == 1;
         } catch (Exception e) {
-            logger.error("删除[管理员信息]异常,原因:" + e.getMessage());
+            logger.error("修改[管理员状态]异常,原因:" + e.getMessage());
+            return false;
+        }
+    }
+    
+    /**
+     * 更新管理员登陆时间.
+     * 
+     * @param id 管理员ID
+     */
+    public boolean updateLoginTime(Integer id) {
+        if(id == null || id == 0) return false;
+        try {
+            return managerMapper.updateLoginTime(id) == 1;
+        } catch (Exception e) {
+            logger.error("修改[管理员时间]异常,原因:" + e.getMessage());
             return false;
         }
     }

@@ -24,10 +24,11 @@ public class Manager {
 
     private String info;
 
-    private Boolean state;
+    private byte state;
     
     public Manager() {
         setId(0);
+        setState(state);
     }
 
     public Integer getId() {
@@ -94,11 +95,11 @@ public class Manager {
         this.info = info;
     }
 
-    public Boolean getState() {
+    public Byte getState() {
         return state;
     }
 
-    public void setState(Boolean state) {
+    public void setState(Byte state) {
         this.state = state;
     }
 }

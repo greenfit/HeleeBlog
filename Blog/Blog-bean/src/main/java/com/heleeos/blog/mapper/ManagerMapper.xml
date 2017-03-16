@@ -10,7 +10,7 @@
         <result column="picture" jdbcType="VARCHAR" property="picture" />
         <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
         <result column="info" jdbcType="VARCHAR" property="info" />
-        <result column="state" jdbcType="BIT" property="state" />
+        <result column="state" jdbcType="TINYINT" property="state" />
     </resultMap>
     
     <sql id="Base_Column_List">
@@ -23,10 +23,10 @@
                                #{password,jdbcType=VARCHAR},    #{nickname,jdbcType=VARCHAR}, 
                                #{realname,jdbcType=VARCHAR},    #{picture,jdbcType=VARCHAR}, 
                                #{logintime,jdbcType=TIMESTAMP}, #{info,jdbcType=VARCHAR},
-                               #{state,jdbcType=BIT})
+                               #{state,jdbcType=TINYINT})
     </insert>
     
-    <update id="updateByPrimaryKey" parameterType="com.heleeos.blog.bean.Manager">
+    <update id="update" parameterType="com.heleeos.blog.bean.Manager">
         update t_manager set username = #{username,jdbcType=VARCHAR},
                              password = #{password,jdbcType=VARCHAR},
                              nickname = #{nickname,jdbcType=VARCHAR},
@@ -34,12 +34,16 @@
                               picture = #{picture,jdbcType=VARCHAR},
                             loginTime = #{logintime,jdbcType=TIMESTAMP},
                                  info = #{info,jdbcType=VARCHAR},
-                                state = #{state,jdbcType=BIT}
+                                state = #{state,jdbcType=TINYINT}
                              where id = #{id,jdbcType=INTEGER}
     </update>
     
-    <update id="delete" parameterType="java.lang.Integer">
-        update t_manager set state = false where id = #{id,jdbcType=INTEGER}
+    <update id="updataState" parameterType="java.lang.Integer">
+        update t_manager set state = #{state,jdbcType=TINYINT} where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updateLoginTime" parameterType="java.lang.Integer">
+        update t_manager set loginTime = now() where id = #{id,jdbcType=INTEGER}
     </update>
     
     
