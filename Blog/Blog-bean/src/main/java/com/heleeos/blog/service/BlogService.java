@@ -1,7 +1,7 @@
 package com.heleeos.blog.service;
 
 import java.util.List;
-
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +70,21 @@ public class BlogService {
             return blogMapper.get(id);
         } catch (Exception e) {
             logger.error("获取[博客文章]异常,原因:" + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
+     * 根据URL获取文章.
+     * 
+     * @param disp 文章显示的URL.
+     */
+    public Blog getByURL(String disp) {
+        if(StringUtils.trimToNull(disp) == null) return null;
+        try {
+            return blogMapper.getByURL(disp);
+        } catch (Exception e) {
+            logger.error("获取[博客文章(URL)]异常,原因:" + e.getMessage());
             return null;
         }
     }

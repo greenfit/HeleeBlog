@@ -25,12 +25,13 @@ public class TestBlogService extends TestConfig {
         String tags = "Spring,Spring 生命周期";
         
         Blog blog = new Blog();
-        blog.setTitle("Spring 生命周期");
+        blog.setTitle("标题");
+        blog.setSummary("摘要");
         blog.setTypeid(1);
         blog.setTags(getTag(tags).toString());
-        blog.setContent("");
-        blog.setIstop(true);
+        blog.setContent("内容");
         blog.setManagerid(1);
+        
         
         blogService.save(blog);
     }

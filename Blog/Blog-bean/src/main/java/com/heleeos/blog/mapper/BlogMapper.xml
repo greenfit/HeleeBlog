@@ -2,30 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heleeos.blog.mapper.BlogMapper">
     <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Blog">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="title" jdbcType="VARCHAR" property="title" />
-        <result column="time" jdbcType="TIMESTAMP" property="time" />
-        <result column="lastTime" jdbcType="TIMESTAMP" property="lasttime" />
-        <result column="managerId" jdbcType="INTEGER" property="managerid" />
-        <result column="typeId" jdbcType="INTEGER" property="typeid" />
-        <result column="count" jdbcType="INTEGER" property="count" />
-        <result column="tags" jdbcType="VARCHAR" property="tags" />
-        <result column="isDelete" jdbcType="BIT" property="isdelete" />
-        <result column="isTop" jdbcType="BIT" property="istop" />
-        <result column="content" jdbcType="LONGVARCHAR" property="content" />
+        <id column="id"              jdbcType="INTEGER"     property="id" />
+        <result column="title"       jdbcType="VARCHAR"     property="title" />
+        <result column="disp"        jdbcType="VARCHAR"     property="disp" />
+        <result column="summary"     jdbcType="VARCHAR"     property="summary" />
+        <result column="time"        jdbcType="TIMESTAMP"   property="time" />
+        <result column="lastTime"    jdbcType="TIMESTAMP"   property="lasttime" />
+        <result column="managerId"   jdbcType="INTEGER"     property="managerid" />
+        <result column="typeId"      jdbcType="INTEGER"     property="typeid" />
+        <result column="count"       jdbcType="INTEGER"     property="count" />
+        <result column="tags"        jdbcType="VARCHAR"     property="tags" />
+        <result column="contentType" jdbcType="TINYINT"     property="contentType" />
+        <result column="state"       jdbcType="TINYINT"     property="state" />
+        <result column="dispIndex"   jdbcType="TINYINT"     property="dispIndex" />
+        <result column="content"     jdbcType="LONGVARCHAR" property="content" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, title, time, lastTime, managerId, typeId, tags, isDelete, isTop, content
+        id, title, disp, summary, time, lastTime, managerId, typeId, count ,tags, contentType, state, dispIndex, content
     </sql>
         
     <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
-        insert into t_blog (id, title, time, lastTime, managerId, typeId, tags, isDelete, isTop, content)
-                    values (#{id,jdbcType=INTEGER},        #{title,jdbcType=VARCHAR},
-                            #{time,jdbcType=TIMESTAMP},    #{lasttime,jdbcType=TIMESTAMP},
-                            #{managerid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER},
-                            #{tags,jdbcType=VARCHAR},      #{isdelete,jdbcType=BIT},
-                            #{istop,jdbcType=BIT},         #{content,jdbcType=LONGVARCHAR})
+        insert into t_blog (title, disp, summary, time, lastTime, managerId, typeId, count, tags, contentType, state, dispIndex, content)
+                    values (#{title,jdbcType=VARCHAR},       #{disp,jdbcType=VARCHAR},       #{summary,jdbcType=VARCHAR},
+                            #{time,jdbcType=TIMESTAMP},      #{lasttime,jdbcType=TIMESTAMP},
+                            #{managerid,jdbcType=INTEGER},   #{typeid,jdbcType=INTEGER},
+                            #{count,jdbcType=INTEGER},       #{tags,jdbcType=VARCHAR},      
+                            #{contentType,jdbcType=TINYINT}, #{state,jdbcType=TINYINT},
+                            #{dispIndex,jdbcType=TINYINT},   #{content,jdbcType=LONGVARCHAR})
     </insert>
     
     <update id="delete" parameterType="java.lang.Integer">
@@ -34,23 +38,29 @@
     
     <update id="update" parameterType="com.heleeos.blog.bean.Blog">
         update t_blog set title = #{title,jdbcType=VARCHAR},
-                           time = #{time,jdbcType=TIMESTAMP},
+                           disp = #{disp,jdbcType=VARCHAR},
+                        summary = #{summary,jdbcType=VARCHAR},
                        lastTime = #{lasttime,jdbcType=TIMESTAMP},
-                      managerId = #{managerid,jdbcType=INTEGER},
                          typeId = #{typeid,jdbcType=INTEGER},
                            tags = #{tags,jdbcType=VARCHAR},
-                       isDelete = #{isdelete,jdbcType=BIT},
-                          isTop = #{istop,jdbcType=BIT}
+                    contentType = #{contentType,jdbcType=TINYINT},
+                          state = #{state,jdbcType=TINYINT},
+                      dispIndex = #{dispIndex,jdbcType=TINYINT},
+                        content = #{content,jdbcType=LONGVARCHAR}
                        where id = #{id,jdbcType=INTEGER}
     </update>
     
-     <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} and isdelete = false limit 1
+    <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} and state != 1 limit 1
+    </select>
+    
+    <select id="getByURL" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_blog where disp = #{0} and state != 1 limit 1
     </select>
     
     <select id="gets" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from t_blog 
-        where isdelete = false
+        where state != 1
             <if test="param1 != null and param1 != 0">
                 and typeId = #{param1}
             </if>
@@ -60,12 +70,12 @@
             <if test="param3 != null and param3 != 0">
                 and managerId = #{param3}
             </if>
-        limit #{param4}, #{param5}
+        order by dispIndex asc, time desc limit #{param4}, #{param5}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
         select count(0) from t_blog 
-         where isdelete = false
+        where state != 1
             <if test="param1 != null and param1 != 0">
                 and typeId = #{param1}
             </if>

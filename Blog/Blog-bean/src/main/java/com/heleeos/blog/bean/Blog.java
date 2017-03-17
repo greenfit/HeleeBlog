@@ -1,6 +1,8 @@
 package com.heleeos.blog.bean;
 
 import java.util.Date;
+import com.heleeos.blog.constant.BlogState;
+import com.heleeos.blog.constant.ContentType;
 
 /**
  * 博客文章.
@@ -11,6 +13,10 @@ public class Blog {
     private Integer id;
 
     private String title;
+    
+    private String disp;
+    
+    private String summary;
 
     private Date time;
 
@@ -20,26 +26,26 @@ public class Blog {
 
     private Integer typeid;
 
+    private Integer count;
+    
     private String tags;
-
-    private Boolean isdelete;
-
-    private Boolean istop;
-
+    
     private Byte contentType;
+
+    private Byte state;
+
+    private Byte dispIndex;
     
     private String content;
     
-    private Integer count;
-    
     public Blog() {
         setId(0);
-        setTypeid(0);
-        setCount(count);
+        setCount(0);
         setTime(new Date());
         setLasttime(new Date());
-        setIsdelete(false);
-        setIstop(false);
+        setState(BlogState.NORMAL.getState());
+        setDispIndex(new Byte("0"));
+        setContentType(ContentType.HTML.getType());
     }
 
     public Integer getId() {
@@ -56,6 +62,22 @@ public class Blog {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getDisp() {
+        return disp;
+    }
+    
+    public void setDisp(String disp) {
+        this.disp = disp;
+    }
+    
+    public String getSummary() {
+        return summary;
+    }
+    
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public Date getTime() {
@@ -98,20 +120,20 @@ public class Blog {
         this.tags = tags;
     }
 
-    public Boolean getIsdelete() {
-        return isdelete;
+    public void setDispIndex(Byte dispIndex) {
+        this.dispIndex = dispIndex;
+    }
+    
+    public Byte getDispIndex() {
+        return dispIndex;
+    }
+    
+    public Byte getState() {
+        return state;
     }
 
-    public void setIsdelete(Boolean isdelete) {
-        this.isdelete = isdelete;
-    }
-
-    public Boolean getIstop() {
-        return istop;
-    }
-
-    public void setIstop(Boolean istop) {
-        this.istop = istop;
+    public void setState(Byte state) {
+        this.state = state;
     }
 
     public void setContentType(Byte contentType) {
