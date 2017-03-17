@@ -62,6 +62,17 @@
 	   function load(page) {
 		    vm.src = page;
 	   }
+	   
+	   function openDiv(title, page) {
+           layer.open({
+             type: 2,
+             title: title,
+             shadeClose: true,
+             shade: 0.8,
+             area: ['80%', '90%'],
+             content: page
+           }); 
+       }
 	</script>
 </body>
 </html>

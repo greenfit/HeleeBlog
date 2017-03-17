@@ -1,8 +1,8 @@
 var converter = new showdown.Converter();
 converter.setFlavor('github');	   
    
-	vm = new Vue({
-		el: '#markdownEdit',
+vm = new Vue({
+	el: '#markdownEdit',
 	data: {
 		mark: readData()
 	},

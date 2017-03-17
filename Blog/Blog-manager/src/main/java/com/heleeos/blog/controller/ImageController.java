@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.heleeos.blog.bean.Result;
+import com.heleeos.blog.constant.SessionKey;
 
 /**
  * 图片相关的控制器.
@@ -35,7 +36,7 @@ public class ImageController {
 
     @Value("#{configProperties.image_host}")
     private String        imageHost;
-
+    
     /**
      * 获取验证码
      * 
@@ -48,7 +49,7 @@ public class ImageController {
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
         String text = createCaptcha();
-        request.getSession().setAttribute("SESSION_CPTCHA", text);
+        request.getSession().setAttribute(SessionKey.SESSION_CPTCHA_KEY, text);
         ImageIO.write(createImage(text), "jpg", response.getOutputStream());
         try {
             response.getOutputStream().flush();
@@ -118,7 +119,7 @@ public class ImageController {
      * 
      * 返回结果是一段js代码,详情查看方文档 http://docs.ckeditor.com/#!/guide/dev_file_upload
      */
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/ck-upload", method = RequestMethod.POST)
     public void upload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
         response.setContentType("text/html;charset=UTF-8");
         String path = request.getParameter("path");
@@ -163,7 +164,7 @@ public class ImageController {
      * 示例如下: <form enctype="multipart/form-data" method="post">
      * <input id="upload" name="upload" type="file"> </form>
      */
-    @RequestMapping(value = "/uploadImage.json", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload.json", method = RequestMethod.POST)
     public Result uploadImage(HttpServletRequest request, @RequestParam MultipartFile upload) {
         Result result = new Result();
         String path = request.getParameter("path");

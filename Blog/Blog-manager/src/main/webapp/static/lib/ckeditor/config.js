@@ -33,4 +33,6 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	//忽略粘贴的样式
 	config.forcePasteAsPlainText = true;
+	
+	config.image_previewText = 'Heleeos 博客';
 };

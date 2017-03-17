@@ -1,5 +1,6 @@
 package com.heleeos.blog.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.heleeos.blog.bean.Blog;
+import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
+import com.heleeos.blog.constant.ContentType;
+import com.heleeos.blog.constant.SessionKey;
 import com.heleeos.blog.service.BlogService;
 
 @RestController
@@ -24,7 +28,6 @@ public class BlogController {
     @RequestMapping(value = "blog/list.html")
     public ModelAndView toBlogList() {
         ModelAndView modelAndView = new ModelAndView("blog/list");
-        
         return modelAndView;
     }
     
@@ -50,6 +53,10 @@ public class BlogController {
     @RequestMapping(value = "blog/add.html")
     public ModelAndView toAdd(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("blog/add");
+        int id = NumberUtils.toInt(request.getParameter("id"), 0);
+        if(id != 0) {
+            modelAndView.addObject("bean", blogService.get(id));
+        }
         return modelAndView;
     }
     
@@ -69,27 +76,34 @@ public class BlogController {
         String title = request.getParameter("title");
         String summary = request.getParameter("summary");
         String content = request.getParameter("content");
+        int contentType = NumberUtils.toInt(request.getParameter("contentType"), 0);
         
         if(StringUtils.trimToNull(title) == null){
-            result.setCode(-1);
+            result.setCode(400);
             result.putInfo("标题不能为空!");
             return result;
         }
         
         if(StringUtils.trimToNull(summary) == null){
-            result.setCode(-1);
+            result.setCode(400);
             result.putInfo("摘要不能为空!");
             return result;
         }
         
         if(StringUtils.trimToNull(content) == null){
-            result.setCode(-1);
+            result.setCode(400);
             result.putInfo("内容不能为空!");
             return result;
         }
-        
+                
         blog.setTitle(title);
+        blog.setSummary(summary);
+        blog.setContentType(ContentType.of(contentType).getType());
         blog.setContent(content);
+        blog.setLasttime(new Date());
+        
+        Manager manager = (Manager) request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
+        blog.setManagerid(manager.getId());
         
         boolean bol = blogService.save(blog);
         if(bol){

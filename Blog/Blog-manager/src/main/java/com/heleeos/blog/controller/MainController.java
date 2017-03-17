@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
+import com.heleeos.blog.constant.SessionKey;
 import com.heleeos.blog.service.ManagerService;
 
 @RestController
@@ -28,7 +29,7 @@ public class MainController {
     @RequestMapping(value = {"/", "index.html"})
     public ModelAndView toIndex(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("main/index");
-        modelAndView.addObject("admin", request.getSession().getAttribute("KEY_AUTHOR_SESSION"));
+        modelAndView.addObject("admin", request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY));
         modelAndView.addObject("imageHost", imageHost);
         return modelAndView;
     }
@@ -48,7 +49,7 @@ public class MainController {
     @RequestMapping(value = "login.html")
     public ModelAndView toLogin(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("main/login");
-        if(request.getSession().getAttribute("KEY_AUTHOR_SESSION") != null)
+        if(request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY) != null)
             return toIndex(request);
         return modelAndView;
     }
@@ -59,7 +60,7 @@ public class MainController {
     @RequestMapping(value = "profile.html")
     public ModelAndView toProfile(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("main/profile");
-        modelAndView.addObject("admin", request.getSession().getAttribute("KEY_AUTHOR_SESSION"));
+        modelAndView.addObject("admin", request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY));
         return modelAndView;
     }
     
@@ -69,10 +70,10 @@ public class MainController {
     @RequestMapping(value = "islogin.json")
     public Result islogin(HttpServletRequest request){
         Result result = new Result();
-        Object obj = request.getSession().getAttribute("KEY_AUTHOR_SESSION");
+        Object obj = request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
         if(obj != null && obj instanceof Manager){
             result.setCode(200);
-            result.putInfo(System.currentTimeMillis() + "");
+            result.putInfo(System.currentTimeMillis());
         }else{
             result.setCode(400);
             result.putInfo("未登录");
@@ -91,14 +92,14 @@ public class MainController {
     public Result login(HttpServletRequest request){
         Result result = new Result();
         try {
-            String cptcha = request.getSession().getAttribute("SESSION_CPTCHA").toString();
+            String cptcha = request.getSession().getAttribute(SessionKey.SESSION_CPTCHA_KEY).toString();
             if(cptcha != null && cptcha.equals(request.getParameter("cptcha"))) {
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 Manager manager = managerService.get(username, DigestUtils.md5DigestAsHex(password.getBytes()));
                 if(manager != null) {
                     managerService.updateLoginTime(manager.getId());
-                    request.getSession().setAttribute("KEY_AUTHOR_SESSION", manager);
+                    request.getSession().setAttribute(SessionKey.SESSION_MANAGER_KEY, manager);
                     result.setCode(200);
                     result.putInfo("");
                 } else{
@@ -122,7 +123,7 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "logout.json")
     public Result logout(HttpServletRequest request){
-        request.getSession().removeAttribute("KEY_AUTHOR_SESSION");
+        request.getSession().removeAttribute(SessionKey.SESSION_MANAGER_KEY);
         Result result = new Result();
         result.setCode(200);
         result.putInfo("");
@@ -143,7 +144,7 @@ public class MainController {
         Result result = new Result();
         
         /* 获取当前登陆的管理员 */
-        Manager manager = (Manager) request.getSession().getAttribute("KEY_AUTHOR_SESSION");
+        Manager manager = (Manager) request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
         if(manager == null){
             result.setCode(-1);
             result.putInfo("登陆失效,请刷新页面!");
@@ -168,7 +169,7 @@ public class MainController {
         }
         
         if(StringUtils.trimToNull(password) != null){
-            manager.setPassword(DigestUtils.md5DigestAsHex("li123456".getBytes()));
+            manager.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
         }
         
         manager.setUsername(username);
