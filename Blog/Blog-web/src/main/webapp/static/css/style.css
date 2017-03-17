@@ -14,7 +14,7 @@
 
 .card{overflow: hidden;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
 
-.container-fluid {position: relative;top: 30px;}
+.container-fluid {margin-top: 90px;}
 .container-fluid .left {display: block;float: left;max-width: 281px;min-width: 281px;}
 .container-fluid .main {display: inline;float: left;}
 .container-fluid .right {display: inline;float: left;}
@@ -65,4 +65,4 @@
 .page-nav .current {color: #565a5f;font-weight: bold;}
 .page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
-.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;}
+.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;}
