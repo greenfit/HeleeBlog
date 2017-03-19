@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/lib/font-awesome/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/common.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/blog.css">
     </head>
     <body>
         <#include "/common/common_header.ftl">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="info">摘要:{{ bean.summary }}</div>
                     <hr>
-                    <div class="info" v-html="html"></div>
+                    <div class="blog-body" v-html="html"></div>
                 </div>
             </div>
             <#include "/common/common_right.ftl">
