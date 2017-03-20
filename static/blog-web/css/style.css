@@ -2,7 +2,7 @@
 .header a {white-space: nowrap;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #565a5f;text-decoration: none;}
 .header a:hover {color: #38b7ea;text-decoration: none;}
 .header .logo {display: inline-block;float: left;}
-.header .logo .logo-image {margin-right: 5px;display: inline-block;border-radius: 50%;width: 40px;height: 40px;background-repeat: no-repeat;background-image: url(images/logo.jpg);-webkit-background-size: 40px 40px;-moz-background-size: 40px 40px;background-size: 40px 40px;}
+.header .logo .logo-image {margin-top: 5px;margin-left: 15px;height: 50px;}
 .header .logo .site-title {font-size: 16px;display: inline-block;vertical-align: top;font-weight: 600;line-height: 40px;}
 .header .main-nav {line-height: 40px;padding: 12px 15px;float: left;}
 .header .main-nav .main-nav-link {font-weight: 300;float: left;display: block;padding: 0 15px;}
@@ -39,7 +39,7 @@
 .main .card .title a:hover {color: #38b7ea;}
 .main .card .meta {padding: 20px 20px 0;}
 .main .card .meta > div {float: left;margin-right: 30px;}
-.main .card .info {color: #565a5f;line-height: 30px;padding: 10px 20px;margin-top: 20px;}
+.main .card .info {color: #9a9ea3;line-height: 30px;padding: 10px 20px;margin-top: 20px;font-style: italic;}
 .main .card .tags {color: #999;float: left;font-size: 15px;margin: 0 20px 20px;}
 .main .card .tags a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
 .main .card .tags a:hover {color: #565a5f;}

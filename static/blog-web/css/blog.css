@@ -8,7 +8,6 @@
 .blog-body ol,.blog-body ul{margin:0 0 0 30px;padding:8px 15px}
 .blog-body ol{list-style-type:decimal}
 .blog-body ul{list-style-type:disc}
-.blog-body li, .blog-body ul {margin: 0;padding: 0;}
 .blog-body img{margin:auto;max-width:100%;height:auto;border: 1px solid #888;}
 .blog-body table{border-collapse:collapse;border-spacing:1px;font-size:14px;color:#444;display:block;overflow-x:auto;max-width:100%;border:0}
 .blog-body table thead{text-align:left;background:#f8f8f8}
