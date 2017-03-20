@@ -16,8 +16,9 @@ public interface BlogMapper {
     
     public Blog getByURL(String disp) throws Exception;
     
+    public String getContentByURL(String disp) throws Exception;
+    
     public List<Blog> gets(Integer type, String tags, Integer managerId, Integer index, Integer rows) throws Exception;
     
     public int getCount(Integer type, String tags, Integer managerId) throws Exception;
-    
 }

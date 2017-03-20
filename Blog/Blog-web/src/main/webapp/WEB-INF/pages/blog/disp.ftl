@@ -16,14 +16,14 @@
             <#include "/common/common_left.ftl">
             <div class="main col-xs-12 col-sm-9 col-md-9 col-lg-7">
                 <div id="dispBLog" class="card">
-                    <h1 class="title"><a>{{ bean.title }}</a></h1>
+                    <h1 class="title"><a><#if blog??>${blog.title}</#if></a></h1>
                     <div class="meta">
-                        <div class="time"><i class="fa fa-calendar"></i>{{ bean.time | date }}</div>
+                        <div class="time"><i class="fa fa-calendar"></i><#if blog??>${blog.time?datetime}</#if></div>
                         <div class="type"><i class="fa fa-folder"></i>分类</div>
                         <div class="type"><i class="fa fa-tags"></i><a href="">a</a><a href="">b</a><a href="">c</a></div>
-                        <div class="type"><i class="fa fa-bookmark"></i>{{ bean.count }} 次</div>
+                        <div class="type"><i class="fa fa-bookmark"></i><#if blog??>${blog.count}</#if> 次</div>
                     </div>
-                    <div class="info">摘要:{{ bean.summary }}</div>
+                    <div class="info">摘要:<#if blog??>${blog.summary}</#if></div>
                     <hr>
                     <div class="blog-body" v-html="html"></div>
                 </div>
@@ -42,18 +42,18 @@
             var vm = new Vue({
                 el : '#dispBLog',
                 data : {
-                    bean : ''
+                    content : ''
                 },
 	            computed: {
 	                html: function() {
-	                    return converter.makeHtml(this.bean.content);
+	                    return converter.makeHtml(this.content);
 	                }
 	            }
             });
             
             $.get("${dispURL}.json").done(function(res){
                 if(res.code == 200) {
-                    vm.bean = res.message.beans;
+                    vm.content = res.message.content;
                 }
             }).fail(function(err){
                 console.log(err);

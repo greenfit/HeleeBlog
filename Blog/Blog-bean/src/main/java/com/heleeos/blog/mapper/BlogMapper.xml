@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, title, disp, summary, time, lastTime, managerId, typeId, count ,tags, contentType, state, dispIndex, content
+        id, title, disp, summary, time, lastTime, managerId, typeId, count ,tags, contentType, state, dispIndex
     </sql>
         
     <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
@@ -56,6 +56,10 @@
     
     <select id="getByURL" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from t_blog where disp = #{0} and state != 1 limit 1
+    </select>
+    
+    <select id="getContentByURL" resultType="java.lang.String">
+        select content from t_blog where disp = #{0} and state != 1 limit 1
     </select>
     
     <select id="gets" resultMap="BaseResultMap">

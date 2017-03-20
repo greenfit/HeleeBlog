@@ -36,13 +36,13 @@ public class MainController {
     @RequestMapping(value = "{dispURL}.html")
     public ModelAndView toBlog(@PathVariable String dispURL) {
         ModelAndView modelAndView = new ModelAndView("blog/disp");
-        //TODO 优化:加入缓存
         Blog blog = blogService.getByURL(dispURL);
         if(blog == null) {
             //TODO 修改为404
             return toIndex();
         } else {
             modelAndView.addObject("dispURL", dispURL);
+            modelAndView.addObject("blog", blog);
             return modelAndView;
         }
     }
@@ -50,14 +50,13 @@ public class MainController {
     @RequestMapping(value = "{dispURL}.json")
     public Result getBlog(@PathVariable String dispURL) {
         Result result = new Result();
-        
-        Blog blog = blogService.getByURL(dispURL);
-        if(blog == null) {
+        String content = blogService.getContentByURL(dispURL);
+        if(content == null) {
             result.setCode(404);
-            
+            result.putInfo("文章不存在!");
         } else {
             result.setCode(200);
-            result.putBean(blog);
+            result.putMessage("content", content);
         }
         return result;
     }

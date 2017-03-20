@@ -90,6 +90,21 @@ public class BlogService {
     }
     
     /**
+     * 根据URL获取文章内容.
+     * 
+     * @param disp 文章显示的URL.
+     */
+    public String getContentByURL(String disp) {
+        if(StringUtils.trimToNull(disp) == null) return null;
+        try {
+            return blogMapper.getContentByURL(disp);
+        } catch (Exception e) {
+            logger.error("获取[博客文章内容(URL)]异常,原因:" + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
      * 查询文章.
      * 
      * @param type 分类
