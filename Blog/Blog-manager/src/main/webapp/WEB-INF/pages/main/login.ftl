@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="login">
-		<img class="login-logo" src="static/images/login-logo.png">
+		<img class="login-logo" src="https://static.heleeos.com/blog-manager/images/login-logo.png">
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户名</label>
 			<div class="layui-input-block">
@@ -25,14 +25,14 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-                  <label class="layui-form-label">验证码</label>
-                  <div class="layui-input-block cptcha">
-                      <input id="cptcha" type="text" class="layui-input" onkeydown='if(event.keyCode==13)login()'>
-                  </div>
-                  <div class="cptcha-image">
-                      <img id="codeImage" alt="点击刷新验证码" src="image/code.jpg" onclick="reloadCode()">
-                  </div>
-              </div>
+            <label class="layui-form-label">验证码</label>
+            <div class="layui-input-block cptcha">
+                <input id="cptcha" type="text" class="layui-input" onkeydown='if(event.keyCode == 13) login();'>
+            </div>
+            <div class="cptcha-image">
+                <img id="codeImage" alt="点击刷新验证码" src="image/code.jpg" onclick="reloadCode()">
+            </div>
+        </div>
 		<div class="layui-form-item">
 			<div class="layui-input-block" style="float: right;">
 				<button class="layui-btn layui-btn-normal" onclick="login()">登录</button>

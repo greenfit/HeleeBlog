@@ -13,7 +13,7 @@
 <body>
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
-			<img class="header-logo" src="${request.contextPath}/static/images/logo.png">
+			<img class="header-logo" src="https://static.heleeos.com/blog-manager/images/logo.png">
 		</div>
 		<div class="nav-user">
 			<div class="nav" style="cursor: pointer; top: 0px;">
@@ -33,15 +33,6 @@
 		</div>
 		<div id="bodyDiv" class="layui-body">
 		    <iframe :src="src"></iframe>
-			<!-- <div class="layui-tab"  lay-allowclose="true">
-		              <ul class="layui-tab-title">
-		                <li class="layui-this" lay-id="11">网站设置</li>
-		                <li>用户管理</li>
-		                <li>权限分配</li>
-		                <li>商品管理</li>
-		                <li>订单管理</li>
-		              </ul>
-		         </div> -->
 		</div>
 		<div class="layui-footer" style="padding-top: 15px; height: 30px;">
 			<p class="center">
