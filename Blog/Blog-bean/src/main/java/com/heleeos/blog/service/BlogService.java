@@ -60,7 +60,7 @@ public class BlogService {
     
     
     /**
-     * 获取文章内容.
+     * 获取文章.
      * 
      * @param id 文章ID
      */
@@ -70,6 +70,21 @@ public class BlogService {
             return blogMapper.get(id);
         } catch (Exception e) {
             logger.error("获取[博客文章]异常,原因:" + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
+     * 获取文章内容.
+     * 
+     * @param id 文章ID
+     */
+    public String getContent(Integer id) {
+        if(id == null || id == 0) return null;
+        try {
+            return blogMapper.getContent(id);
+        } catch (Exception e) {
+            logger.error("获取[博客文章内容]异常,原因:" + e.getMessage());
             return null;
         }
     }

@@ -5,7 +5,7 @@
 <body style="min-width: 1152px;">
     <h1>博客管理</h1>
 	<div id="blog-list">
-	    <div><button class="layui-btn layui-btn-normal" onclick="parent.openDiv('', 'blog/add.html')">新增文章</button></div>
+	    <div><button class="layui-btn layui-btn-normal" @click="editor(0)">新增文章</button></div>
 		<table class="layui-table">
 			<colgroup>
 				<col width="50">
@@ -36,7 +36,7 @@
 					<td>{{ bean.dispIndex }}</td>
 					<td>{{ bean.state }}</td>
 					<td>
-					    <button class="layui-btn layui-btn-primary">编辑</button>
+					    <button class="layui-btn layui-btn-primary" @click="editor(bean.id)">编辑</button>
 					    <button class="layui-btn layui-btn-normal">上调</button>
 					    <button class="layui-btn layui-btn-warm">下降</button>
 					    <button class="layui-btn layui-btn-danger">删除</button>
@@ -57,6 +57,11 @@
                     loadr: true,
                     error: false,
                     beans: []
+                },
+                methods: {
+                	editor: function(id) {
+                		parent.openDiv('', 'blog/add.html?id=' + id);
+                	}
                 }
             });
         	

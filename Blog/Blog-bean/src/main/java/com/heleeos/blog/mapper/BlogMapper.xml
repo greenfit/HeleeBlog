@@ -54,6 +54,10 @@
         select <include refid="Base_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} and state != 1 limit 1
     </select>
     
+    <select id="getContent" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select content from t_blog where id = #{id,jdbcType=INTEGER} and state != 1 limit 1
+    </select>
+    
     <select id="getByURL" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from t_blog where disp = #{0} and state != 1 limit 1
     </select>

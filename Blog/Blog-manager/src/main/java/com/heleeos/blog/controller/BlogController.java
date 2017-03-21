@@ -56,6 +56,7 @@ public class BlogController {
         int id = NumberUtils.toInt(request.getParameter("id"), 0);
         if(id != 0) {
             modelAndView.addObject("bean", blogService.get(id));
+            modelAndView.addObject("content", blogService.getContent(id));
         }
         return modelAndView;
     }
@@ -74,6 +75,8 @@ public class BlogController {
         }
         
         String title = request.getParameter("title");
+        int typeid = NumberUtils.toInt(request.getParameter("type"), 0);
+        String disp = request.getParameter("disp");
         String summary = request.getParameter("summary");
         String content = request.getParameter("content");
         int contentType = NumberUtils.toInt(request.getParameter("contentType"), 0);
@@ -81,6 +84,12 @@ public class BlogController {
         if(StringUtils.trimToNull(title) == null){
             result.setCode(400);
             result.putInfo("标题不能为空!");
+            return result;
+        }
+        
+        if(StringUtils.trimToNull(disp) == null){
+            result.setCode(400);
+            result.putInfo("显示URL不能为空!");
             return result;
         }
         
@@ -97,6 +106,8 @@ public class BlogController {
         }
                 
         blog.setTitle(title);
+        blog.setTypeid(typeid);
+        blog.setDisp(disp);
         blog.setSummary(summary);
         blog.setContentType(ContentType.of(contentType).getType());
         blog.setContent(content);
