@@ -28,8 +28,34 @@ public class MainController {
     @RequestMapping(value = "list/{pg}.html")
     public ModelAndView toBlogList(@PathVariable String pg) {
         ModelAndView modelAndView = new ModelAndView("blog/list");
+        
         int page = NumberUtils.toInt(pg, 1);
-        modelAndView.addObject("beans", blogService.gets(null, null, null, page, 3));
+        int rows = 5;
+        int count = blogService.getCount(null, null, null);
+        int max = count / rows + (count % rows == 0 ? 0 : 1);//余数不为0,要加一//最后一页
+        int start = 1;//开始显示页码的页
+        int end = max;
+        
+        //合法验证
+        if(page > max) page = max;
+        if(page < 1) page = 1;
+        
+        //显示当前页码的前后2个
+        if(page - 2 > 1) start = page - 2;
+        if(page + 2 < max) end = page + 2;
+        
+        if(page < 4) end = 5;
+        if(page > max - 4) start = max - 4;
+        if(start < 1) start = 1;
+        if(end > max) end = max;
+               
+        modelAndView.addObject("beans", blogService.gets(null, null, null, page, rows));
+        modelAndView.addObject("count", count);
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("rows", rows);
+        modelAndView.addObject("start", start);
+        modelAndView.addObject("end", end);
+        modelAndView.addObject("max", max);
         return modelAndView;        
     }
     

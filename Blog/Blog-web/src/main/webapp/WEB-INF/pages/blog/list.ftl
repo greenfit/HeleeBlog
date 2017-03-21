@@ -27,15 +27,31 @@
 	                    <div class="readCount"><i class="fa fa-bookmark"></i>${ bean.count } 次</div>
 	                </div>
                 </#list>
-                <div class="page-nav">
-                    <a class="page-number" href="/page/2/">« 上一页</a>
-                    <span class="page-number current">1</span>
-                    <a class="page-number" href="/page/2/">2</a>
-                    <a class="page-number" href="/page/3/">3</a>
-                    <span class="space">…</span>
-                    <a class="page-number" href="/page/8/">8</a>
-                    <a class="page-number" href="/page/2/">下一页 »</a>
-                </div>
+                <#if end &gt; 1> 
+                    <div class="page-nav">
+	                <#if page != 1>
+	                    <a class="page-number" href="/list/${page - 1}.html">« 上一页</a>
+	                </#if>
+	                <#if page - 1 &gt; 3>
+                        <a class="page-number" href="/list/1.html">1</a>
+                        <span class="space">…</span>
+                    </#if>
+	                <#list start..end as i>
+	                    <#if i == page>
+	                        <span class="page-number current">${i}</span>
+	                    <#else>
+	                        <a class="page-number" href="/list/${i}.html">${i}</a>
+	                    </#if>
+	                </#list>
+	                <#if max - page &gt; 3>
+	                    <span class="space">…</span>
+                        <a class="page-number" href="/list/${max}.html">${max}</a>
+                    </#if>
+	                <#if page != max>
+	                    <a class="page-number" href="/list/${page + 1}.html">下一页 »</a>
+	                </#if>
+	                </div>
+                </#if>
             </div>
             <#include "/common/common_right.ftl">
         </div>
