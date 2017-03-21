@@ -42,7 +42,7 @@
 	<script src="https://static.heleeos.com/lib/jquery.js"></script>
     <script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
     <script type="text/javascript">
-        layui.use([ 'form', ], function() {
+        layui.use([ 'form' ], function() {
             var form = layui.form();
         });
         function reloadCode() {
