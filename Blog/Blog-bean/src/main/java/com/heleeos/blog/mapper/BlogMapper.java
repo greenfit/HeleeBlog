@@ -23,4 +23,8 @@ public interface BlogMapper {
     public List<Blog> gets(Integer type, String tags, Integer managerId, Integer index, Integer rows) throws Exception;
     
     public int getCount(Integer type, String tags, Integer managerId) throws Exception;
+    
+    public int changeIndex(Integer id, Integer changeIndex) throws Exception;
+    
+    public int addCount(Integer id) throws Exception;
 }

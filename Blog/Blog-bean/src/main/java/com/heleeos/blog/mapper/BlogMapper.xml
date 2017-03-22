@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, title, disp, summary, time, lastTime, managerId, typeId, count ,tags, contentType, state, dispIndex
+        id, title, disp, summary, time, lastTime, managerId, typeId, count, tags, contentType, state, dispIndex
     </sql>
         
     <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
@@ -94,5 +94,13 @@
                 and managerId = #{param3}
             </if>
     </select>
+    
+    <update id="changeIndex">
+        update t_blog set dispIndex = #{0} where id = #{1}
+    </update>
+    
+    <update id="changeIndex">
+        update t_blog set count = count + 1 where id = #{0}
+    </update>
     
 </mapper>

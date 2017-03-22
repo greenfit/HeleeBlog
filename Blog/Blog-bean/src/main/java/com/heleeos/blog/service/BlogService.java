@@ -153,5 +153,35 @@ public class BlogService {
             logger.error("获取[博客文章个数]异常,原因:" + e.getMessage());
             return 0;
         }
-    }    
+    }
+    
+    /**
+     * 修改显示顺序.
+     * 
+     * @param id 博客的ID
+     * @param changeIndex 显示的顺序
+     * 
+     */
+    public boolean changeIndex(Integer id, Integer changeIndex) {
+        try {
+            return blogMapper.changeIndex(id, changeIndex) == 1;
+        } catch (Exception e) {
+            logger.error("修改[博客显示顺序]异常,原因:" + e.getMessage());
+            return false;
+        }
+    }
+    
+    /**
+     * 新增阅读次数.
+     * 
+     * @param id 博客的ID
+     */
+    public boolean addCount(Integer id) {
+        try {
+            return blogMapper.addCount(id) == 1;
+        } catch (Exception e) {
+            logger.error("增加[博客阅读次数]异常,原因:" + e.getMessage());
+            return false;
+        }
+    }
 }

@@ -69,6 +69,7 @@ public class MainController {
         } else {
             modelAndView.addObject("dispURL", dispURL);
             modelAndView.addObject("blog", blog);
+            blogService.addCount(blog.getId());
             return modelAndView;
         }
     }
