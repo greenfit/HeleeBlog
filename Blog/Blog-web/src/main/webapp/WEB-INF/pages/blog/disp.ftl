@@ -31,8 +31,8 @@
             <#include "/common/common_right.ftl">
         </div>
         <#include "/common/common_footer.ftl">
-        <script src="https://static.heleeos.com/lib/jquery.js"></script>
-        <script src="https://static.heleeos.com/lib/vue.js"></script>
+        <script src="https://static.heleeos.com/lib/jquery.min.js"></script>
+        <script src="https://static.heleeos.com/lib/vue.min.js"></script>
         <script src="https://static.heleeos.com/lib/vue-filter.js"></script>
         <script src="https://static.heleeos.com/lib/showdown.min.js"></script>
         <script type="text/javascript">

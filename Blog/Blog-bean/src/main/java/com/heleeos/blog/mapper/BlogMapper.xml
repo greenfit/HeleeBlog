@@ -99,7 +99,7 @@
         update t_blog set dispIndex = #{0} where id = #{1}
     </update>
     
-    <update id="changeIndex">
+    <update id="addCount">
         update t_blog set count = count + 1 where id = #{0}
     </update>
     

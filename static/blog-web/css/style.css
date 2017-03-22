@@ -1,6 +1,6 @@
 .header {z-index: 1000;height: 65px;background: #fff;position: relative;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
 .header a {white-space: nowrap;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #565a5f;text-decoration: none;}
-.header a:hover {color: #38b7ea;text-decoration: none;}
+.header a:hover {color: #95b6f2;text-decoration: none;}
 .header .logo {display: inline-block;float: left;}
 .header .logo .logo-image {margin-top: 5px;margin-left: 15px;height: 50px;}
 .header .logo .site-title {font-size: 16px;display: inline-block;vertical-align: top;font-weight: 600;line-height: 40px;}
@@ -26,7 +26,7 @@
 .left .card .profile-location {font-size: 14px;margin-top: 5px;color: #9a9ea3;display: block;text-align: center;}
 .left .card .profile-location i{margin-right: 5px;}
 .left .card .profile-button {color: #fff;width: 150px;height: 40px;display: block;font-size: 18px;text-align: center;margin: 20px auto 10px;background: #6898ed;border-radius: 20px;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;}
-.left .card .profile-button:hover {    background: #38b7ea;}
+.left .card .profile-button:hover {background: #71a9ec;}
 .left .card .profile-other {height: 60px;padding: 18px 0px;border-top: 1px solid #eceff2;}
 .left .card .profile-other a {font-size: 25px;position: relative;-webkit-transition: 0.2s ease;-moz-transition: 0.2s ease;-ms-transition: 0.2s ease;transition: 0.2s ease;color: #898d92;margin-left: 18px;}
 .left .card .profile-other a:hover {color: #565a5f;}
@@ -36,7 +36,7 @@
 .main .card hr {margin: 15px 0;}
 .main .card .title {padding: 20px 20px 0;}
 .main .card .title a {font-size: 2em;color: #6898ed;text-decoration: none;line-height: 1.3em;}
-.main .card .title a:hover {color: #38b7ea;}
+.main .card .title a:hover {color: #95b6f2;}
 .main .card .meta {padding: 20px 20px 0;}
 .main .card .meta > div {float: left;margin-right: 30px;}
 .main .card .info {color: #9a9ea3;line-height: 30px;padding: 10px 20px;margin-top: 20px;font-style: italic;}
@@ -60,11 +60,13 @@
 .right .tags a{font-size: 10px;margin-right: 5px;color: #6898ed;text-decoration: none;}
 .right .tags a:hover{color: #333;}
 
-.page-nav {margin: 40px auto;text-align: center;color: #999;overflow: hidden;}
+.page-nav {margin: 20px auto 0px;text-align: center;color: #999;overflow: hidden;}
 .page-nav .page-number {display: inline-block;height: 32px;padding: 0 10px;line-height: 32px;text-align: center;border-radius: 2px;}
 .page-nav .page-number {color: #999;text-decoration: none;}
 .page-nav .page-number:hover {color: #fff;background: #6898ed;text-decoration: none;}
 .page-nav .current {color: #565a5f;font-weight: bold;}
 .page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
-.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;}
+.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.footer a{color: #6898ed;text-decoration: none;}
+.footer a:hover{color: #95b6f2;text-decoration: none;}
