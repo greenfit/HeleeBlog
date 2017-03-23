@@ -16,7 +16,10 @@ public class RightInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("types", blogTypeService.getCount());
+        if(modelAndView != null) {
+            //添加博客分类
+            modelAndView.addObject("types", blogTypeService.getCount());
+        }
         super.postHandle(request, response, handler, modelAndView);
     }
 }
