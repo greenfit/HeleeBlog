@@ -38,7 +38,7 @@
     
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**" />
+            <mvc:mapping path="/**.html" />
             <bean class="com.heleeos.blog.controller.RightInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
