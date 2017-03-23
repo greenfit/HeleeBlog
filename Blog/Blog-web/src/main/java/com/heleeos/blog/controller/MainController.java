@@ -88,9 +88,9 @@ public class MainController {
         return result;
     }
     
-    @RequestMapping(value = "kiss.html")
-    public ModelAndView toKiss(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("kiss");
+    @RequestMapping(value = "right.html")
+    public ModelAndView toRitght(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("common/common_right");
         return modelAndView;
     }
 }

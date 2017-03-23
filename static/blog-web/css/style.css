@@ -15,7 +15,7 @@
 .card{overflow: hidden;background: #fff;border: 1px solid #eee;-webkit-transition: 0.3s;transition: 0.3s;}
 .card:hover{-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
 
-.container-fluid {margin-top: 90px;}
+.container-fluid {padding-top: 90px;}
 .container-fluid .left {display: block;float: left;max-width: 281px;min-width: 281px;}
 .container-fluid .main {display: inline;float: left;}
 .container-fluid .right {display: inline;float: left;}
