@@ -40,8 +40,8 @@
 			</p>
 		</div>
 	</div>
-	<script src="https://static.heleeos.com/lib/jquery.js"></script>
-	<script src="https://static.heleeos.com/lib/vue.js"></script>
+	<script src="https://static.heleeos.com/lib/jquery.min.js"></script>
+	<script src="https://static.heleeos.com/lib/vue.min.js"></script>
 	<script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
 	<script type="text/javascript">
 	   var vm = new Vue({

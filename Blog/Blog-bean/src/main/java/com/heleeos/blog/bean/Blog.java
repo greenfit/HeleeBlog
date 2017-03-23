@@ -24,7 +24,7 @@ public class Blog {
 
     private Integer managerid;
 
-    private Integer typeid;
+    private String type;
 
     private Integer count;
     
@@ -103,13 +103,13 @@ public class Blog {
     public void setManagerid(Integer managerid) {
         this.managerid = managerid;
     }
-
-    public Integer getTypeid() {
-        return typeid;
+    
+    public void setType(String type) {
+        this.type = type;
     }
-
-    public void setTypeid(Integer typeid) {
-        this.typeid = typeid;
+    
+    public String getType() {
+        return type;
     }
 
     public String getTags() {

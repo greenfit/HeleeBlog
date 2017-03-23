@@ -8,9 +8,11 @@
     <h3>分类</h3>
     <div class="type">
         <ul class="type-list">
-            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
+            <#list types as type>
+                <li class="type-list-item">
+                    <a class="type-list-link" href=""><i class="fa fa-caret-right"></i>${ type.name }<span class="type-list-count">(${ type.count })</span></a>
+                </li>
+            </#list>
         </ul>
     </div>
     <h3>标签</h3>

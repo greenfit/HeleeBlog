@@ -11,5 +11,7 @@ public interface BlogTypeMapper {
     
     public BlogType get(Integer id) throws Exception;
 
-    public List<BlogType> gets(Integer moduleId) throws Exception;
+    public List<BlogType> gets() throws Exception;
+    
+    public List<BlogType> getCount() throws Exception;
 }

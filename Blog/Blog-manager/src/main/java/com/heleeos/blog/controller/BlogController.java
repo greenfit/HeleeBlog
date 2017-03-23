@@ -18,12 +18,16 @@ import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.constant.ContentType;
 import com.heleeos.blog.constant.SessionKey;
 import com.heleeos.blog.service.BlogService;
+import com.heleeos.blog.service.BlogTypeService;
 
 @RestController
 public class BlogController {
     
     @Autowired
     private BlogService blogService;
+    
+    @Autowired
+    private BlogTypeService blogTypeService;
 
     @RequestMapping(value = "blog/list.html")
     public ModelAndView toBlogList() {
@@ -58,6 +62,7 @@ public class BlogController {
             modelAndView.addObject("bean", blogService.get(id));
             modelAndView.addObject("content", blogService.getContent(id));
         }
+        modelAndView.addObject("types", blogTypeService.gets());
         return modelAndView;
     }
     
@@ -75,8 +80,9 @@ public class BlogController {
         }
         
         String title = request.getParameter("title");
-        int typeid = NumberUtils.toInt(request.getParameter("type"), 0);
+        String type = request.getParameter("type");
         String disp = request.getParameter("disp");
+        String tags = request.getParameter("tags");
         String summary = request.getParameter("summary");
         String content = request.getParameter("content");
         int contentType = NumberUtils.toInt(request.getParameter("contentType"), 0);
@@ -84,6 +90,12 @@ public class BlogController {
         if(StringUtils.trimToNull(title) == null){
             result.setCode(400);
             result.putInfo("标题不能为空!");
+            return result;
+        }
+        
+        if(StringUtils.trimToNull(type) == null){
+            result.setCode(400);
+            result.putInfo("类型不能为空!");
             return result;
         }
         
@@ -106,8 +118,9 @@ public class BlogController {
         }
                 
         blog.setTitle(title);
-        blog.setTypeid(typeid);
+        blog.setType(type);
         blog.setDisp(disp);
+        blog.setTags(tags);
         blog.setSummary(summary);
         blog.setContentType(ContentType.of(contentType).getType());
         blog.setContent(content);

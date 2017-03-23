@@ -2,7 +2,6 @@ package com.heleeos.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +25,14 @@ public class BlogTypeController {
     @RequestMapping(value = "blog/type.json")
     public Result getBlogType(HttpServletRequest request) {
         Result result = new Result();
-        int moduleId = NumberUtils.toInt(request.getParameter("module"));
-        result.putBean(blogTypeService.gets(moduleId));
+        result.putBean(blogTypeService.gets());
+        return result;
+    }
+    
+    @RequestMapping(value = "blog/typeCount.json")
+    public Result getBlogTypeCount(HttpServletRequest request) {
+        Result result = new Result();
+        result.putBean(blogTypeService.getCount());
         return result;
     }
 }

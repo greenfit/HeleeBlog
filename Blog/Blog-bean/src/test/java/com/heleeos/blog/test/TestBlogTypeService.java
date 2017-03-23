@@ -12,6 +12,6 @@ public class TestBlogTypeService extends TestConfig {
     
     @Test
     public void gets() {
-        blogTypeService.gets(1).forEach(type -> System.out.println(type));        
+        blogTypeService.gets().forEach(type -> System.out.println(type));        
     }
 }

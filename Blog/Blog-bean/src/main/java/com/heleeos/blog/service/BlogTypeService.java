@@ -47,12 +47,20 @@ public class BlogTypeService {
         }
     }
 
-    public List<BlogType> gets(Integer moduleId) {
-        if(moduleId == null || moduleId == 0) return null;
+    public List<BlogType> gets() {
         try {
-            return blogTypeMapper.gets(moduleId);
+            return blogTypeMapper.gets();
         } catch (Exception e) {
-            logger.error("获取[博客分类(模块)]异常,原因:" + e.getMessage());
+            logger.error("获取[博客分类列表]异常,原因:" + e.getMessage());
+            return null;
+        }
+    }
+    
+    public List<BlogType> getCount() {
+        try {
+            return blogTypeMapper.getCount();
+        } catch (Exception e) {
+            logger.error("获取[博客分类列表个数]异常,原因:" + e.getMessage());
             return null;
         }
     }

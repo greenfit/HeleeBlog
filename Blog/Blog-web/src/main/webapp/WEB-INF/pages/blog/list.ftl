@@ -19,11 +19,15 @@
 	                    <h1 class="title"><a href="/${ bean.disp }.html">${ bean.title }</a></h1>
 	                    <div class="meta">
 	                        <div class="time"><i class="fa fa-calendar"></i>${ bean.time ? date }</div>
-	                        <div class="type"><i class="fa fa-folder"></i>分类</div>
+	                        <div class="type"><i class="fa fa-folder"></i>${ bean.type }</div>
 	                    </div>
 	                    <div class="info">${ bean.summary }</div>
 	                    <hr>
-	                    <div class="tags"><i class="fa fa-tags"></i><a href="">a</a><a href="">b</a><a href="">c</a></div>
+	                    <div class="tags"><i class="fa fa-tags"></i>
+                            <#list bean.tags?split(",") as tag>
+                                <a href="">${ tag }</a>
+                            </#list>
+                        </div>
 	                    <div class="readCount"><i class="fa fa-bookmark"></i>${ bean.count } 次</div>
 	                </div>
                 </#list>

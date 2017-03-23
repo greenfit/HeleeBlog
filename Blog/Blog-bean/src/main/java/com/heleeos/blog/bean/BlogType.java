@@ -9,14 +9,11 @@ public class BlogType {
     private Integer id;
 
     private String name;
-
-    private Integer moduleid;
-
-    private String content;
     
+    private Integer count;
+
     public BlogType() {
         setId(0);
-        setModuleid(0);
     }
 
     public Integer getId() {
@@ -34,20 +31,12 @@ public class BlogType {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Integer getModuleid() {
-        return moduleid;
+    
+    public void setCount(Integer count) {
+        this.count = count;
     }
-
-    public void setModuleid(Integer moduleid) {
-        this.moduleid = moduleid;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    
+    public Integer getCount() {
+        return count;
     }
 }

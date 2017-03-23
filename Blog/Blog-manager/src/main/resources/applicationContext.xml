@@ -47,5 +47,5 @@
             <mvc:exclude-mapping path="/image/code.jpg" />
             <bean class="com.heleeos.blog.interceptor.AuthorInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>    
+    </mvc:interceptors>
 </beans>

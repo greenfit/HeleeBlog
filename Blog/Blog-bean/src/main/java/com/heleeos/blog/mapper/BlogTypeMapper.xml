@@ -4,21 +4,17 @@
   <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.BlogType">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="moduleId" jdbcType="INTEGER" property="moduleid" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="count" jdbcType="INTEGER" property="count" />
   </resultMap>
   
-  <sql id="Base_Column_List">id, name, moduleId, content</sql>
+  <sql id="Base_Column_List">id, name</sql>
     
   <insert id="insert" parameterType="com.heleeos.blog.bean.BlogType">
-    insert into t_blog_type (id, name, moduleId, content) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{moduleid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
+    insert into t_blog_type (id, name) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
   
   <update id="update" parameterType="com.heleeos.blog.bean.BlogType">
-    update t_blog_type set name = #{name,jdbcType=VARCHAR},
-                       moduleId = #{moduleid,jdbcType=INTEGER},
-                        content = #{content,jdbcType=VARCHAR}
-                       where id = #{id,jdbcType=INTEGER}
+    update t_blog_type set name = #{name,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}
   </update>
   
   <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -27,6 +23,10 @@
   
   <select id="gets" resultMap="BaseResultMap">
     select  <include refid="Base_Column_List" /> from t_blog_type
+  </select>
+  
+  <select id="getCount" resultMap="BaseResultMap">
+    select type as name, count(type) as count from t_blog group by type
   </select>
   
 </mapper>
