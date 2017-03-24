@@ -1,0 +1,14 @@
+<div class="card">
+    <h1 class="title"><a>{{blog.title}}</a></h1>
+    <div class="meta">
+        <div class="time"><i class="fa fa-calendar"></i>{{blog.time?datetime}}</div>
+        <div class="type"><i class="fa fa-folder"></i>分类</div>
+        <div class="type"><i class="fa fa-tags"></i><a href="">a</a><a href="">b</a><a href="">c</a></div>
+        <div class="type"><i class="fa fa-bookmark"></i>{{blog.count}} 次</div>
+    </div>
+    <div class="info">摘要:{{blog.summary}}</div>
+    <hr>
+    <div class="blog-body">
+        {{{html}}}
+    </div>
+</div>
