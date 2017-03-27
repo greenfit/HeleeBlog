@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="E:\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/heleeos_blog" userId="root" password="root" />
+		
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.heleeos.blog.bean" targetProject="Blog-bean/src/main/java" />
+		<!-- 生成的映射文件报名和位置 -->
+		<sqlMapGenerator targetPackage="com.heleeos.blog.mapper" targetProject="Blog-bean/src/main/java" />
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator targetPackage="com.heleeos.blog.mapper" targetProject="Blog-bean/src/main/java" type="XMLMAPPER" />
+		
+		<table schema="heleeos_blog" tableName="t_blog" domainObjectName="Blog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="heleeos_blog" tableName="t_blog_module" domainObjectName="BlogModule"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table schema="heleeos_blog" tableName="t_blog_tag" domainObjectName="BlogTag"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="heleeos_blog" tableName="t_blog_type" domainObjectName="BlogType"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="heleeos_blog" tableName="t_manager" domainObjectName="Manager"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+	</context>
+</generatorConfiguration>

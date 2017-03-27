@@ -1,0 +1,12 @@
+${AnsiColor.MAGENTA} 
+                                                                                                                                                         
+88      a8P   88                               db                                   ,ad88PPP88ba,                                                88  88  
+88    ,88'    ""                              d88b                                 d8"  .ama.a "8a                                               ""  88  
+88  ,88"                                     d8'`8b                               d8'  ,8P"88"  88                                                   88  
+88,d88'       88  ,adPPYba,  ,adPPYba,      d8'  `8b      ,adPPYba,    ,adPPYba,  88  .8P  8P   88   ,adPPYb,d8  88,dPYba,,adPYba,   ,adPPYYba,  88  88  
+8888"88,      88  I8[    ""  I8[    ""     d8YaaaaY8b    a8"     "8a  a8P_____88  88  88   8'   8P  a8"    `Y88  88P'   "88"    "8a  ""     `Y8  88  88  
+88P   Y8b     88   `"Y8ba,    `"Y8ba,     d8""""""""8b   8b       d8  8PP"""""""  88  8B ,d8 ,ad8'  8b       88  88      88      88  ,adPPPPP88  88  88  
+88     "88,   88  aa    ]8I  aa    ]8I   d8'        `8b  "8a,   ,a8"  "8b,   ,aa  "8a "88P"888P"    "8a,   ,d88  88      88      88  88,    ,88  88  88  
+88       Y8b  88  `"YbbdP"'  `"YbbdP"'  d8'          `8b  `"YbbdP"'    `"Ybbd8"'   `Y8aaaaaaaad8P    `"YbbdP"Y8  88      88      88  `"8bbdP"Y8  88  88  
+                                                                                      """""""""      aa,    ,88                                          
+                                                                                                      "Y8bbdP"                                                                                                                              
