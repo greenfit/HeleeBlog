@@ -8,9 +8,3 @@ server:
 
 config:
   imageHost: http://192.168.0.29:8080/upload/
-  
-  datasource:
-    url: jdbc:mysql://127.0.0.1/oa
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver

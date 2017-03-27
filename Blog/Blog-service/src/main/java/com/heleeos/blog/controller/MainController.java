@@ -15,6 +15,7 @@ import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.service.ManagerService;
 
 @RestController
+@RequestMapping(value = "cms")
 public class MainController extends ApplicationController {
     
     @Autowired

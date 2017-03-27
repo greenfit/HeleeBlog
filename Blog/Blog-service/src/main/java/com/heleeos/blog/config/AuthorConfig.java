@@ -22,8 +22,8 @@ public class AuthorConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthorInterceptor())
-                .addPathPatterns("/*")
-                .excludePathPatterns("/login.html", "/login.json", "/image/code.jpg", "/islogin.json");
+                .addPathPatterns("/cms/*")
+                .excludePathPatterns("/cms/login.html", "/cms/login.json", "/cms/image/code.jpg", "/cms/islogin.json");
     }
 }
 

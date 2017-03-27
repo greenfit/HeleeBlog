@@ -76,21 +76,6 @@ public class BlogService {
     }
     
     /**
-     * 获取文章内容.
-     * 
-     * @param id 文章ID
-     */
-    public String getContent(Integer id) {
-        if(id == null || id == 0) return null;
-        try {
-            return blogMapper.getContent(id);
-        } catch (Exception e) {
-            logger.error("获取[博客文章内容]异常,原因:{}", e.getMessage());
-            return null;
-        }
-    }
-    
-    /**
      * 根据URL获取文章.
      * 
      * @param disp 文章显示的URL.
@@ -106,21 +91,6 @@ public class BlogService {
     }
     
     /**
-     * 根据URL获取文章内容.
-     * 
-     * @param disp 文章显示的URL.
-     */
-    public String getContentByURL(String disp) {
-        if(StringUtils.trimToNull(disp) == null) return null;
-        try {
-            return blogMapper.getContentByURL(disp);
-        } catch (Exception e) {
-            logger.error("获取[博客文章内容(URL)]异常,原因:{}", e.getMessage());
-            return null;
-        }
-    }
-    
-    /**
      * 查询文章.
      * 
      * @param type 分类
@@ -129,11 +99,13 @@ public class BlogService {
      * @param index 开始位置
      * @param rows 显示条数
      */
-    public List<Blog> gets(Integer type, String tags, Integer managerId, Integer page, Integer rows) {
+    public List<Blog> gets(Integer type, String tags, Integer page, Integer rows) {
         int index = (page - 1) * rows;
         if(index < 0) index = 0;
+        if(type == null || type == 0) type = null;
+        if(StringUtils.trim(tags) == null) tags = null;
         try {
-            return blogMapper.gets(type, tags, managerId, index, rows);
+            return blogMapper.gets(type, tags, index, rows);
         } catch (Exception e) {
             logger.error("获取[博客文章列表]异常,原因:{}", e.getMessage());
             return null;
@@ -147,9 +119,11 @@ public class BlogService {
      * @param tags 标签
      * @param managerId 管理者ID
      */
-    public int getCount(Integer type, String tags, Integer managerId) {
+    public int getCount(Integer type, String tags) {
+        if(type == null || type == 0) type = null;
+        if(StringUtils.trim(tags) == null) tags = null;        
         try {
-            return blogMapper.getCount(type, tags, managerId);
+            return blogMapper.getCount(type, tags);
         } catch (Exception e) {
             logger.error("获取[博客文章个数]异常,原因:{}", e.getMessage());
             return 0;

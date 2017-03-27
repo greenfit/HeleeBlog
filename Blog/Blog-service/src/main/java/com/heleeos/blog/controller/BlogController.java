@@ -40,14 +40,13 @@ public class BlogController {
     public Result getBlogType(HttpServletRequest request) {
         Result result = new Result();
         
-        int managerId = NumberUtils.toInt(request.getParameter("managerId"), 0);
         int page = NumberUtils.toInt(request.getParameter("page"), 1);
         int rows = NumberUtils.toInt(request.getParameter("rows"), 10);   
         int type = NumberUtils.toInt(request.getParameter("type"), 0);
         String tags = request.getParameter("tags");
         
-        List<Blog> beans = blogService.gets(type, tags, managerId, page, rows);
-        int count        = blogService.getCount(type, tags, managerId);
+        List<Blog> beans = blogService.gets(type, tags, page, rows);
+        int count        = blogService.getCount(type, tags);
         
         result.putMessage("beans", beans);
         result.putMessage("page", page);
@@ -61,7 +60,6 @@ public class BlogController {
         int id = NumberUtils.toInt(request.getParameter("id"), 0);
         if(id != 0) {
             modelAndView.addObject("bean", blogService.get(id));
-            modelAndView.addObject("content", blogService.getContent(id));
         }
         modelAndView.addObject("types", blogTypeService.gets());
         return modelAndView;
