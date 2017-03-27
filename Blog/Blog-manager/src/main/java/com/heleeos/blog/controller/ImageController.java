@@ -9,11 +9,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Random;
 import java.util.UUID;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.constant.SessionKey;
 
@@ -32,7 +36,8 @@ import com.heleeos.blog.constant.SessionKey;
 @RestController
 @RequestMapping("image")
 public class ImageController {
-    private static Logger logger = Logger.getLogger(ImageController.class);
+    
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("#{configProperties.image_host}")
     private String        imageHost;
@@ -146,7 +151,7 @@ public class ImageController {
                 buffer.append("window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'', '文件复制失败!');");
             }
         } catch (Exception e) {
-            logger.error("上传文件失败,原因:" + e.getMessage());
+            logger.error("上传文件失败,原因:{}", e.getMessage());
             buffer.append("window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'', '上传失败!');");
         }
         buffer.append("</script>");
@@ -187,7 +192,7 @@ public class ImageController {
                 result.putInfo("复制失败!");
             }
         } catch (Exception e) {
-            logger.error("上传文件失败,原因:" + e.getMessage());
+            logger.error("上传文件失败,原因:{}", e.getMessage());
             result.setCode(0);
             result.putInfo("上传失败!");
         }

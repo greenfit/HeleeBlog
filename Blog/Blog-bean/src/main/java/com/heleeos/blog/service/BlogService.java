@@ -1,9 +1,10 @@
 package com.heleeos.blog.service;
 
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import com.heleeos.blog.mapper.BlogMapper;
 @Service
 public class BlogService {
     
-    private final Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private BlogMapper blogMapper;
@@ -37,7 +38,7 @@ public class BlogService {
                 return blogMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[博客文章]异常,原因:" + e.getMessage());
+            logger.error("保存[博客文章]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -53,7 +54,7 @@ public class BlogService {
             blogMapper.delete(id);
             return true;
         } catch (Exception e) {
-            logger.error("删除[博客文章]异常,原因:" + e.getMessage());
+            logger.error("删除[博客文章]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -69,7 +70,7 @@ public class BlogService {
         try {
             return blogMapper.get(id);
         } catch (Exception e) {
-            logger.error("获取[博客文章]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -84,7 +85,7 @@ public class BlogService {
         try {
             return blogMapper.getContent(id);
         } catch (Exception e) {
-            logger.error("获取[博客文章内容]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章内容]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -99,7 +100,7 @@ public class BlogService {
         try {
             return blogMapper.getByURL(disp);
         } catch (Exception e) {
-            logger.error("获取[博客文章(URL)]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章(URL)]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -114,7 +115,7 @@ public class BlogService {
         try {
             return blogMapper.getContentByURL(disp);
         } catch (Exception e) {
-            logger.error("获取[博客文章内容(URL)]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章内容(URL)]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -134,7 +135,7 @@ public class BlogService {
         try {
             return blogMapper.gets(type, tags, managerId, index, rows);
         } catch (Exception e) {
-            logger.error("获取[博客文章列表]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章列表]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -150,7 +151,7 @@ public class BlogService {
         try {
             return blogMapper.getCount(type, tags, managerId);
         } catch (Exception e) {
-            logger.error("获取[博客文章个数]异常,原因:" + e.getMessage());
+            logger.error("获取[博客文章个数]异常,原因:{}", e.getMessage());
             return 0;
         }
     }
@@ -166,7 +167,7 @@ public class BlogService {
         try {
             return blogMapper.changeIndex(id, changeIndex) == 1;
         } catch (Exception e) {
-            logger.error("修改[博客显示顺序]异常,原因:" + e.getMessage());
+            logger.error("修改[博客显示顺序]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -180,7 +181,7 @@ public class BlogService {
         try {
             return blogMapper.addCount(id) == 1;
         } catch (Exception e) {
-            logger.error("增加[博客阅读次数]异常,原因:" + e.getMessage());
+            logger.error("增加[博客阅读次数]异常,原因:{}", e.getMessage());
             return false;
         }
     }

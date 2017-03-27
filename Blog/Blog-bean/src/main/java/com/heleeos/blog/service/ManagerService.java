@@ -1,10 +1,11 @@
 package com.heleeos.blog.service;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.constant.ManagerState;
 import com.heleeos.blog.mapper.ManagerMapper;
@@ -17,7 +18,7 @@ import com.heleeos.blog.mapper.ManagerMapper;
 @Service
 public class ManagerService {
     
-    private final Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private ManagerMapper managerMapper;
@@ -36,7 +37,7 @@ public class ManagerService {
                 return managerMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[管理员信息]异常,原因:" + e.getMessage());
+            logger.error("保存[管理员信息]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -53,7 +54,7 @@ public class ManagerService {
         try {
             return managerMapper.updataState(id, state) == 1;
         } catch (Exception e) {
-            logger.error("修改[管理员状态]异常,原因:" + e.getMessage());
+            logger.error("修改[管理员状态]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -68,7 +69,7 @@ public class ManagerService {
         try {
             return managerMapper.updateLoginTime(id) == 1;
         } catch (Exception e) {
-            logger.error("修改[管理员时间]异常,原因:" + e.getMessage());
+            logger.error("修改[管理员时间]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -84,7 +85,7 @@ public class ManagerService {
         try {
             return managerMapper.get(username, password);
         } catch (Exception e) {
-            logger.error("获取[管理员信息]异常,原因:" + e.getMessage());
+            logger.error("获取[管理员信息]异常,原因:{}", e.getMessage());
             return null;
         }
     }

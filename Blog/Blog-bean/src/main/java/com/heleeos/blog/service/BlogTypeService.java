@@ -2,8 +2,8 @@ package com.heleeos.blog.service;
 
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import com.heleeos.blog.mapper.BlogTypeMapper;
 @Service
 public class BlogTypeService {
     
-    private final Logger logger = LogManager.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private BlogTypeMapper blogTypeMapper;
@@ -32,7 +32,7 @@ public class BlogTypeService {
                 return blogTypeMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[博客分类]异常,原因:" + e.getMessage());
+            logger.error("保存[博客分类]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -42,7 +42,7 @@ public class BlogTypeService {
         try {
             return blogTypeMapper.get(id);
         } catch (Exception e) {
-            logger.error("获取[博客分类]异常,原因:" + e.getMessage());
+            logger.error("获取[博客分类]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -51,7 +51,7 @@ public class BlogTypeService {
         try {
             return blogTypeMapper.gets();
         } catch (Exception e) {
-            logger.error("获取[博客分类列表]异常,原因:" + e.getMessage());
+            logger.error("获取[博客分类列表]异常,原因:{}", e.getMessage());
             return null;
         }
     }
@@ -60,7 +60,7 @@ public class BlogTypeService {
         try {
             return blogTypeMapper.getCount();
         } catch (Exception e) {
-            logger.error("获取[博客分类列表个数]异常,原因:" + e.getMessage());
+            logger.error("获取[博客分类列表个数]异常,原因:{}", e.getMessage());
             return null;
         }
     }
