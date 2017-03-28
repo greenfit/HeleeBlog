@@ -1,0 +1,6 @@
+
+//windows
+set DEBUG=myserver:* & npm start
+
+//linux
+DEBUG=myserver:* npm start

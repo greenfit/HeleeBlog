@@ -16,7 +16,7 @@ var baseUrl = "http://192.168.0.29:7070/";
 
 var writeFile = function(url, context) {
 	var input = path.join(__dirname, '../views/blogTemplate.hbs');
-	var output = path.join(__dirname, '../html/' + url + ".html");
+	var output = path.join(__dirname, '../blog/' + url + ".html");
 
 	fs.readFile(input, function(err,data){
 		if(err) throw err;
@@ -30,33 +30,43 @@ var writeFile = function(url, context) {
 	});
 }
 
+router.get('/', function(req, res) {
+	res.redirect('/page/1');
+});
+
 //博客列表
 router.get('/page/:pg', function(req, res) {
 	var url = baseUrl + "list.json?page=" + req.params.pg;
 	request(url, function (error, response, body) {
-		if(body == "undefined") res.render('blog-error', { error: "服务器连接错误!" });
-		var info = JSON.parse(body);
-	  	if (!error && response.statusCode == 200 && info.code == 200) {
-		    res.render('index', { beans: info.message.beans });
-		}else {
-		  	res.render('blog-error', { error: info.message });
+		if(body == undefined){
+			res.render('blog-error', { error: "服务器连接错误!" });
+		} else {
+			var info = JSON.parse(body);
+		  	if (!error && response.statusCode == 200 && info.code == 200) {
+			    res.render('index', { beans: info.message.beans });
+			}else {
+			  	res.render('blog-error', { error: info.message });
+			}
 		}
 	});
 });
 
 //显示详情页
-router.get('/blog/:dispURL', function(req, res) {
+router.get('/blog/:dispURL.html', function(req, res) {
 	var url = baseUrl + "blog.json?url=" + req.params.dispURL;
 	request(url, function (error, response, body) {
-		if(body == "undefined") res.render('blog-error', { error: "服务器连接错误!" });
-		var info = JSON.parse(body)
-	  	if (!error && response.statusCode == 200 && info.code == 200) {
-	  		var context = { blog: info.message.beans, html: converter.makeHtml(info.message.beans.content) };
-	  		context.blog.tags = context.blog.tags.split(",");
-	  		writeFile(req.params.dispURL, context);
-	  		res.render('blog', context);
-		}else {
-		  	res.render('blog-error', { error: info.message });
+		if(body == undefined) {
+			res.render('blog-error', { error: "服务器连接错误!" });
+		} else {
+			var info = JSON.parse(body)
+		  	if (!error && response.statusCode == 200 && info.code == 200) {
+		  		var context = { blog: info.message.beans, html: converter.makeHtml(info.message.beans.content) };
+		  		context.blog.tags = context.blog.tags.split(",");
+		  		writeFile(req.params.dispURL, context);
+		  		res.render('blog', context);
+			}else {
+			  	res.render('blog-error', { error: info.message });
+			}
 		}
 	});
 });
