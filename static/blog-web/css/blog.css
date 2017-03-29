@@ -1,9 +1,11 @@
 .blog-body{font-family:"Pingfang SC",STHeiti,"Lantinghei SC","Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",SimSun,sans-serif;padding: 0 15px;color:#3d464d;line-height:28px}
+.blog-body code,kbd,pre,samp {font-family: Menlo,Monaco,Consolas,"Courier New",monospace;}
 .blog-body .blog-table{overflow:hidden;overflow-x:auto}
-.blog-body pre,.blog-body pre code{overflow-x:auto;border-radius:4px;padding:10px;line-height:1.4;word-wrap:normal;display:block;font-size:13px;background:#3f3f3f;color:#dcdcdc;font-family:Menlo,Monaco,Consolas,"Courier New",monospace}
+.blog-body code,.blog-body pre{font-size:13px}
+.blog-body pre {display: block;padding: 9.5px;margin: 0 0 10px;font-size: 13px;line-height: 1.42857143;color: #333;word-break: break-all;word-wrap: break-word;background-color: #f5f5f5;border: 1px solid #ccc;border-radius: 4px;}
+.blog-body pre code{padding: 0;font-size: inherit;color: inherit;white-space: pre-wrap;background-color: transparent; border-radius: 0;}
 .blog-body pre code::-webkit-scrollbar,.blog-body pre::-webkit-scrollbar{width:5px!important;height:5px!important;-webkit-appearance:none}
 .blog-body pre code::-webkit-scrollbar-thumb,.blog-body pre::-webkit-scrollbar-thumb{background:rgba(153,153,153,.9)}
-.blog-body code,.blog-body pre{border-radius:3px;padding:2px;font-size:13px}
 .blog-body p{margin-bottom:16px}
 .blog-body ol,.blog-body ul{margin:0 0 0 30px;padding:8px 15px}
 .blog-body ol{list-style-type:decimal}

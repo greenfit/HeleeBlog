@@ -15,7 +15,7 @@
     </nav>
 </div>
 
-<div class="header visible-xs-block" style="height: 50px;">
+<div class="header visible-xs-block col-xs-12" style="height: 50px;padding: 0px;">
     <nav class="mobile-nav">
         <a class="mobile-nav-link" href="https://heleeos.com/">目录</a>
         <a class="mobile-nav-link" href="">技术干货</a>
