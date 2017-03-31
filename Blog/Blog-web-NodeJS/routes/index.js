@@ -12,7 +12,7 @@ var converter = new showdown.Converter();
 converter.setFlavor('github'); 
 
 //数据接口
-var baseUrl = "http://192.168.0.29:7070/";
+var baseUrl = "http://192.168.0.29:8080/";
 
 var writeFile = function(url, context) {
 	var input = path.join(__dirname, '../views/blogTemplate.hbs');
@@ -39,13 +39,13 @@ router.get('/page/:pg', function(req, res) {
 	var url = baseUrl + "list.json?page=" + req.params.pg;
 	request(url, function (error, response, body) {
 		if(body == undefined){
-			res.render('blog-error', { error: "服务器连接错误!" });
+			res.render('error', { message: "服务器连接错误!" });
 		} else {
 			var info = JSON.parse(body);
 		  	if (!error && response.statusCode == 200 && info.code == 200) {
-			    res.render('index', { beans: info.message.beans });
+			    res.render('index', { beans: info.message.beans, types: info.message.types });
 			}else {
-			  	res.render('blog-error', { error: info.message });
+			  	res.render('error', { message: info.message });
 			}
 		}
 	});
@@ -56,7 +56,7 @@ router.get('/blog/:dispURL.html', function(req, res) {
 	var url = baseUrl + "blog.json?url=" + req.params.dispURL;
 	request(url, function (error, response, body) {
 		if(body == undefined) {
-			res.render('blog-error', { error: "服务器连接错误!" });
+			res.render('error', { error: "服务器连接错误!" });
 		} else {
 			var info = JSON.parse(body)
 		  	if (!error && response.statusCode == 200 && info.code == 200) {
@@ -65,7 +65,7 @@ router.get('/blog/:dispURL.html', function(req, res) {
 		  		writeFile(req.params.dispURL, context);
 		  		res.render('blog', context);
 			}else {
-			  	res.render('blog-error', { error: info.message });
+			  	res.render('error', { message: info.message });
 			}
 		}
 	});
@@ -75,4 +75,13 @@ module.exports = router;
 
 hbs.registerHelper("datatime", function(timestamp) {
 	return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
+});
+
+hbs.registerHelper("splitTags", function(tag) {
+	var str = "";
+	var tags = tag.split(",");
+	for(var index in tags) {
+		str = str + '<a href="">' + tags[index] + '</a>'
+	}
+	return str;
 });

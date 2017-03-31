@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.heleeos.blog.bean.Blog;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.service.BlogService;
+import com.heleeos.blog.service.BlogTypeService;
 
 @RestController
 public class BlogController {
     
     @Autowired
     private BlogService blogService;
+    
+    @Autowired
+    private BlogTypeService blogTypeService;
     
     @RequestMapping(value = "list.json")
     public Result getList(HttpServletRequest request) {
@@ -52,6 +56,7 @@ public class BlogController {
         result.putMessage("start", start);
         result.putMessage("end", end);
         result.putMessage("max", max);
+        result.putMessage("types", blogTypeService.getCount());
         
         return result;
     }
@@ -68,7 +73,9 @@ public class BlogController {
         } else {
             result.setCode(404);
             result.putInfo("文章未找到");
-        }        
+        }
+        
+        result.putMessage("types", blogTypeService.getCount());
         return result;
     }
 }

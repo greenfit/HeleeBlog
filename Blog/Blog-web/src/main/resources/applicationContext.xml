@@ -35,12 +35,5 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="properties" ref="configProperties" />
     </bean>
-    
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="com.heleeos.blog.controller.RightInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
 	
 </beans>

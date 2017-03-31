@@ -55,7 +55,7 @@
 			    </div>
 			</div>
             <div class="main col-xs-12 col-sm-9 col-md-9 col-lg-7">
-                {{{body}}}
+                {{{ body }}}
             </div>
             <div class="right hidden-xs col-sm-3 col-md-3 col-lg-2"> 
 			    <h3>公告</h3> 
@@ -67,9 +67,11 @@
 			    <h3>分类</h3>
 			    <div class="type">
 			        <ul class="type-list">
-			            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-			            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-			            <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
+			            {{#each types }}
+			                <li class="type-list-item">
+			                    <a class="type-list-link" href=""><i class="fa fa-caret-right"></i>{{ name }}</a><span class="type-list-count">({{ count }})</span>
+			                </li>
+			            {{/each}}
 			        </ul>
 			    </div>
 			    <h3>标签</h3>
