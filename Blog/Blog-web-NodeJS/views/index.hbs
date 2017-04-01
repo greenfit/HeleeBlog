@@ -1,4 +1,4 @@
-{{#each beans}}
+{{#each message.beans}}
     <div class="card">
         <h1 class="title"><a href="/blog/{{ disp }}.html">{{ title }}</a></h1>
         <div class="meta">
@@ -11,3 +11,5 @@
         <div class="readCount"><i class="fa fa-bookmark"></i>{{ count }} 次</div>
     </div>
 {{/each}}
+
+{{{page message.start message.end message.max message.page}}}

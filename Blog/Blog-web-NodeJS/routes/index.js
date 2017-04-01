@@ -3,35 +3,29 @@ var router = express.Router();
 
 var request = require('request');
 var hbs = require('hbs');
-var path = require('path');
-var fs = require('fs');
-var moment = require('moment');
 
 var showdown  = require('showdown');
 var converter = new showdown.Converter();
 converter.setFlavor('github'); 
 
-//数据接口
-var baseUrl = "http://192.168.0.29:8080/";
+require("./common.js");
+require("./hbs-helper.js");
 
-var writeFile = function(url, context) {
-	var input = path.join(__dirname, '../views/blogTemplate.hbs');
-	var output = path.join(__dirname, '../blog/' + url + ".html");
-
-	fs.readFile(input, function(err,data){
-		if(err) throw err;
-		//console.log(data.toString());
-		var template = hbs.handlebars.compile(data.toString());
-		var html     = template(context);
-		fs.writeFile(output, html, function(err){
-	        if(err) throw err;
-	        console.log('生成静态文件:' + output);
-	    });
-	});
-}
-
+//首页重定向到第一页, 代码重复, 为了对用户友好
 router.get('/', function(req, res) {
-	res.redirect('/page/1');
+	var url = baseUrl + "list.json?page=1";
+	request(url, function (error, response, body) {
+		if(body == undefined){
+			res.render('error', { message: "服务器连接错误!" });
+		} else {
+			var info = JSON.parse(body);
+		  	if (!error && response.statusCode == 200 && info.code == 200) {
+			    res.render('index', { message: info.message });
+			}else {
+			  	res.render('error', { message: info.message });
+			}
+		}
+	});
 });
 
 //博客列表
@@ -43,7 +37,7 @@ router.get('/page/:pg', function(req, res) {
 		} else {
 			var info = JSON.parse(body);
 		  	if (!error && response.statusCode == 200 && info.code == 200) {
-			    res.render('index', { beans: info.message.beans, types: info.message.types });
+			    res.render('index', { message: info.message });
 			}else {
 			  	res.render('error', { message: info.message });
 			}
@@ -75,16 +69,3 @@ router.get('/blog/:dispURL.html', function(req, res) {
 });
 
 module.exports = router;
-
-hbs.registerHelper("datatime", function(timestamp) {
-	return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
-});
-
-hbs.registerHelper("splitTags", function(tag) {
-	var str = "";
-	var tags = tag.split(",");
-	for(var index in tags) {
-		str = str + '<a href="">' + tags[index] + '</a>'
-	}
-	return str;
-});
