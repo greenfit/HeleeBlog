@@ -58,15 +58,22 @@
                 <div class="card">
                     <h1 class="title"><a>{{blog.title}}</a></h1>
                     <div class="meta">
-                        <div class="time"><i class="fa fa-calendar"></i>{{blog.time?datetime}}</div>
-                        <div class="type"><i class="fa fa-folder"></i>分类</div>
-                        <div class="type"><i class="fa fa-tags"></i><a href="">a</a><a href="">b</a><a href="">c</a></div>
-                        <div class="type"><i class="fa fa-bookmark"></i>{{blog.count}} 次</div>
+                        <div class="time"><i class="fa fa-calendar"></i>{{datatime blog.time}}</div>
+                        <div class="type"><i class="fa fa-folder"></i>{{blog.type}}</div>
+                        <div class="count"><i class="fa fa-bookmark"></i>{{blog.count}} 次</div>
+                        <div class="tag"><i class="fa fa-tags"></i>{{{splitTags blog.tags}}}</div>
                     </div>
                     <div class="info">摘要:{{blog.summary}}</div>
                     <hr>
                     <div class="blog-body">
                         {{{html}}}
+                    </div>
+                    <div class="blog-copy-info">
+                      <p>以上内容是在下的一点愚见，有任何不对的地方，欢迎指出。</p>
+                      <p>欢迎任何形式的转载，但请务必注明出处。</p>
+                      <p>转载请注明：文章转载自 黑老李的博客[<a href="https://heleeos.com/blog/{{blog.disp}}.html">https://heleeos.com</a>]</p>
+                      <p>本文标题：{{blog.title}}</p>
+                      <p>本文地址：https://heleeos.com/blog/{{blog.disp}}.html</p>
                     </div>
                 </div>
             </div>
@@ -80,9 +87,11 @@
                 <h3>分类</h3>
                 <div class="type">
                     <ul class="type-list">
-                        <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-                        <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
-                        <li class="type-list-item"><a class="type-list-link" href=""><i class="fa fa-caret-right"></i>随笔感悟</a><span class="type-list-count">(5)</span></li>
+                        {{#each types }}
+                            <li class="type-list-item">
+                                <a class="type-list-link" href=""><i class="fa fa-caret-right"></i>{{ name }}</a><span class="type-list-count">({{ count }})</span>
+                            </li>
+                        {{/each}}
                     </ul>
                 </div>
                 <h3>标签</h3>

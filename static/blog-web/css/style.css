@@ -38,11 +38,18 @@
 .main .card .title a {font-size: 2em;color: #6898ed;text-decoration: none;line-height: 1.3em;}
 .main .card .title a:hover {color: #95b6f2;}
 .main .card .meta {padding: 20px 20px 0;}
-.main .card .meta > div {float: left;margin-right: 30px;}
-.main .card .info {color: #9a9ea3;line-height: 30px;padding: 10px 20px;margin-top: 20px;font-style: italic;}
-.main .card .tags {color: #999;float: left;font-size: 15px;margin: 0 20px 20px;}
+.main .card .meta .time {float: left;margin-right: 30px;}
+.main .card .meta .type {float: left;margin-right: 30px;}
+.main .card .meta .count {float: none}
+.main .card .meta .tag {float: none;margin-top: 10px;}
+.main .card .meta .tag a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
+.main .card .meta .tag a:hover {color: #565a5f;}
+
+.main .card .tags {float: left;margin: 0 0 20px 15px;}
 .main .card .tags a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
 .main .card .tags a:hover {color: #565a5f;}
+
+.main .card .info {color: #9a9ea3;line-height: 30px;padding: 10px 20px;font-style: italic;}
 .main .card .readCount {float: right;margin-right: 15px;color: #999;}
 
 .right h3 {margin-bottom: 20px;font-size: 20px;}

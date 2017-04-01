@@ -60,8 +60,11 @@ router.get('/blog/:dispURL.html', function(req, res) {
 		} else {
 			var info = JSON.parse(body)
 		  	if (!error && response.statusCode == 200 && info.code == 200) {
-		  		var context = { blog: info.message.beans, html: converter.makeHtml(info.message.beans.content) };
-		  		context.blog.tags = context.blog.tags.split(",");
+		  		var context = { 
+	  				blog: info.message.beans, 
+	  				html: converter.makeHtml(info.message.beans.content), 
+	  				types: info.message.types
+		  		};
 		  		writeFile(req.params.dispURL, context);
 		  		res.render('blog', context);
 			}else {
