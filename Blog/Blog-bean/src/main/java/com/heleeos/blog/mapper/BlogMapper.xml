@@ -94,4 +94,8 @@
         update t_blog set count = count + 1 where id = #{0}
     </update>
     
+    <update id="addCountByUrl">
+        update t_blog set count = count + 1 where disp = #{0}
+    </update>
+    
 </mapper>

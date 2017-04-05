@@ -40,7 +40,7 @@ public class ImageController {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("#{configProperties.image_host}")
-    private String        imageHost;
+    private String imageHost;
     
     /**
      * 获取验证码

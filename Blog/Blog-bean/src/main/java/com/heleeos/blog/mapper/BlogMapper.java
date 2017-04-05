@@ -2,8 +2,6 @@ package com.heleeos.blog.mapper;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.heleeos.blog.bean.Blog;
 
 public interface BlogMapper {
@@ -25,4 +23,6 @@ public interface BlogMapper {
     public int changeIndex(Integer id, Integer changeIndex) throws Exception;
     
     public int addCount(Integer id) throws Exception;
+    
+    public int addCountByUrl(String id) throws Exception;
 }
