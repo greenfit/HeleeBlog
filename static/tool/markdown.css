@@ -1,0 +1,15 @@
+.row{margin: 0px;}
+.editor {border: 1px solid #ccc;overflow: hidden;}
+.editor .tool-bar{border-bottom: 1px solid #ccc;height: 35px;font-size: 20px;width: 100%;background-color: #eee;}
+.editor .tool-bar a {float: left;padding: 2px 10px;height: 100%;color: #000;}
+.editor .tool-bar a:hover {color: #888;}
+.editor .left{width: 50%;float: left;}
+.editor .right{width: 50%;float: left;}
+.form-control {border-color: #ffffff;-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075), 0 0 0px rgba(102,175,233,.6);box-shadow: inset 0 0px 0px rgba(0,0,0,.075), 0 0 0px rgba(102,175,233,.6);}
+.form-control:focus {border-color: #ffffff;-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075), 0 0 0px rgba(102,175,233,.6);box-shadow: inset 0 0px 0px rgba(0,0,0,.075), 0 0 0px rgba(102,175,233,.6);}
+::-webkit-scrollbar{width:3px;height:10px}
+::-webkit-scrollbar-button:vertical{display:none}
+::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color:#e2e2e2}
+::-webkit-scrollbar-thumb{border-radius:0;background-color:rgba(0,0,0,.3)}
+::-webkit-scrollbar-thumb:vertical:hover{background-color:rgba(0,0,0,.35)}
+::-webkit-scrollbar-thumb:vertical:active{background-color:rgba(0,0,0,.38)}
