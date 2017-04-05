@@ -15,6 +15,7 @@
     				 http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
                      
 	<import resource="applicationContext-database.xml" />
+    <import resource="applicationContext-redis.xml" />
 	
 	<context:annotation-config />
 	<mvc:annotation-driven />
