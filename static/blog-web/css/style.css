@@ -44,11 +44,9 @@
 .main .card .meta .tag {float: none;margin-top: 10px;}
 .main .card .meta .tag a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
 .main .card .meta .tag a:hover {color: #565a5f;}
-
 .main .card .tags {float: left;margin: 0 0 20px 15px;}
 .main .card .tags a {color: #999;text-decoration: none;margin-right: 8px;font-size: 15px;}
 .main .card .tags a:hover {color: #565a5f;}
-
 .main .card .info {color: #9a9ea3;line-height: 30px;padding: 10px 20px;font-style: italic;}
 .main .card .readCount {float: right;margin-right: 15px;color: #999;}
 
@@ -75,5 +73,22 @@
 .page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
 .footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
-.footer a{color: #6898ed;text-decoration: none;}
-.footer a:hover{color: #95b6f2;text-decoration: none;}
+
+.main .timeline{margin: 40px 20px 40px 40px;border-left: 3px solid #eceff2;}
+.main .timeline .timeline-row:before, .timeline-row:after {content: "";display: table;}
+.main .timeline .timeline-row:after {clear: both;}
+.main .timeline .timeline-row{margin: 20px 0;}
+.main .timeline .timeline-row .node {float: left;width: 12px;color: #fff;height: 12px;border-radius: 50%;margin: 11px 0 0 -8px;display: inline-block;background-color: #68a4f1;}
+.main .timeline .timeline-row .title {float: left;}
+.main .timeline .timeline-row .content {margin-left: 25px;position: relative;background: #fff;-webkit-transition: 0.3s;transition: 0.3s;}
+.main .timeline .timeline-row .content:hover{-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.main .timeline .timeline-row .content .article-name{font-size: 18px;padding: 10px;}
+.main .timeline .timeline-row .content .article-meta{font-size: 14px;color: #898d92;border-top: 1px solid #f7f7f7;background-color: rgba(244,246,247,0.2);padding: 10px;}
+.main .timeline .timeline-row .content .article-meta .date{float: left;margin-right: 10px;}
+.main .timeline .timeline-row .content .article-meta .type{float: left;margin-right: 10px;}
+.main .timeline .timeline-row .content .article-meta .tags{margin-right: 10px;}
+.main .timeline .timeline-row .content .article-meta i {color: #565a5f;}
+.main .timeline .timeline-row .content .article-meta a {color: #999;}
+.main .timeline .timeline-row .content .article-meta a:hover {color: #565a5f;}
+.main .timeline .timeline-year .node {width: 40px;height: 40px;font-size: 21px;padding: 5px 10px;margin: -5px 0px 0px -20px;}
+.main .timeline .timeline-year .title {font-size: 18px;margin-left: 15px;line-height: 30px;}
