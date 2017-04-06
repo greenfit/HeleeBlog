@@ -11,26 +11,9 @@ converter.setFlavor('github');
 require("./common.js");
 require("./hbs-helper.js");
 
-//首页重定向到第一页, 代码重复, 为了对用户友好
-router.get('/', function(req, res) {
-	var url = baseUrl + "list.json?page=1";
-	request(url, function (error, response, body) {
-		if(body == undefined){
-			res.render('error', { message: "服务器连接错误!" });
-		} else {
-			var info = JSON.parse(body);
-		  	if (!error && response.statusCode == 200 && info.code == 200) {
-			    res.render('index', { message: info.message });
-			}else {
-			  	res.render('error', { message: info.message });
-			}
-		}
-	});
-});
-
 //博客列表
-router.get('/page/:pg', function(req, res) {
-	var url = baseUrl + "list.json?page=" + req.params.pg;
+router.get('(/page/:page)?', function(req, res) {
+	var url = baseUrl + "list.json?page=" + req.params.page;
 	request(url, function (error, response, body) {
 		if(body == undefined){
 			res.render('error', { message: "服务器连接错误!" });
@@ -66,6 +49,21 @@ router.get('/blog/:dispURL.html', function(req, res) {
 			}
 		}
 	});
+});
+
+//显示时间线
+router.get('/time/:page?', function(req, res) {
+	res.render('time');
+});
+
+//显示分类列表
+router.get('/type/:type?/:page?', function(req, res) {
+	res.render('type');
+});
+
+//显示标签列表
+router.get('/tag/:tag?/:page?', function(req, res) {
+	res.render('tag');
 });
 
 module.exports = router;
