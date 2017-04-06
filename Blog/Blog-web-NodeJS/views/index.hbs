@@ -2,7 +2,7 @@
     <div class="card">
         <h1 class="title"><a href="/blog/{{ disp }}.html">{{ title }}</a></h1>
         <div class="meta">
-            <div class="time"><i class="fa fa-calendar"></i>{{ datatime time }}</div>
+            <div class="time"><i class="fa fa-calendar"></i>{{ datetime time }}</div>
             <div class="type" style="float:none"><i class="fa fa-folder"></i>{{ type }}</div>
         </div>
         <div class="info">{{ summary }}</div>
@@ -12,4 +12,4 @@
     </div>
 {{/each}}
 
-{{{page message.start message.end message.max message.page}}}
+{{{page 'page' message.start message.end message.max message.page}}}

@@ -53,7 +53,19 @@ router.get('/blog/:dispURL.html', function(req, res) {
 
 //显示时间线
 router.get('/time/:page?', function(req, res) {
-	res.render('time');
+	var url = baseUrl + "list.json?page=" + req.params.page + "&rows=8";
+	request(url, function (error, response, body) {
+		if(body == undefined){
+			res.render('error', { message: "服务器连接错误!" });
+		} else {
+			var info = JSON.parse(body);
+		  	if (!error && response.statusCode == 200 && info.code == 200) {
+			    res.render('time', { message: info.message });
+			}else {
+			  	res.render('error', { message: info.message });
+			}
+		}
+	});
 });
 
 //显示分类列表

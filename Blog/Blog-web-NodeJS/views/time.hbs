@@ -3,48 +3,27 @@
         <span class="node"><i class="fa fa-calendar"></i></span>
         <h1 class="title">2017</h1>
     </div>
-    <div class="timeline-row">
-        <span class="node"></span>
-        <div class="content">
-            <div class="article-name">
-                <a href="#">title</a>
-            </div>
-            <div class="article-meta">
-                <div class="date">
-                    <i class="fa fa-calendar"></i>
-                    <a href="#">2017-04-03</a>
-                </div>
-                <div class="type">
-                    <i class="fa fa-folder"></i>
-                    <a href="#">分类</a>
-                </div>
-                <div class="tags">
-                    <i class="fa fa-tag"></i>
-                    <a href="#">Nginx</a>, <a href="#">Zuul</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="timeline-row">
-        <span class="node"></span>
-        <div class="content">
-            <div class="article-name">
-                <a href="#">title</a>
-            </div>
-            <div class="article-meta">
-                <div class="date">
-                    <i class="fa fa-calendar"></i>
-                    <a href="#">2017-04-03</a>
-                </div>
-                <div class="type">
-                    <i class="fa fa-folder"></i>
-                    <a href="#">分类</a>
-                </div>
-                <div class="tags">
-                    <i class="fa fa-tag"></i>
-                    <a href="#">Nginx</a>, <a href="#">Zuul</a>
+    {{#each message.beans}}
+        <div class="timeline-row">
+            <span class="node"></span>
+            <div class="content">
+                <div class="article-name"><a href="/blog/{{ disp }}.html">{{ title }}</a></div>
+                <div class="article-meta">
+                    <div class="date">
+                        <i class="fa fa-calendar"></i>
+                        <a href="#">{{ date time }}</a>
+                    </div>
+                    <div class="type">
+                        <i class="fa fa-folder"></i>
+                        <a href="/type/{{ type }}/">{{ type }}</a>
+                    </div>
+                    <div class="tags">
+                        <i class="fa fa-tag"></i>{{{ splitTags tags }}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/each}}
 </div>
+
+{{{page 'time' message.start message.end message.max message.page}}}
