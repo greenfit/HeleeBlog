@@ -14,7 +14,7 @@ a:visited {color: #68a4f1;text-decoration: none;}
 a:focus{text-decoration: none;}
 a img {border: none;}
 
-::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-button:vertical{display:none}
 ::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color:#f5f8f9}
 ::-webkit-scrollbar-thumb{border-radius:20px;background-color:rgba(104, 152, 237, 0.5)}
