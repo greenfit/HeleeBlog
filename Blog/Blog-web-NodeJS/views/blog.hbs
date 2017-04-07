@@ -1,7 +1,7 @@
 <div class="card">
     <h1 class="title"><a>{{blog.title}}</a></h1>
     <div class="meta">
-        <div class="time"><i class="fa fa-calendar"></i>{{datatime blog.time}}</div>
+        <div class="time"><i class="fa fa-calendar"></i>{{datetime blog.time}}</div>
         <div class="type"><i class="fa fa-folder"></i>{{blog.type}}</div>
         <div class="count"><i class="fa fa-bookmark"></i>{{blog.count}} 次</div>
         <div class="tag"><i class="fa fa-tags"></i>{{{splitTags blog.tags}}}</div>
@@ -19,4 +19,6 @@
       <p>本文地址：https://heleeos.com/blog/{{blog.disp}}.html</p>
     </div>
 </div>
-<script src="https://api.heleeos.com/blog/{{blog.disp}}.js"></scprit>
+<script src="https://api.heleeos.com/blog/{{blog.disp}}.js"></script>
+<script src="https://static.heleeos.com/lib/jquery.min.js"></script>
+<script src="https://static.heleeos.com/blog-web/js/blog.js"></script>

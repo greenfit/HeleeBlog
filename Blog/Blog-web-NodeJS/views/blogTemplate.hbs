@@ -58,7 +58,7 @@
                 <div class="card">
                     <h1 class="title"><a>{{blog.title}}</a></h1>
                     <div class="meta">
-                        <div class="time"><i class="fa fa-calendar"></i>{{datatime blog.time}}</div>
+                        <div class="time"><i class="fa fa-calendar"></i>{{datetime blog.time}}</div>
                         <div class="type"><i class="fa fa-folder"></i>{{blog.type}}</div>
                         <div class="count"><i class="fa fa-bookmark"></i>{{blog.count}} 次</div>
                         <div class="tag"><i class="fa fa-tags"></i>{{{splitTags blog.tags}}}</div>
@@ -95,7 +95,7 @@
                     </ul>
                 </div>
                 <h3>标签</h3>
-                <dic class="tags">
+                <div class="tags">
                     <a href="">Spring</a>
                     <a href="">Spring Bean</a>
                     <a href="">Spring MVC</a>
@@ -103,11 +103,17 @@
                     <a href="">Java8</a>
                     <a href="">JVM</a>
                     <a href="">AOP</a>
-                </dic>
+                </div>
+                <div class="catalog">
+                    <span class="sidebar-scrollbar"></span>
+                    <ul class="catalog-content"></ul>
+                </div>
             </div>
         </div>
         <div class="footer">
             <a href="https://heleeos.com/profile/" target="_blank">李瑜</a> | 博客  2017 &copy;<br> 豫ICP备17009313号<br>
         </div>
+        <script src="https://static.heleeos.com/lib/jquery.min.js"></script>
+        <script src="https://static.heleeos.com/blog-web/js/blog.js"></script>
     </body>
 </html>
