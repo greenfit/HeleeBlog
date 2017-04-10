@@ -1,6 +1,6 @@
 
 //windows
-set DEBUG=myserver:* & npm start
+set DEBUG=myblog:* & npm start
 
 //linux
-DEBUG=myserver:* npm start
+DEBUG=myblog:* npm start
