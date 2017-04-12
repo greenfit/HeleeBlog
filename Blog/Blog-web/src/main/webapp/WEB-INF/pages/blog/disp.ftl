@@ -36,19 +36,19 @@
         <script src="https://static.heleeos.com/lib/vue-filter.js"></script>
         <script src="https://static.heleeos.com/lib/showdown.min.js"></script>
         <script type="text/javascript">
-	        var converter = new showdown.Converter();
-	        converter.setFlavor('github');     
+            var converter = new showdown.Converter();
+            converter.setFlavor('github');     
         
             var vm = new Vue({
                 el : '#dispBLog',
                 data : {
                     content : ''
                 },
-	            computed: {
-	                html: function() {
-	                    return converter.makeHtml(this.content);
-	                }
-	            }
+                computed: {
+                    html: function() {
+                        return converter.makeHtml(this.content);
+                    }
+                }
             });
             
             $.get("${dispURL}.json").done(function(res){

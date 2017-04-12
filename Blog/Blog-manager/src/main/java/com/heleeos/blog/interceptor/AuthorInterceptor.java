@@ -11,15 +11,15 @@ import com.heleeos.blog.constant.SessionKey;
  * @author liyu
  */
 public class AuthorInterceptor extends HandlerInterceptorAdapter {
-	
-	/* 检测是否登陆,没有登录的跳转到登陆页面 */
-	@Override
-	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		Object obj = req.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
-		if (obj == null) {
-			resp.sendRedirect(req.getContextPath() + "/login.html");
-			return false;
-		}
-		return true;
-	}
+    
+    /* 检测是否登陆,没有登录的跳转到登陆页面 */
+    @Override
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
+        Object obj = req.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
+        if (obj == null) {
+            resp.sendRedirect(req.getContextPath() + "/login.html");
+            return false;
+        }
+        return true;
+    }
 }

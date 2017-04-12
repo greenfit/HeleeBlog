@@ -9,8 +9,8 @@
             display: none;
         }
         .input-markdown textarea {
-	        width: 100%;
-	        height: 400px;
+            width: 100%;
+            height: 400px;
         }
     </style>
 </head>
@@ -94,14 +94,14 @@
     <script src="https://static.heleeos.com/lib/ckeditor/config.js"></script>
     <script type="text/javascript">
     
-	    CKEDITOR.replace('editor', {
-	        height: 270,
-	        extraPlugins: 'image',
-	        filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val(),
-	    });
-        	  
+        CKEDITOR.replace('editor', {
+            height: 270,
+            extraPlugins: 'image',
+            filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val(),
+        });
+              
         function save() {
-        	var id = $("#id").val();
+            var id = $("#id").val();
             var title = $("#title").val();
             var type = $("#type").val();
             var disp = $("#disp").val();
@@ -126,9 +126,9 @@
             }
             
             if(contentType == 0) {
-            	content = CKEDITOR.instances.editor.getData();
+                content = CKEDITOR.instances.editor.getData();
             } else {
-            	content = $("#editor2").val();
+                content = $("#editor2").val();
             }
             
             var data = {"id" : id, "title" : title, "type" : type, "disp" : disp, "tags" : tags, "summary" : summary, "contentType" : contentType, "content" : content};

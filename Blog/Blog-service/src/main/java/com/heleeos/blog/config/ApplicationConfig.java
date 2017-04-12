@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="config")
 @ImportResource(locations={"classpath:database.xml"})
 public class ApplicationConfig {
-	
-	private String imageHost;
-	
-	public String getImageHost() {
-		return imageHost;
-	}
-	
-	public void setImageHost(String imageHost) {
-		this.imageHost = imageHost;
-	}
+    
+    private String imageHost;
+    
+    public String getImageHost() {
+        return imageHost;
+    }
+    
+    public void setImageHost(String imageHost) {
+        this.imageHost = imageHost;
+    }
 }

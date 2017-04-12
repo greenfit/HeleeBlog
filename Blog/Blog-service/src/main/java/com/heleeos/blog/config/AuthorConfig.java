@@ -15,8 +15,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 @Configuration
 public class AuthorConfig extends WebMvcConfigurerAdapter {
-	
-	/**
+    
+    /**
      * 添加拦截器
      */
     @Override
