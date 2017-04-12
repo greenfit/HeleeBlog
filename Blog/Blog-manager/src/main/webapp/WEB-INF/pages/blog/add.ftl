@@ -74,10 +74,10 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block input-ckeditor" <#if bean??><#if bean.contentType == 1>style="display:none;"</#if></#if>>
-                    <div id="editor"><#if content??> ${content} </#if></div>
+                    <div id="editor"><#if bean??> ${bean.content} </#if></div>
                 </div>
                 <div class="layui-input-block input-markdown" <#if bean??><#if bean.contentType == 1>style="display:block;"</#if></#if>>
-                    <textarea id="editor2"><#if content??>${content}</#if></textarea>
+                    <textarea id="editor2"><#if bean??>${bean.content}</#if></textarea>
                 </div>
             </div>
             
