@@ -73,7 +73,12 @@
 .page-nav .current {color: #565a5f;font-weight: bold;}
 .page-nav .current:hover {color: #565a5f;background: none;text-decoration: none;}
 
-.footer {padding: 10px 0;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.footer {padding-top: 8px;border-top: 1px solid #eceff2;color: #565a5f;text-align: center;line-height: 25px;font-size: 15px;margin-top: 30px;background: #fff;-webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);}
+.footer a{color: #565a5f;}
+.footer .beian {width:450px;margin:0 auto;}
+.footer .beian .icp {padding-left: 8px;margin: 5px 0;}
+.footer .beian .beian-link {display:inline-block;text-decoration:none;height:20px;line-height:20px;}
+.footer .beian .beian-title {float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;padding-left: 0px;}
 
 .main .timeline{margin: 0 15px;border-left: 3px solid #eee;}
 .main .timeline .timeline-row:before, .timeline-row:after {content: "";display: table;}
