@@ -9,6 +9,9 @@
         <hr>
         <div class="tags"><i class="fa fa-tag"></i>{{{ splitTags tags }}}</div>
         <div class="readCount"><i class="fa fa-bookmark"></i>{{ count }} 次</div>
+        {{#larger dispIndex 0}}
+            <img class="tj" src="https://static.heleeos.com/blog-web/image/tj.png">
+        {{/larger}}
     </div>
 {{/each}}
 

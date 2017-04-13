@@ -9,6 +9,13 @@ hbs.registerHelper("datetime", function(timestamp) {
     return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
 });
 
+hbs.registerHelper('larger', function(v1, v2, options) {
+    if(v1 > v2) {
+	    return options.fn(this);
+    }
+	return options.inverse(this);
+});
+
 hbs.registerHelper("splitTags", function(tag) {
     var str = "";
     var tags = tag.split(",");
