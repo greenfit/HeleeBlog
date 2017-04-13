@@ -19,10 +19,16 @@ router.get('(/page/:page)?', function(req, res) {
             res.render('error', { message: "服务器连接错误!" });
         } else {
             var info = JSON.parse(body);
-              if (!error && response.statusCode == 200 && info.code == 200) {
-                res.render('index', { message: info.message });
+            var context = { 
+        		message: info.message, 
+        		title : "成长之旅 | 黑老李的博客", 
+                keywords : "博客,全栈开发工程师,Java入门,Spring精通,架构师", 
+                description : "我的个人博客,有Java入门系列内容,Spring精通系列,架构师之路系列的文章"
+            };
+            if (!error && response.statusCode == 200 && info.code == 200) {
+                res.render('index', context);
             }else {
-                  res.render('error', { message: info.message });
+                res.render('error', context);
             }
         }
     });
@@ -36,16 +42,19 @@ router.get('/blog/:dispURL.html', function(req, res) {
             res.render('error', { error: "服务器连接错误!" });
         } else {
             var info = JSON.parse(body)
-              if (!error && response.statusCode == 200 && info.code == 200) {
-                  var context = { 
-                      blog: info.message.beans, 
-                      html: converter.makeHtml(info.message.beans.content), 
-                      types: info.message.types
-                  };
-                  writeFile(req.params.dispURL, context);
-                  res.render('blog', context);
+            if (!error && response.statusCode == 200 && info.code == 200) {
+                var context = { 
+                    blog: info.message.beans, 
+                    html: converter.makeHtml(info.message.beans.content), 
+                    types: info.message.types,
+                    title : info.message.beans.title, 
+                    keywords : info.message.beans.tags, 
+                    description : info.message.beans.summary
+                };
+                writeFile(req.params.dispURL, context);
+                res.render('blog', context);
             }else {
-                  res.render('error', { message: info.message });
+                res.render('error', { message: info.message });
             }
         }
     });
@@ -59,10 +68,10 @@ router.get('/time/:page?', function(req, res) {
             res.render('error', { message: "服务器连接错误!" });
         } else {
             var info = JSON.parse(body);
-              if (!error && response.statusCode == 200 && info.code == 200) {
+            if (!error && response.statusCode == 200 && info.code == 200) {
                 res.render('time', { message: info.message });
             }else {
-                  res.render('error', { message: info.message });
+                res.render('error', { message: info.message });
             }
         }
     });

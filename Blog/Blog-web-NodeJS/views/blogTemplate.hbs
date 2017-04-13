@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
     <head>
+        <title>{{ title }}</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>成长之旅 | Heleeos blog</title>
+        <meta name="keywords"    content="{{ keywords }}">
+        <meta name="description" content="{{ description }}">
+        <meta name="viewport"    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="author"      content="Liyu, kissaoe@gmail.com">
+        <meta name="copyright"   content="Liyu">
+        <meta name="renderer"    content="webkit">
+        <meta http-equiv="cache-control" content="no-cache">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/lib/font-awesome/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/common.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/style.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/blog.css">
+        <link rel="shortcut icon" href="https://heleeos.com/favicon.ico" /> 
         <script src="https://api.heleeos.com/blog/{{blog.disp}}.js"></script>
     </head>
     <body>
@@ -118,9 +125,13 @@
                     <p class="beian-title">豫公网安备 41072102000352 号</p>
                 </a>
             </div>
-            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1261694742'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1261694742%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
         <script src="https://static.heleeos.com/lib/jquery.min.js"></script>
         <script src="https://static.heleeos.com/blog-web/js/blog.js"></script>
+        <script type="text/javascript">
+            (function(){
+                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1261694742'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1261694742%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+            })();
+        </script>
     </body>
 </html>
