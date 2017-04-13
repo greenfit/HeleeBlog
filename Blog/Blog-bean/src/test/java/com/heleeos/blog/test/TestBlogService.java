@@ -30,9 +30,14 @@ public class TestBlogService extends TestConfig {
     
     @Test
     public void getList() {
-        System.out.println("Count:" + blogService.getCount(0, ""));
-        blogService.gets(0, "", 1, 10).forEach((blog) -> {
+        System.out.println("Count:" + blogService.getCount(0, "", false));
+        blogService.gets(0, "", false, 1, 10).forEach((blog) -> {
             System.out.println(blog);
         });
+    }
+    
+    @Test
+    public void changeIndex() {
+        blogService.changeIndex(2, -1);
     }
 }

@@ -30,7 +30,7 @@ public class BlogController {
         int type = NumberUtils.toInt(request.getParameter("type"), 0);
         String tags = request.getParameter("tags");
         
-        int count = blogService.getCount(type, tags);
+        int count = blogService.getCount(type, tags, true);
         int max = count / rows + (count % rows == 0 ? 0 : 1);//余数不为0,要加一
         int start = 1;//开始显示页码的页
         int end = max;
@@ -49,7 +49,7 @@ public class BlogController {
         if(end > max) end = max;
 
         result.setCode(200);
-        result.putMessage("beans", blogService.gets(type, tags, page, rows));
+        result.putMessage("beans", blogService.gets(type, tags, true, page, rows));
         result.putMessage("count", count);
         result.putMessage("page", page);
         result.putMessage("rows", rows);

@@ -34,12 +34,13 @@
                     <td>{{ bean.time | datetime }}</td>
                     <td>{{ bean.lasttime | datetime }}</td>
                     <td>{{ bean.dispIndex }}</td>
-                    <td>{{ bean.state }}</td>
+                    <td>{{ dispState(bean.state) }}</td>
                     <td>
                         <button class="layui-btn layui-btn-primary" @click="editor(bean.id)">编辑</button>
-                        <button class="layui-btn layui-btn-normal">上调</button>
-                        <button class="layui-btn layui-btn-warm">下降</button>
-                        <button class="layui-btn layui-btn-danger">删除</button>
+                        <button class="layui-btn layui-btn-normal" @click="changeIndex(bean.id, 1)">上调</button>
+                        <button class="layui-btn layui-btn-warm" @click="changeIndex(bean.id, -1)">下降</button>
+                        <button class="layui-btn layui-btn-danger" @click="changeState(bean.id, 'delete')" v-if="bean.state != 1">删除</button>
+                        <button class="layui-btn layui-btn-primary" @click="changeState(bean.id, 'normal')" v-if="bean.state != 0">正常</button>
                     </td>
                 </tr>
             </tbody>
@@ -59,21 +60,55 @@
                     beans: []
                 },
                 methods: {
+                	dispState: function(state) {
+                		switch (state) {
+							case 0: return "正常状态";
+							case 1: return "删除状态";
+							case 2: return "草稿状态";
+							default: return "其他状态";
+						}
+                	},                    
                     editor: function(id) {
-                        parent.openDiv('', 'blog/add.html?id=' + id);
+                        parent.openDiv('', 'blog/add.html?id=' + id, loadBean);
+                    },
+                    changeIndex: function(id, change) {
+                    	$.post("changeIndex.json", { "id" : id, "change" : change}).done(function(res){
+                    		if(res.code == 200) {
+                    			parent.dispTip("修改成功");
+                    			loadBean();
+                    		} else {
+                    			parent.dispTip(res.message.info);
+                    		}
+                    	}).fail(function(){
+                    		parent.dispMessage("调整位置", "接口请求失败", true);
+                    	})
+                    },
+                    changeState: function(id, state) {
+                    	$.post("changeState.json", { "id" : id, "state" : state}).done(function(res){
+                            if(res.code == 200) {
+                                parent.dispTip("修改成功");
+                                loadBean();
+                            } else {
+                                parent.dispTip(res.message.info);
+                            }
+                        }).fail(function(){
+                            parent.dispMessage("修改状态", "接口请求失败", true);
+                        })
                     }
                 }
             });
             
-            var data = { "module" : 1 };
-            $.post("list.json", data).done(function(res){
-                if(res.code == 0) {
-                    vm.beans = res.message.beans;
-                    if(vm.loadr) vm.loadr = false;
-                }
-            }).fail(function(err){
-                vm.error = true;
-            });
+            function loadBean() {
+            	$.post("list.json").done(function(res){
+                    if(res.code == 0) {
+                        vm.beans = res.message.beans;
+                        if(vm.loadr) vm.loadr = false;
+                    }
+                }).fail(function(err){
+                    vm.error = true;
+                });
+            }
+            loadBean();
         });
     </script>
 </body>

@@ -37,4 +37,13 @@ public enum BlogState {
             default: return OTHER;
         }
     }
+    
+    public static BlogState of(String state) {
+        switch (state.toUpperCase()) {
+            case "NORMAL": return NORMAL;
+            case "DELETE": return DELETE;
+            case "UPDATE": return UPDATE;    
+            default: return OTHER;
+        }
+    }
 }

@@ -135,6 +135,7 @@
             $.post("update.json", data, function(res){
                 if(res.code == 200){
                     layer.msg("提交成功!", {icon : 1});
+                    parent.divCall();
                 }else{
                     layer.msg(res.message.info, {icon : 2});
                 }

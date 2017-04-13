@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.Blog;
+import com.heleeos.blog.constant.BlogState;
 import com.heleeos.blog.mapper.BlogMapper;
 
 /**
@@ -44,14 +45,14 @@ public class BlogService {
     }
     
     /**
-     * 使文章为删除状态.
+     * 修改文章的状态.
      * 
      * @param id 文章ID
      */
-    public boolean delete(Integer id) {
+    public boolean changeState(Integer id, BlogState state) {
         if(id == null || id == 0) return false;
         try {
-            blogMapper.delete(id);
+            blogMapper.changeState(id, state.getState());
             return true;
         } catch (Exception e) {
             logger.error("删除[博客文章]异常,原因:{}", e.getMessage());
@@ -99,13 +100,13 @@ public class BlogService {
      * @param index 开始位置
      * @param rows 显示条数
      */
-    public List<Blog> gets(Integer type, String tags, Integer page, Integer rows) {
+    public List<Blog> gets(Integer type, String tags, boolean onlyNormal, Integer page, Integer rows) {
         int index = (page - 1) * rows;
         if(index < 0) index = 0;
         if(type == null || type == 0) type = null;
         if(StringUtils.trim(tags) == null) tags = null;
         try {
-            return blogMapper.gets(type, tags, index, rows);
+            return blogMapper.gets(type, tags, onlyNormal, index, rows);
         } catch (Exception e) {
             logger.error("获取[博客文章列表]异常,原因:{}", e.getMessage());
             return null;
@@ -119,11 +120,11 @@ public class BlogService {
      * @param tags 标签
      * @param managerId 管理者ID
      */
-    public int getCount(Integer type, String tags) {
+    public int getCount(Integer type, String tags, boolean onlyNormal) {
         if(type == null || type == 0) type = null;
         if(StringUtils.trim(tags) == null) tags = null;        
         try {
-            return blogMapper.getCount(type, tags);
+            return blogMapper.getCount(type, tags, onlyNormal);
         } catch (Exception e) {
             logger.error("获取[博客文章个数]异常,原因:{}", e.getMessage());
             return 0;

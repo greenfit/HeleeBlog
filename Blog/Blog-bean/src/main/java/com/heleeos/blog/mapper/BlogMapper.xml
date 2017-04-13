@@ -37,10 +37,6 @@
                             #{dispIndex,jdbcType=TINYINT},   #{content,jdbcType=LONGVARCHAR})
     </insert>
     
-    <update id="delete" parameterType="java.lang.Integer">
-        update t_blog set isDelete = true where id = #{id,jdbcType=INTEGER}
-    </update>
-    
     <update id="update" parameterType="com.heleeos.blog.bean.Blog">
         update t_blog set title = #{title,jdbcType=VARCHAR},
                            disp = #{disp,jdbcType=VARCHAR},
@@ -56,28 +52,34 @@
     </update>
     
     <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select <include refid="All_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} and state != 1 limit 1
+        select <include refid="All_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} limit 1
     </select>
     
     <select id="getByURL" resultMap="BaseResultMap">
-        select <include refid="All_Column_List" /> from t_blog where disp = #{0} and state != 1 limit 1
+        select <include refid="All_Column_List" /> from t_blog where disp = #{0} limit 1
     </select>
     
     <select id="gets" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from t_blog 
-        where state != 1
+        where 1=1 
+            <if test="param3">
+                and state = 0
+            </if>
             <if test="param1 != null">
                 and type = #{param1}
             </if>
             <if test="param2 != null">
                 and tags like "%${param2}%"
             </if>
-        order by dispIndex asc, time desc limit #{param3}, #{param4}
+        order by dispIndex desc, time desc limit #{param4}, #{param5}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
         select count(0) from t_blog 
-        where state != 1
+        where 1=1 
+            <if test="param3">
+                and state = 0
+            </if>
             <if test="param1 != null">
                 and type = #{param1}
             </if>
@@ -87,7 +89,11 @@
     </select>
     
     <update id="changeIndex">
-        update t_blog set dispIndex = #{0} where id = #{1}
+        update t_blog set dispIndex = dispIndex + #{1} where id = #{0}
+    </update>
+    
+    <update id="changeState">
+        update t_blog set state = #{1} where id = #{0}
     </update>
     
     <update id="addCount">

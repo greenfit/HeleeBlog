@@ -54,15 +54,29 @@
             vm.src = page;
        }
        
-       function openDiv(title, page) {
-           layer.open({
+       var divCall = function(){};
+       function openDiv(title, page, call) {
+           var index = layer.open({
              type: 2,
              title: title,
              shadeClose: true,
              shade: 0.8,
              area: ['80%', '90%'],
              content: page
-           }); 
+           });
+           divCall = function(){
+        	   setTimeout(function(){layer.close(index);}, 1000);
+        	   if(typeof(call) == 'function') {
+        		   call();
+        	   }
+           };
+       }
+       function dispTip(content) {
+    	   layer.msg(content);
+       }
+       function dispMessage(title, content, error) {
+    	   var icon = error ? 2 : 1;
+           layer.open({ "title": title, "content": content, "icon": icon });
        }
     </script>
 </body>
