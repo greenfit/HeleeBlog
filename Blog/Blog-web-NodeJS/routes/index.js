@@ -20,10 +20,10 @@ router.get('(/page/:page)?', function(req, res) {
         } else {
             var info = JSON.parse(body);
             var context = { 
-        		message: info.message, 
-        		title : "成长之旅 | 黑老李的博客", 
-                keywords : "博客,全栈开发工程师,Java入门,Spring精通,架构师", 
-                description : "我的个人博客,有Java入门系列内容,Spring精通系列,架构师之路系列的文章"
+                message: info.message, 
+                title : "成长之旅 | 黑老李的博客", 
+                keywords : "李瑜的博客,全栈开发工程师,Java入门,Spring精通,架构师", 
+                description : "李瑜的个人博客,有Java入门系列内容,Spring精通系列,架构师之路系列的文章"
             };
             if (!error && response.statusCode == 200 && info.code == 200) {
                 res.render('index', context);
