@@ -21,19 +21,42 @@
             </div>
         </div>
         <div class="layui-side layui-bg-black">
-            <ul class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item layui-nav-title"><a>网站设置</a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-bullhorn"></i> <cite>公告设置</cite></a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-cogs"></i> <cite>权限设置</cite></a></li>
-                <li class="layui-nav-item layui-nav-title"><a>图表示例</a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-folder-open-o"></i> <cite>折线图</cite></a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-folder-open-o"></i> <cite>柱状图</cite></a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-folder-open-o"></i> <cite>折线图和柱状图</cite></a></li>
-                <li class="layui-nav-item layui-nav-link"><a onclick="load('')"><i class="fa fa-folder-open-o"></i> <cite>饼形图</cite></a></li>
+            <ul class="layui-nav layui-nav-tree" lay-filter="leftNav">
+                <li class="layui-nav-item">
+                    <a>网站设置</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="https://www.baidu.com" ><i class="fa fa-bullhorn"></i> <cite>公告设置</cite></a></dd>
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="https://www.google.com"><i class="fa fa-cogs"></i> <cite>权限设置</cite></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a>表单示例</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="1"><i class="fa fa-folder-open-o"></i> <cite>文章编辑</cite></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a>图表示例</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="2"><i class="fa fa-folder-open-o"></i> <cite>折线图</cite></a></dd>
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="3"><i class="fa fa-folder-open-o"></i> <cite>柱状图</cite></a></dd>
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="4"><i class="fa fa-folder-open-o"></i> <cite>折线图和柱状图</cite></a></dd>
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="5"><i class="fa fa-folder-open-o"></i> <cite>饼形图</cite></a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
         <div id="bodyDiv" class="layui-body">
-            <iframe :src="src"></iframe>
+            <div class="layui-tab layui-tab-card" lay-allowclose="true" lay-filter="bodyTab">
+              <ul class="layui-tab-title">
+                <li class="layui-this">开发日志</li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                  <iframe src="logs.html"></iframe>
+                </div>
+              </div>
+            </div>
         </div>
         <div class="layui-footer" style="padding-top: 15px; height: 30px;">
             <p class="center">
@@ -46,10 +69,27 @@
     <script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
     <script src="/static/js/alert.js"></script>
     <script type="text/javascript">
-       var vm = new Vue({ el : "#bodyDiv", data: { src : "logs.html" } });
-       function load(page) {
-           vm.src = page;
-       }
+       
+       layui.use('element', function(){
+          var element = layui.element();
+          
+          element.on("nav(leftNav)", function(elem){
+             var title = elem.children('a').text();
+             var src   = elem.children('a').attr('data-url');
+             if($("li[lay-id='" + src + "']").length == 0) {
+                 element.tabAdd('bodyTab', {title: title, content: '<iframe src="' + src + '"></iframe>', id: src});
+                 element.tabChange('bodyTab', src);
+             } else {
+                 element.tabChange('bodyTab', src);
+             }
+          });
+          
+          $(window).resize(function() {
+              $(".layui-body .layui-tab").width($(".layui-body").width() - 30);
+              $(".layui-body .layui-tab").height($(".layui-body").height() - 30);
+              $(".layui-body .layui-tab .layui-tab-content").height($(".layui-body").height() - 70);
+          }).resize();
+       });
     </script>
 </body>
 </html>
