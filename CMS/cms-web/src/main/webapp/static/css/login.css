@@ -1,0 +1,5 @@
+body{background-image:url('../images/login.png');padding-top: 100px;}
+.login{margin: 0 auto;width: 400px;height: 500px;padding-right: 50px;background-image:url('../images/login-bg.png');background-position:top center;background-repeat: no-repeat;background-attachment: fixed;background-position-y: 100px;}
+.login .login-logo{margin: 50px 0px 25px 30px;width: 370px;}
+.login .cptcha{float: left;width: 180px;margin-left: 0px;}
+.login .cptcha-image{width: 180px;position: absolute;margin-left: 300px;}

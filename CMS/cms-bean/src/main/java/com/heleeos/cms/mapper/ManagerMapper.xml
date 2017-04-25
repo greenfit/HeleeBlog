@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heleeos.cms.mapper.ManagerMapper">
+    <resultMap id="BaseResultMap" type="com.heleeos.cms.bean.Manager">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
+        <result column="info" jdbcType="VARCHAR" property="info" />
+        <result column="state" jdbcType="TINYINT" property="state" />
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        id, username, password, nickname, realname, picture, loginTime, info, state
+    </sql>
+    
+    <insert id="insert" parameterType="com.heleeos.cms.bean.Manager">
+        insert into t_manager (id, username, password, nickname, realname, picture, loginTime, info, state)
+                       values (#{id,jdbcType=INTEGER},          #{username,jdbcType=VARCHAR},
+                               #{password,jdbcType=VARCHAR},    #{nickname,jdbcType=VARCHAR}, 
+                               #{realname,jdbcType=VARCHAR},    #{picture,jdbcType=VARCHAR}, 
+                               #{logintime,jdbcType=TIMESTAMP}, #{info,jdbcType=VARCHAR},
+                               #{state,jdbcType=TINYINT})
+    </insert>
+    
+    <update id="update" parameterType="com.heleeos.cms.bean.Manager">
+        update t_manager set username = #{username,jdbcType=VARCHAR},
+                             password = #{password,jdbcType=VARCHAR},
+                             nickname = #{nickname,jdbcType=VARCHAR},
+                             realname = #{realname,jdbcType=VARCHAR},
+                              picture = #{picture,jdbcType=VARCHAR},
+                            loginTime = #{logintime,jdbcType=TIMESTAMP},
+                                 info = #{info,jdbcType=VARCHAR},
+                                state = #{state,jdbcType=TINYINT}
+                             where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updataState" parameterType="java.lang.Integer">
+        update t_manager set state = #{state,jdbcType=TINYINT} where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updateLoginTime" parameterType="java.lang.Integer">
+        update t_manager set loginTime = now() where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    
+    <select id="get" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_manager where username = #{0} and password = #{1} limit 1
+    </select>
+    
+</mapper>
