@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.heleeos.cms.constant.SessionKey;
+import com.heleeos.cms.util.CookieUtil;
 /**
  * 登陆过滤器.
  * 
@@ -16,6 +17,10 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
         Object obj = req.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
+        if(obj == null) {
+            obj = CookieUtil.getManager(req);
+        }
+        
         if (obj == null) {
             resp.sendRedirect(req.getContextPath() + "/login.html");
             return false;

@@ -1,7 +1,11 @@
 package com.heleeos.cms.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
@@ -13,9 +17,12 @@ import com.heleeos.cms.bean.Manager;
 import com.heleeos.cms.bean.Result;
 import com.heleeos.cms.constant.SessionKey;
 import com.heleeos.cms.service.ManagerService;
+import com.heleeos.cms.util.CookieUtil;
 
 @RestController
 public class MainController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
     
     @Autowired
     public ManagerService managerService;
@@ -89,7 +96,7 @@ public class MainController {
      * password 密码
      */
     @RequestMapping(value = "login.json")
-    public Result login(HttpServletRequest request){
+    public Result login(HttpServletRequest request, HttpServletResponse response){
         Result result = new Result();
         try {
             String cptcha = request.getSession().getAttribute(SessionKey.SESSION_CPTCHA_KEY).toString();
@@ -100,6 +107,7 @@ public class MainController {
                 if(manager != null) {
                     managerService.updateLoginTime(manager.getId());
                     request.getSession().setAttribute(SessionKey.SESSION_MANAGER_KEY, manager);
+                    CookieUtil.saveManager(response, manager);                    
                     result.setCode(200);
                     result.putInfo("");
                 } else{
@@ -112,7 +120,8 @@ public class MainController {
             }
         } catch (Exception e) {
             result.setCode(403);
-            result.putInfo("请勿非法调用!"); 
+            result.putInfo("请勿非法调用!");
+            logger.error("调用登陆接口出现异常!", e);
         }
         return result;
     }
@@ -122,8 +131,9 @@ public class MainController {
      */
     @ResponseBody
     @RequestMapping(value = "logout.json")
-    public Result logout(HttpServletRequest request){
+    public Result logout(HttpServletRequest request, HttpServletResponse response){
         request.getSession().removeAttribute(SessionKey.SESSION_MANAGER_KEY);
+        CookieUtil.clearManager(request, response);
         Result result = new Result();
         result.setCode(200);
         result.putInfo("");

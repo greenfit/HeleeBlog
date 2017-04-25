@@ -111,4 +111,8 @@ public class RedisService {
     public void expire(String key) {
         expire(key, 1, TimeUnit.HOURS);
     }
+    
+    public void clear(String key) {
+        put(key, "null", 1, TimeUnit.SECONDS);
+    }
 }
