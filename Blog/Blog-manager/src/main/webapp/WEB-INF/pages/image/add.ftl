@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>麟龙基金管理端</title>
+    <title>博客管理端</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="${request.contextPath}/static/lib/layui/css/layui.css">
     <link rel="stylesheet" href="${request.contextPath}/static/css/style.css">
