@@ -32,7 +32,7 @@
                 <li class="layui-nav-item">
                     <a>表单示例</a>
                     <dl class="layui-nav-child">
-                        <dd class="layui-nav-item layui-nav-link"><a data-url="1"><i class="fa fa-folder-open-o"></i> <cite>文章编辑</cite></a></dd>
+                        <dd class="layui-nav-item layui-nav-link"><a data-url="/from/add.html"><i class="fa fa-folder-open-o"></i> <cite>文章编辑</cite></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heleeos.blog.mapper.BlogMapper">
+    <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Blog">
+        <id column="id"              jdbcType="INTEGER"     property="id" />
+        <result column="title"       jdbcType="VARCHAR"     property="title" />
+        <result column="disp"        jdbcType="VARCHAR"     property="disp" />
+        <result column="summary"     jdbcType="VARCHAR"     property="summary" />
+        <result column="time"        jdbcType="TIMESTAMP"   property="time" />
+        <result column="lastTime"    jdbcType="TIMESTAMP"   property="lasttime" />
+        <result column="managerId"   jdbcType="INTEGER"     property="managerid" />
+        <result column="type"        jdbcType="VARCHAR"     property="type" />
+        <result column="count"       jdbcType="INTEGER"     property="count" />
+        <result column="tags"        jdbcType="VARCHAR"     property="tags" />
+        <result column="contentType" jdbcType="TINYINT"     property="contentType" />
+        <result column="state"       jdbcType="TINYINT"     property="state" />
+        <result column="dispIndex"   jdbcType="TINYINT"     property="dispIndex" />
+        <result column="content"     jdbcType="LONGVARCHAR" property="content" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, title, disp, summary, time, lastTime, managerId, type, count, tags, contentType, state, dispIndex
+    </sql>
+    
+    <sql id="All_Column_List">
+        id, title, disp, summary, time, lastTime, managerId, type, count, tags, contentType, state, dispIndex, content
+    </sql>
+    
+        
+    <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
+        insert into t_blog (title, disp, summary, time, lastTime, managerId, type, count, tags, contentType, state, dispIndex, content)
+                    values (#{title,jdbcType=VARCHAR},       #{disp,jdbcType=VARCHAR},       #{summary,jdbcType=VARCHAR},
+                            #{time,jdbcType=TIMESTAMP},      #{lasttime,jdbcType=TIMESTAMP},
+                            #{managerid,jdbcType=INTEGER},   #{type,jdbcType=VARCHAR},
+                            #{count,jdbcType=INTEGER},       #{tags,jdbcType=VARCHAR},      
+                            #{contentType,jdbcType=TINYINT}, #{state,jdbcType=TINYINT},
+                            #{dispIndex,jdbcType=TINYINT},   #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    
+    <update id="update" parameterType="com.heleeos.blog.bean.Blog">
+        update t_blog set title = #{title,jdbcType=VARCHAR},
+                           disp = #{disp,jdbcType=VARCHAR},
+                        summary = #{summary,jdbcType=VARCHAR},
+                       lastTime = #{lasttime,jdbcType=TIMESTAMP},
+                           type = #{type,jdbcType=VARCHAR},
+                           tags = #{tags,jdbcType=VARCHAR},
+                    contentType = #{contentType,jdbcType=TINYINT},
+                          state = #{state,jdbcType=TINYINT},
+                      dispIndex = #{dispIndex,jdbcType=TINYINT},
+                        content = #{content,jdbcType=LONGVARCHAR}
+                       where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="All_Column_List" /> from t_blog where id = #{id,jdbcType=INTEGER} limit 1
+    </select>
+    
+    <select id="getByURL" resultMap="BaseResultMap">
+        select <include refid="All_Column_List" /> from t_blog where disp = #{0} limit 1
+    </select>
+    
+    <select id="gets" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from t_blog 
+        where 1=1 
+            <if test="param3">
+                and state = 0
+            </if>
+            <if test="param1 != null">
+                and type = #{param1}
+            </if>
+            <if test="param2 != null">
+                and tags like "%${param2}%"
+            </if>
+        order by dispIndex desc, time desc limit #{param4}, #{param5}
+    </select>
+    
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(0) from t_blog 
+        where 1=1 
+            <if test="param3">
+                and state = 0
+            </if>
+            <if test="param1 != null">
+                and type = #{param1}
+            </if>
+            <if test="param2 != null">
+                and tags like "%${param2}%"
+            </if>
+    </select>
+    
+    <update id="changeIndex">
+        update t_blog set dispIndex = dispIndex + #{1} where id = #{0}
+    </update>
+    
+    <update id="changeState">
+        update t_blog set state = #{1} where id = #{0}
+    </update>
+    
+    <update id="addCount">
+        update t_blog set count = count + 1 where id = #{0}
+    </update>
+    
+    <update id="addCountByUrl">
+        update t_blog set count = count + 1 where disp = #{0}
+    </update>
+    
+</mapper>
