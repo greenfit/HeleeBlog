@@ -3,6 +3,9 @@
   <groupId>com.heleeos</groupId>
   <artifactId>blog</artifactId>
   <version>1.0.0</version>
-  <packaging>pom</packaging>
+    <modules>
+        <module>test</module>
+    </modules>
+    <packaging>pom</packaging>
   <name>Blog</name>
 </project>

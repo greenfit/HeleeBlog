@@ -6,23 +6,23 @@ import com.heleeos.blog.bean.Blog;
 
 public interface BlogMapper {
     
-    public int insert(Blog bean) throws Exception;
+    int insert(Blog bean) throws Exception;
     
-    public int update(Blog bean) throws Exception;
+    int update(Blog bean) throws Exception;
     
-    public Blog get(Integer id) throws Exception;
+    Blog get(Integer id) throws Exception;
     
-    public Blog getByURL(String url) throws Exception;
+    Blog getByURL(String url) throws Exception;
         
-    public List<Blog> gets(Integer type, String tags, boolean onlyNormal, Integer index, Integer rows) throws Exception;
+    List<Blog> gets(Integer type, String tags, boolean onlyNormal, Integer index, Integer rows) throws Exception;
     
-    public int getCount(Integer type, String tags, boolean onlyNormal) throws Exception;
+    int getCount(Integer type, String tags, boolean onlyNormal) throws Exception;
     
-    public int changeIndex(Integer id, Integer changeIndex) throws Exception;
+    int changeIndex(Integer id, Integer changeIndex) throws Exception;
     
-    public int changeState(Integer id, Byte state) throws Exception;
+    int changeState(Integer id, Byte state) throws Exception;
     
-    public int addCount(Integer id) throws Exception;
+    int addCount(Integer id) throws Exception;
     
-    public int addCountByUrl(String id) throws Exception;
+    int addCountByUrl(String id) throws Exception;
 }
