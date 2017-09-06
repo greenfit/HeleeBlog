@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.constant.ManagerState;
-import com.heleeos.blog.mapper.ManagerMapper;
+import com.heleeos.blog.dao.ManagerMapper;
 
 /**
  * 管理员信息数据服务层.

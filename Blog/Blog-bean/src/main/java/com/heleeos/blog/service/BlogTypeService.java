@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.BlogType;
-import com.heleeos.blog.mapper.BlogTypeMapper;
+import com.heleeos.blog.dao.BlogTypeMapper;
 
 /**
  * 博客分类数据服务层.

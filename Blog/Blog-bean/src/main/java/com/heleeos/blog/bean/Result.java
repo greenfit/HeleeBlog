@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
 
+/**
+ * 返回结果
+ *
+ * @author liyu
+ */
 public class Result implements Serializable {
 
     private static final long serialVersionUID = 4466004470986993081L;
