@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.Blog;
 import com.heleeos.blog.constant.BlogState;
-import com.heleeos.blog.mapper.BlogMapper;
+import com.heleeos.blog.dao.BlogMapper;
 
 /**
  * 博客文章数据服务层.

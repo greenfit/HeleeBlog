@@ -10,76 +10,76 @@
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/blog-web/css/blog.css">
         <link rel="stylesheet" type="text/css" href="https://static.heleeos.com/tool/markdown.css">
     </head>
-	<body>
-	   <div id="markdownEdit" class="container">
-	   	   <div class="editor">
-		   	   <div class="row">
-		   	   	    <div class="col-xs-12 tool-bar" style="padding: 0px;">
-			   	   	    <a href="javascript:add('bold');"><i class="fa fa-bold"></i></a>
-			   	   	    <a href="javascript:add('italic');"><i class="fa fa-italic"></i></a>
-			   	   	    <a href="javascript:add('header');"><i class="fa fa-header"></i></a>
-		   	   	    	<a href="javascript:add('link');"><i class="fa fa-link"></i></a>
-						<a href="javascript:add('list-ul');"><i class="fa fa-list-ul"></i></a></a>
-						<a href="javascript:add('list-ol');"><i class="fa fa-list-ol"></i></a>
-						<a href="javascript:add('bookmark');"><i class="fa fa-bookmark"></i></a>
-						<a href="javascript:add('code');"><i class="fa fa-code"></i></a>
-						<a href="javascript:add('comment');"><i class="fa fa-commenting"></i></a>
-		   	   	    </div>
-		   	   </div>
-		       <div class="row">
-		           <div class="left" style="padding: 0px;">
-		                <textarea id="inputText" class="form-control" v-model="mark" style="resize: none;"></textarea>
-		           </div>
-		           <div class="right" style="padding: 0px;">
-		                <div id="outputHtml" v-html="html" class="blog-body" style="overflow-y: auto;padding: 6px 12px;"></div>
-		           </div>
-		       </div>
-	   	   </div>
-	   </div>
-	</body>
-	<script type="text/javascript" src="https://static.heleeos.com/lib/jquery.min.js"></script>
-	<script type="text/javascript" src="https://static.heleeos.com/lib/vue.min.js"></script>
-	<script type="text/javascript" src="https://static.heleeos.com/lib/showdown.min.js"></script>
-	<script type="text/javascript" src="https://static.heleeos.com/tool/markdown.js"></script>
-	<script type="text/javascript">
+    <body>
+       <div id="markdownEdit" class="container">
+              <div class="editor">
+                  <div class="row">
+                      <div class="col-xs-12 tool-bar" style="padding: 0px;">
+                          <a href="javascript:add('bold');"><i class="fa fa-bold"></i></a>
+                          <a href="javascript:add('italic');"><i class="fa fa-italic"></i></a>
+                          <a href="javascript:add('header');"><i class="fa fa-header"></i></a>
+                          <a href="javascript:add('link');"><i class="fa fa-link"></i></a>
+                          <a href="javascript:add('list-ul');"><i class="fa fa-list-ul"></i></a></a>
+                          <a href="javascript:add('list-ol');"><i class="fa fa-list-ol"></i></a>
+                          <a href="javascript:add('bookmark');"><i class="fa fa-bookmark"></i></a>
+                          <a href="javascript:add('code');"><i class="fa fa-code"></i></a>
+                          <a href="javascript:add('comment');"><i class="fa fa-commenting"></i></a>
+                      </div>
+                  </div>
+               <div class="row">
+                   <div class="left" style="padding: 0px;">
+                        <textarea id="inputText" class="form-control" v-model="mark" style="resize: none;"></textarea>
+                   </div>
+                   <div class="right" style="padding: 0px;">
+                        <div id="outputHtml" v-html="html" class="blog-body" style="overflow-y: auto;padding: 6px 12px;"></div>
+                   </div>
+               </div>
+              </div>
+       </div>
+    </body>
+    <script type="text/javascript" src="https://static.heleeos.com/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="https://static.heleeos.com/lib/vue.min.js"></script>
+    <script type="text/javascript" src="https://static.heleeos.com/lib/showdown.min.js"></script>
+    <script type="text/javascript" src="https://static.heleeos.com/tool/markdown.js"></script>
+    <script type="text/javascript">
 
-		function insertText(value) {
-			var selectRange, textDom = document.querySelector("#inputText");
-	        if (document.selection) {
-	            // IE Support
-	            textDom.focus();
-	            selectRange = document.selection.createRange();
-	            selectRange.text = value;
-	            textDom.focus();
-	        } else if (textDom.selectionStart || textDom.selectionStart == '0') {
-	            // Firefox support
-	            var startPos = textDom.selectionStart;
-	            var endPos = textDom.selectionEnd;
-	            var scrollTop = textDom.scrollTop;
-	            textDom.value = textDom.value.substring(0, startPos) + value + textDom.value.substring(endPos, textDom.value.length);
-	            textDom.focus();
-	            textDom.selectionStart = startPos + value.length;
-	            textDom.selectionEnd = startPos + value.length;
-	            textDom.scrollTop = scrollTop;
-	        } else {
-	            textDom.value += value;
-	            textDom.focus();
-	        }
-		}
+        function insertText(value) {
+            var selectRange, textDom = document.querySelector("#inputText");
+            if (document.selection) {
+                // IE Support
+                textDom.focus();
+                selectRange = document.selection.createRange();
+                selectRange.text = value;
+                textDom.focus();
+            } else if (textDom.selectionStart || textDom.selectionStart == '0') {
+                // Firefox support
+                var startPos = textDom.selectionStart;
+                var endPos = textDom.selectionEnd;
+                var scrollTop = textDom.scrollTop;
+                textDom.value = textDom.value.substring(0, startPos) + value + textDom.value.substring(endPos, textDom.value.length);
+                textDom.focus();
+                textDom.selectionStart = startPos + value.length;
+                textDom.selectionEnd = startPos + value.length;
+                textDom.scrollTop = scrollTop;
+            } else {
+                textDom.value += value;
+                textDom.focus();
+            }
+        }
 
-		function add(type){
-			switch(type){
-				case 'bold': return insertText("**粗体**"); 
-				case 'italic': return insertText("_粗体_"); 
-				case 'header': return insertText("### 标题"); 
-				case 'link': return insertText("[标题](http://)"); 
-				case 'list-ul': return insertText("- 无序列表"); 
-				case 'list-ol': return insertText("1. 有序列表"); 
-				case 'bookmark': return insertText("`标记`"); 
-				case 'code': return insertText("```\n代码块\n```"); 
-				case 'comment': return insertText("> 引用"); 
-			}
-		};
+        function add(type){
+            switch(type){
+                case 'bold': return insertText("**粗体**"); 
+                case 'italic': return insertText("_粗体_"); 
+                case 'header': return insertText("### 标题"); 
+                case 'link': return insertText("[标题](http://)"); 
+                case 'list-ul': return insertText("- 无序列表"); 
+                case 'list-ol': return insertText("1. 有序列表"); 
+                case 'bookmark': return insertText("`标记`"); 
+                case 'code': return insertText("```\n代码块\n```"); 
+                case 'comment': return insertText("> 引用"); 
+            }
+        };
 
-	</script>
+    </script>
 </html>

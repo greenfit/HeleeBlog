@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var hbs = require('hbs');
 
-var baseUrl = "http://192.168.0.29:8080/"; //数据接口
+var baseUrl = "http://127.0.0.1:8080/"; //数据接口
 
 var writeFile = function(url, context) {
     var input = path.join(__dirname, '../views/blogTemplate.hbs');
