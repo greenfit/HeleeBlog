@@ -6,15 +6,13 @@
 *.dll
 *.exe
 *.o
-classes/
 out/
+classes/
 target/
 
 ############
 # Packages #
 ############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
 *.7z
 *.dmg
 *.gz
@@ -59,3 +57,8 @@ work/
 ########################
 *.iml
 .idea/
+
+###########
+# Node JS #
+###########
+node_modules/
