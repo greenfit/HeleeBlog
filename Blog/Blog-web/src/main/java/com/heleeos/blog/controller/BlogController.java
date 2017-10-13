@@ -2,6 +2,7 @@ package com.heleeos.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.heleeos.blog.constant.BlogState;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class BlogController {
         int type = NumberUtils.toInt(request.getParameter("type"), 0);
         String tags = request.getParameter("tags");
         
-        int count = blogService.getCount(type, tags, true);
+        int count = blogService.getCount(type, tags, BlogState.NORMAL.getState());
         int max = count / rows + (count % rows == 0 ? 0 : 1);//余数不为0,要加一
         int start = 1;//开始显示页码的页
         int end = max;
@@ -49,7 +50,7 @@ public class BlogController {
         if(end > max) end = max;
 
         result.setCode(200);
-        result.putMessage("beans", blogService.gets(type, tags, true, page, rows));
+        result.putMessage("beans", blogService.getList(type, tags, BlogState.NORMAL.getState(), page, rows));
         result.putMessage("count", count);
         result.putMessage("page", page);
         result.putMessage("rows", rows);
