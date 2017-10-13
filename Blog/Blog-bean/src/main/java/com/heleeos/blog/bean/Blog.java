@@ -10,40 +10,41 @@ import com.heleeos.blog.constant.ContentType;
  * @author liyu
  */
 public class Blog {
+    //ID
     private Integer id;
-
-    private String title;
-    
-    private String disp;
-    
-    private String summary;
-
-    private Date time;
-
-    private Date lasttime;
-
-    private Integer managerid;
-
-    private String type;
-
-    private Integer count;
-    
-    private String tags;
-    
+    //标题
+    private String blogTitle;
+    //显示的URL
+    private String dispUrl;
+    //摘要信息
+    private String blogSummary;
+    //创建时间
+    private Date createTime;
+    //更新时间
+    private Date updateTime;
+    //管理者ID
+    private Integer managerId;
+    //博客分类
+    private String blogType;
+    //查看次数
+    private Integer readCount;
+    //标签
+    private String blogTags;
+    //内容类型
     private Byte contentType;
-
-    private Byte state;
-
+    //博客内容
+    private String blogContent;
+    //博客状态
+    private Byte blogState;
+    //显示顺序
     private Byte dispIndex;
-    
-    private String content;
     
     public Blog() {
         setId(0);
-        setCount(0);
-        setTime(new Date());
-        setLasttime(new Date());
-        setState(BlogState.NORMAL.getState());
+        setReadCount(0);
+        setCreateTime(new Date());
+        setUpdateTime(new Date());
+        setBlogState(BlogState.NORMAL.getState());
         setDispIndex(new Byte("0"));
         setContentType(ContentType.HTML.getType());
     }
@@ -56,107 +57,107 @@ public class Blog {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBlogTitle() {
+        return blogTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getDisp() {
-        return disp;
-    }
-    
-    public void setDisp(String disp) {
-        this.disp = disp;
-    }
-    
-    public String getSummary() {
-        return summary;
-    }
-    
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setBlogTitle(String blogTitle) {
+        this.blogTitle = blogTitle;
     }
 
-    public Date getTime() {
-        return time;
+    public String getDispUrl() {
+        return dispUrl;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setDispUrl(String dispUrl) {
+        this.dispUrl = dispUrl;
     }
 
-    public Date getLasttime() {
-        return lasttime;
+    public String getBlogSummary() {
+        return blogSummary;
     }
 
-    public void setLasttime(Date lasttime) {
-        this.lasttime = lasttime;
+    public void setBlogSummary(String blogSummary) {
+        this.blogSummary = blogSummary;
     }
 
-    public Integer getManagerid() {
-        return managerid;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setManagerid(Integer managerid) {
-        this.managerid = managerid;
-    }
-    
-    public void setType(String type) {
-        this.type = type;
-    }
-    
-    public String getType() {
-        return type;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getTags() {
-        return tags;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public void setDispIndex(Byte dispIndex) {
-        this.dispIndex = dispIndex;
-    }
-    
-    public Byte getDispIndex() {
-        return dispIndex;
-    }
-    
-    public Byte getState() {
-        return state;
+    public Integer getManagerId() {
+        return managerId;
     }
 
-    public void setState(Byte state) {
-        this.state = state;
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
+    }
+
+    public String getBlogType() {
+        return blogType;
+    }
+
+    public void setBlogType(String blogType) {
+        this.blogType = blogType;
+    }
+
+    public Integer getReadCount() {
+        return readCount;
+    }
+
+    public void setReadCount(Integer readCount) {
+        this.readCount = readCount;
+    }
+
+    public String getBlogTags() {
+        return blogTags;
+    }
+
+    public void setBlogTags(String blogTags) {
+        this.blogTags = blogTags;
+    }
+
+    public Byte getContentType() {
+        return contentType;
     }
 
     public void setContentType(Byte contentType) {
         this.contentType = contentType;
     }
-    
-    public Byte getContentType() {
-        return contentType;
-    }
-    
-    public String getContent() {
-        return content;
+
+    public String getBlogContent() {
+        return blogContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBlogContent(String blogContent) {
+        this.blogContent = blogContent;
     }
-        
-    public void setCount(Integer count) {
-        this.count = count;
+
+    public Byte getBlogState() {
+        return blogState;
     }
-    
-    public Integer getCount() {
-        return count;
+
+    public void setBlogState(Byte blogState) {
+        this.blogState = blogState;
+    }
+
+    public Byte getDispIndex() {
+        return dispIndex;
+    }
+
+    public void setDispIndex(Byte dispIndex) {
+        this.dispIndex = dispIndex;
     }
 }

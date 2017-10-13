@@ -43,24 +43,7 @@ public class BlogService {
             return false;
         }
     }
-    
-    /**
-     * 修改文章的状态.
-     * 
-     * @param id 文章ID
-     */
-    public boolean changeState(Integer id, BlogState state) {
-        if(id == null || id == 0) return false;
-        try {
-            blogMapper.changeState(id, state.getState());
-            return true;
-        } catch (Exception e) {
-            logger.error("删除[博客文章]异常,原因:{}", e.getMessage());
-            return false;
-        }
-    }
-    
-    
+
     /**
      * 获取文章.
      * 
@@ -96,17 +79,17 @@ public class BlogService {
      * 
      * @param type 分类
      * @param tags 标签
-     * @param managerId 管理者ID
-     * @param index 开始位置
+     * @param state 状态
+     * @param page 开始位置
      * @param rows 显示条数
      */
-    public List<Blog> gets(Integer type, String tags, boolean onlyNormal, Integer page, Integer rows) {
+    public List<Blog> getList(Integer type, String tags, Byte state, Integer page, Integer rows) {
         int index = (page - 1) * rows;
         if(index < 0) index = 0;
         if(type == null || type == 0) type = null;
         if(StringUtils.trim(tags) == null) tags = null;
         try {
-            return blogMapper.gets(type, tags, onlyNormal, index, rows);
+            return blogMapper.getList(type, tags, state, index, rows);
         } catch (Exception e) {
             logger.error("获取[博客文章列表]异常,原因:{}", e.getMessage());
             return null;
@@ -118,13 +101,13 @@ public class BlogService {
      * 
      * @param type 分类
      * @param tags 标签
-     * @param managerId 管理者ID
+     * @param state 状态
      */
-    public int getCount(Integer type, String tags, boolean onlyNormal) {
+    public int getCount(Integer type, String tags, Byte state) {
         if(type == null || type == 0) type = null;
         if(StringUtils.trim(tags) == null) tags = null;        
         try {
-            return blogMapper.getCount(type, tags, onlyNormal);
+            return blogMapper.getCount(type, tags, state);
         } catch (Exception e) {
             logger.error("获取[博客文章个数]异常,原因:{}", e.getMessage());
             return 0;
@@ -135,14 +118,30 @@ public class BlogService {
      * 修改显示顺序.
      * 
      * @param id 博客的ID
-     * @param changeIndex 显示的顺序
+     * @param newIndex 显示的顺序
      * 
      */
-    public boolean changeIndex(Integer id, Integer changeIndex) {
+    public boolean changeIndex(Integer id, Byte newIndex) {
         try {
-            return blogMapper.changeIndex(id, changeIndex) == 1;
+            return blogMapper.changeIndex(id, newIndex) == 1;
         } catch (Exception e) {
             logger.error("修改[博客显示顺序]异常,原因:{}", e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * 修改文章的状态.
+     *
+     * @param id 文章ID
+     */
+    public boolean changeState(Integer id, BlogState newState) {
+        if(id == null || id == 0) return false;
+        try {
+            blogMapper.changeState(id, newState.getState());
+            return true;
+        } catch (Exception e) {
+            logger.error("删除[博客文章]异常,原因:{}", e.getMessage());
             return false;
         }
     }
@@ -164,7 +163,7 @@ public class BlogService {
     /**
      * 新增阅读次数.
      * 
-     * @param id 博客的ID
+     * @param url 博客的显示URL
      */
     public boolean addCountByUrl(String url) {
         try {

@@ -3,26 +3,31 @@ package com.heleeos.blog.dao;
 import java.util.List;
 
 import com.heleeos.blog.bean.Blog;
+import org.apache.ibatis.annotations.Param;
 
+/**
+ * 博客表操作，t_blog 表操作
+ */
 public interface BlogMapper {
+
+    int insert(Blog blog) throws Exception;
     
-    int insert(Blog bean) throws Exception;
+    int update(Blog blog) throws Exception;
     
-    int update(Blog bean) throws Exception;
+    Blog get(@Param("id") Integer id) throws Exception;
     
-    Blog get(Integer id) throws Exception;
-    
-    Blog getByURL(String url) throws Exception;
+    Blog getByURL(@Param("url") String url) throws Exception;
         
-    List<Blog> gets(Integer type, String tags, boolean onlyNormal, Integer index, Integer rows) throws Exception;
+    List<Blog> getList(@Param("type") Integer type, @Param("tags") String tags, @Param("state") Byte state,
+                       @Param("index") Integer index, @Param("rows") Integer rows) throws Exception;
     
-    int getCount(Integer type, String tags, boolean onlyNormal) throws Exception;
+    int getCount(@Param("type") Integer type, @Param("tags") String tags, @Param("state") Byte state) throws Exception;
     
-    int changeIndex(Integer id, Integer changeIndex) throws Exception;
+    int changeIndex(@Param("id") Integer id, @Param("index") Byte newIndex) throws Exception;
     
-    int changeState(Integer id, Byte state) throws Exception;
+    int changeState(@Param("id") Integer id, @Param("state") Byte newState) throws Exception;
     
-    int addCount(Integer id) throws Exception;
+    int addCount(@Param("id") Integer id) throws Exception;
     
-    int addCountByUrl(String id) throws Exception;
+    int addCountByUrl(@Param("url") String url) throws Exception;
 }

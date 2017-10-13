@@ -14,13 +14,13 @@ public enum ContentType {
      * Markdown.
      */
     MARKDOWN(1);
-    
-    private Byte type;
-    
-    private ContentType(Integer type) {
+
+    ContentType(Integer type) {
         this.type = type.byteValue();
     }
     
+    private Byte type;
+
     public Byte getType() {
         return type;
     }
