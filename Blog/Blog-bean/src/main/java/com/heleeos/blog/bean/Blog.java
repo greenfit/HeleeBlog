@@ -36,7 +36,7 @@ public class Blog {
     private String blogContent;
     //博客状态
     private Byte blogState;
-    //显示顺序
+
     private Byte dispIndex;
     
     public Blog() {

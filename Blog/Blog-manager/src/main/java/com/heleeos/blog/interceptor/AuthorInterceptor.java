@@ -3,6 +3,7 @@ package com.heleeos.blog.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.heleeos.blog.bean.Manager;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.heleeos.blog.constant.SessionKey;
 /**
@@ -16,7 +17,7 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
         Object obj = req.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
-        if (obj == null) {
+        if (obj == null || !(obj instanceof Manager)) {
             resp.sendRedirect(req.getContextPath() + "/login.html");
             return false;
         }

@@ -3,8 +3,9 @@ package com.heleeos.blog.test.service;
 import com.google.gson.Gson;
 import com.heleeos.blog.constant.BlogState;
 import com.heleeos.blog.test.TestConfig;
-import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.heleeos.blog.bean.Blog;
@@ -12,7 +13,7 @@ import com.heleeos.blog.service.BlogService;
 
 public class TestBlogService extends TestConfig {
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private BlogService blogService;

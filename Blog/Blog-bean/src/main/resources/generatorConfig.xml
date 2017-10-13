@@ -15,7 +15,7 @@
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator targetPackage="com.heleeos.blog.dao" targetProject="src/main/java" type="XMLMAPPER" />
         
-        <table schema="heleeos_blog" tableName="t_blog" domainObjectName="Blog1"
+        <table schema="heleeos_blog" tableName="t_user" domainObjectName="User"
             enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
