@@ -10,6 +10,7 @@ out/
 classes/
 target/
 
+
 ############
 # Packages #
 ############
@@ -62,3 +63,4 @@ work/
 # Node JS #
 ###########
 node_modules/
+blog/

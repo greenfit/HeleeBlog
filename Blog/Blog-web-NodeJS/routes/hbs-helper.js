@@ -18,9 +18,11 @@ hbs.registerHelper('larger', function(v1, v2, options) {
 
 hbs.registerHelper("splitTags", function(tag) {
     var str = "";
-    var tags = tag.split(",");
-    for(var index in tags) {
-        str = str + '<a href="">' + tags[index] + '</a>'
+    if(tag !== undefined) {
+        var tags = tag.split(",");
+        for(var index in tags) {
+            str = str + '<a href="">' + tags[index] + '</a>'
+        }
     }
     return str;
 });

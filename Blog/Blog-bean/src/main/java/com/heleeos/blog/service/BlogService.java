@@ -39,7 +39,7 @@ public class BlogService {
                 return blogMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[博客文章]异常,原因:{}", e.getMessage());
+            logger.error("保存[博客文章]异常,原因:" + e.getMessage(), e);
             return false;
         }
     }

@@ -26,7 +26,7 @@ public class TestBlogService extends TestConfig {
         
         Blog blog = new Blog();
         blog.setBlogTitle("标题");
-        blog.setDispUrl("spring-test");
+        blog.setDispUrl("spring-test1");
         blog.setBlogSummary("摘要");
         blog.setBlogType("Spring精通之路");
         blog.setBlogTags(tags);

@@ -11,7 +11,7 @@
     </sql>
 
     <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
-        insert into t_blog (blog_title, disp_url, blog_summary, create_time, update_time, manager_id, blog_type, read_count, blog_tags, content_type, blog_state, disp_index)
+        insert into t_blog (blog_title, disp_url, blog_summary, create_time, update_time, manager_id, blog_type, read_count, blog_tags, content_type, blog_state, disp_index, blog_content)
                     values (#{blogTitle,jdbcType=VARCHAR},   #{dispUrl,jdbcType=VARCHAR},
                             #{blogSummary,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
                             #{managerId,jdbcType=INTEGER},   #{blogType,jdbcType=VARCHAR},     #{readCount,jdbcType=INTEGER},
@@ -31,7 +31,8 @@
                           blog_tags = #{blogTags,jdbcType=VARCHAR},
                           content_type = #{contentType,jdbcType=TINYINT},
                           blog_state = #{blogState,jdbcType=TINYINT},
-                          disp_index = #{dispIndex,jdbcType=TINYINT}
+                          disp_index = #{dispIndex,jdbcType=TINYINT},
+                          blog_content = #{blogContent,jdbcType=LONGVARCHAR}
                     where id = #{id,jdbcType=INTEGER}
     </update>
     
@@ -55,7 +56,7 @@
             <if test="tags != null">
                 and blog_tags like "%${tags}%"
             </if>
-        order by disp_index desc, update_time desc limit #{index}, #{rows}
+        order by disp_index desc, id desc limit #{index}, #{rows}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">

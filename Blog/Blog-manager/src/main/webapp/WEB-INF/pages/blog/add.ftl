@@ -97,7 +97,7 @@
         CKEDITOR.replace('editor', {
             height: 270,
             extraPlugins: 'image',
-            filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val(),
+            filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val()
         });
               
         function save() {
@@ -132,8 +132,8 @@
             }
             
             var data = {"id" : id, "title" : title, "type" : type, "disp" : disp, "tags" : tags, "summary" : summary, "contentType" : contentType, "content" : content};
-            $.post("update.json", data, function(res){
-                if(res.code == 200){
+            $.post("/ajax/blog/update.json", data, function(res){
+                if(res.code === 200){
                     layer.msg("提交成功!", {icon : 1});
                     parent.divCall();
                 }else{

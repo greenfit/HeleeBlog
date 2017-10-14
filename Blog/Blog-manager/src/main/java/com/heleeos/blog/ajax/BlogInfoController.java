@@ -42,6 +42,7 @@ public class BlogInfoController {
 
         result.putMessage("beans", beans);
         result.putMessage("page", page);
+        result.putMessage("rows", rows);
         result.putMessage("count", count);
         return result;
     }

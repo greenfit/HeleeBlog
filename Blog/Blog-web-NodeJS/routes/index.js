@@ -38,20 +38,21 @@ router.get('(/page/:page)?', function(req, res) {
 router.get('/blog/:dispURL.html', function(req, res) {
     var url = baseUrl + "blog.json?url=" + req.params.dispURL;
     request(url, function (error, response, body) {
-        if(body == undefined) {
+        if(body === undefined) {
             res.render('error', { error: "服务器连接错误!" });
         } else {
-            var info = JSON.parse(body)
-            if (!error && response.statusCode == 200 && info.code == 200) {
+            var info = JSON.parse(body);
+            if (!error && response.statusCode === 200 && info.code === 200) {
                 var context = { 
                     blog: info.message.beans, 
-                    html: converter.makeHtml(info.message.beans.content), 
+                    html: converter.makeHtml(info.message.beans.blogContent),
                     types: info.message.types,
-                    title : info.message.beans.title, 
+                    title : info.message.beans.blogTitle,
                     keywords : info.message.beans.tags, 
-                    description : info.message.beans.summary
+                    description : info.message.beans.blogSummary
                 };
                 writeFile(req.params.dispURL, context);
+                //console.log(context);
                 res.render('blog', context);
             }else {
                 res.render('error', { message: info.message });

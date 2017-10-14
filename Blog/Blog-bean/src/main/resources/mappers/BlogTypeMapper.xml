@@ -26,7 +26,7 @@
   </select>
   
   <select id="getCount" resultMap="BaseResultMap">
-    select type as name, count(type) as count from t_blog group by type
+    select blog_type as name, count(blog_type) as count from t_blog group by blog_type
   </select>
   
 </mapper>
