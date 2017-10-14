@@ -49,11 +49,7 @@
                 </tr>
             </tbody>
         </table>
-        <#--<div id="page" style="float: right;">
-            <button v-for="pg in pages">{{pg}},</button>
-        </div>-->
     </div>
-    <div id="page" style="float: right;">123</div>
     <script src="https://static.heleeos.com/lib/jquery.min.js"></script>
     <script src="https://static.heleeos.com/lib/vue.min.js"></script>
     <script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
@@ -69,12 +65,6 @@
                     page : 1,
                     rows : 10,
                     count: 0
-                },
-                computed: {
-                    pages: function() {
-
-                        return new Array();
-                    }
                 },
                 methods: {
                     dispState: function(state) {

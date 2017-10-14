@@ -40,7 +40,7 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("main/index");
         modelAndView.addObject("admin", request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY));
         modelAndView.addObject("imageHost", imageHost);
-        logger.info("BeanVersion:" + versionService.getBeanVersion());
+//        logger.info("BeanVersion:" + versionService.getBeanVersion());
         return modelAndView;
     }
     
