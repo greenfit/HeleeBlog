@@ -9,6 +9,8 @@
 classes/
 out/
 target/
+node_modules/
+blog/
 
 ############
 # Packages #
