@@ -7,8 +7,8 @@
     <!-- 连接业务数据库 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="jdbc:mysql://127.0.0.13306/heleeos_blog" />
-        <property name="username" value="blog" />
-        <property name="password" value="blog123" />
+        <property name="username" value="${database_username}" />
+        <property name="password" value="${database_password}" />
         <property name="initialSize" value="1" />
         <property name="minIdle" value="1" />
         <property name="maxActive" value="20" />

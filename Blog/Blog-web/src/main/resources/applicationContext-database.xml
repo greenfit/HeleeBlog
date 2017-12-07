@@ -7,8 +7,8 @@
     <!-- 连接业务数据库 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="jdbc:mysql://192.168.0.68:3306/heleeos_blog" />
-        <property name="username" value="blog" />
-        <property name="password" value="blog123" />
+        <property name="username" value="${database_username}" />
+        <property name="password" value="${database_password}" />
         <property name="initialSize" value="1" />
         <property name="minIdle" value="1" />
         <property name="maxActive" value="20" />
@@ -19,11 +19,11 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/heleeos/blog/**/mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:com/heleeos/blog/**/mapper/*.xml"/>
     </bean>
     
     <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.heleeos.blog.**.mapper" />
     </bean>
 
