@@ -1,7 +1,11 @@
 package com.heleeos.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.heleeos.blog.service.VersionService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
@@ -18,10 +22,15 @@ import com.heleeos.blog.service.ManagerService;
 public class MainController {
     
     @Autowired
-    public ManagerService managerService;
+    private ManagerService managerService;
+
+    @Autowired
+    private VersionService versionService;
     
     @Value("#{configProperties.image_host}")
     private String imageHost;
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
     
     /**
      * 管理端首页. 
@@ -31,6 +40,7 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("main/index");
         modelAndView.addObject("admin", request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY));
         modelAndView.addObject("imageHost", imageHost);
+//        logger.info("BeanVersion:" + versionService.getBeanVersion());
         return modelAndView;
     }
     
@@ -111,6 +121,7 @@ public class MainController {
                 result.putInfo("验证码错误!"); 
             }
         } catch (Exception e) {
+            logger.error("登录失败，失败原因：" + e.getMessage(), e);
             result.setCode(403);
             result.putInfo("请勿非法调用!"); 
         }

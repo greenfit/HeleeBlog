@@ -24,28 +24,28 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
-                    <input id="title" type="text" class="layui-input" <#if bean??> value="${bean.title}" </#if>>
+                    <input id="title" type="text" class="layui-input" <#if bean??> value="${bean.blogTitle}" </#if>>
                 </div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">显示URL</label>
                 <div class="layui-input-block">
-                    <input id="disp" type="text" class="layui-input" <#if bean??> value="${bean.disp}" </#if>>
+                    <input id="disp" type="text" class="layui-input" <#if bean??> value="${bean.dispUrl}" </#if>>
                 </div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">标签</label>
                 <div class="layui-input-block">
-                    <input id="tags" type="text" class="layui-input" <#if bean??> value="${bean.tags}" </#if>>
+                    <input id="tags" type="text" class="layui-input" <#if bean??> value="${bean.blogTags}" </#if>>
                 </div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">摘要</label>
                 <div class="layui-input-block">
-                    <textarea id="summary" class="layui-textarea"><#if bean??>${bean.summary}</#if></textarea>
+                    <textarea id="summary" class="layui-textarea"><#if bean??>${bean.blogSummary}</#if></textarea>
                 </div>
             </div>
             
@@ -55,7 +55,7 @@
                     <select id="type">
                         <option value="">请选择分类</option>
                             <#list types as type>
-                               <option value="${type.name}" <#if bean??><#if bean.type == type.name>selected</#if></#if>>${type.name}</option>
+                               <option value="${type.name}" <#if bean??><#if bean.blogType == type.name>selected</#if></#if>>${type.name}</option>
                             </#list>
                     </select>
                 </div>
@@ -74,10 +74,10 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block input-ckeditor" <#if bean??><#if bean.contentType == 1>style="display:none;"</#if></#if>>
-                    <div id="editor"><#if bean??> ${bean.content} </#if></div>
+                    <div id="editor"><#if bean??> ${bean.blogContent} </#if></div>
                 </div>
                 <div class="layui-input-block input-markdown" <#if bean??><#if bean.contentType == 1>style="display:block;"</#if></#if>>
-                    <textarea id="editor2"><#if bean??>${bean.content}</#if></textarea>
+                    <textarea id="editor2"><#if bean??>${bean.blogContent}</#if></textarea>
                 </div>
             </div>
             
@@ -97,7 +97,7 @@
         CKEDITOR.replace('editor', {
             height: 270,
             extraPlugins: 'image',
-            filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val(),
+            filebrowserUploadUrl: '/image/ck-upload?path=' + $("#disp").val()
         });
               
         function save() {
@@ -132,8 +132,8 @@
             }
             
             var data = {"id" : id, "title" : title, "type" : type, "disp" : disp, "tags" : tags, "summary" : summary, "contentType" : contentType, "content" : content};
-            $.post("update.json", data, function(res){
-                if(res.code == 200){
+            $.post("/ajax/blog/update.json", data, function(res){
+                if(res.code === 200){
                     layer.msg("提交成功!", {icon : 1});
                     parent.divCall();
                 }else{

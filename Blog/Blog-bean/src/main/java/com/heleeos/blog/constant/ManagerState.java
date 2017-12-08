@@ -18,12 +18,12 @@ public enum ManagerState {
      * 异常状态,必须修改密码.
      */
     ABNORMAL(2);
-    
-    private Byte state;
-    
-    private ManagerState(Integer state) {
+
+    ManagerState(Integer state) {
         this.state = state.byteValue();
     }
+
+    private Byte state;
     
     public Byte getState() {
         return state;

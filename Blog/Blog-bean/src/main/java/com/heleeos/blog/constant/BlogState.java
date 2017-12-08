@@ -18,13 +18,13 @@ public enum BlogState {
      * 草稿状态.
      */
     UPDATE(2);
-    
-    private Byte state;
-    
-    private BlogState(Integer state) {
+
+    BlogState(Integer state) {
         this.state = state.byteValue();
     }
     
+    private Byte state;
+
     public Byte getState() {
         return state;
     }

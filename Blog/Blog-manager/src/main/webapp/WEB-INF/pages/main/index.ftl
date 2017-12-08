@@ -65,17 +65,17 @@
              content: page
            });
            divCall = function(){
-        	   setTimeout(function(){layer.close(index);}, 1000);
-        	   if(typeof(call) == 'function') {
-        		   call();
-        	   }
+               setTimeout(function(){layer.close(index);}, 1000);
+               if(typeof(call) === 'function') {
+                   call();
+               }
            };
        }
        function dispTip(content) {
-    	   layer.msg(content);
+           layer.msg(content);
        }
        function dispMessage(title, content, error) {
-    	   var icon = error ? 2 : 1;
+           var icon = error ? 2 : 1;
            layer.open({ "title": title, "content": content, "icon": icon });
        }
     </script>
