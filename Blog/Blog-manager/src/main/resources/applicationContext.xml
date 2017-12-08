@@ -46,7 +46,7 @@
             <mvc:exclude-mapping path="/login.json" />
             <mvc:exclude-mapping path="/login.html" />
             <mvc:exclude-mapping path="/image/code.jpg" />
-            <bean class="com.heleeos.blog.interceptor.AuthorInterceptor"></bean>
+            <bean class="com.heleeos.blog.interceptor.AuthorInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
