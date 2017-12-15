@@ -6,7 +6,7 @@ var baseUrl = "http://127.0.0.1:8080/"; //数据接口
 
 var writeFile = function(url, context) {
     var input = path.join(__dirname, '../views/blogTemplate.hbs');
-    var output = path.join(__dirname, '../blog_temp/' + url + ".html");
+    var output = path.join(__dirname, '../blog/' + url + ".html");
 
     fs.readFile(input, function(err, data){
         if(err) throw err;
