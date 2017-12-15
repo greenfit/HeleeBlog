@@ -6,6 +6,8 @@ targetPath="*****/apps"
 tomcatPath="*****/tomcat"
 #数据库配置文件
 configFile="*****/heleeos.properties"
+#Node-JS接口文件
+commonjsFile="***/common.js"
 
 echo "rebuild heleeos.com"
 
@@ -43,9 +45,23 @@ echo "8.remove lib"
 rm -rf "$targetPath/blog-manager/WEB-INF/lib"
 rm -rf "$targetPath/blog-web/WEB-INF/lib"
 
-
 echo "9.start blog-server"
 cd "$tomcatPath"
 sh tomcatstart.sh
+
+echo "10.stop node-js"
+cd "$targetPath/blog-web-NodeJS"
+forever stop bin/www
+
+echo "11.copy node-js"
+rm -rf "$targetPath/blog-web-NodeJS"
+cp -r "$sourcePath/blog-web-NodeJS" "$targetPath/"
+cp -r "$targetPath/node_modules" "$targetPath/blog-web-NodeJS/"
+\cp -f "$commonjsFile" "$targetPath/blog-web-NodeJS/routes"
+
+echo "12.start node-js"
+cd "$targetPath/blog-web-NodeJS"
+npm install
+forever start bin/www
 
 echo "start success"
