@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>Blog-bean</module>
-        <module>Blog-manager</module>
-        <module>Blog-web</module>
+        <module>blog-bean</module>
+        <module>blog-manager</module>
+        <module>blog-web</module>
     </modules>
 </project>
