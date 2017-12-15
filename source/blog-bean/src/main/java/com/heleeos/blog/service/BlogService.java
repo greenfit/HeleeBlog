@@ -39,7 +39,7 @@ public class BlogService {
                 return blogMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[博客文章]异常,原因:" + e.getMessage(), e);
+            logger.error(String.format("保存[博客文章]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
@@ -54,7 +54,7 @@ public class BlogService {
         try {
             return blogMapper.get(id);
         } catch (Exception e) {
-            logger.error("获取[博客文章]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客文章]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }
@@ -62,14 +62,14 @@ public class BlogService {
     /**
      * 根据URL获取文章.
      * 
-     * @param disp 文章显示的URL.
+     * @param url 文章显示的URL.
      */
-    public Blog getByURL(String disp) {
-        if(StringUtils.trimToNull(disp) == null) return null;
+    public Blog getByURL(String url) {
+        if(StringUtils.trimToNull(url) == null) return null;
         try {
-            return blogMapper.getByURL(disp);
+            return blogMapper.getByURL(url);
         } catch (Exception e) {
-            logger.error("获取[博客文章(URL)]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客文章(URL)]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }
@@ -91,7 +91,7 @@ public class BlogService {
         try {
             return blogMapper.getList(type, tags, state, index, rows);
         } catch (Exception e) {
-            logger.error("获取[博客文章列表]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客文章列表]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }
@@ -109,7 +109,7 @@ public class BlogService {
         try {
             return blogMapper.getCount(type, tags, state);
         } catch (Exception e) {
-            logger.error("获取[博客文章个数]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客文章个数]异常,原因:%s", e.getMessage()), e);
             return 0;
         }
     }
@@ -125,7 +125,7 @@ public class BlogService {
         try {
             return blogMapper.changeIndex(id, newIndex) == 1;
         } catch (Exception e) {
-            logger.error("修改[博客显示顺序]异常,原因:{}", e.getMessage());
+            logger.error(String.format("修改[博客显示顺序]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
@@ -141,21 +141,7 @@ public class BlogService {
             blogMapper.changeState(id, newState.getState());
             return true;
         } catch (Exception e) {
-            logger.error("删除[博客文章]异常,原因:{}", e.getMessage());
-            return false;
-        }
-    }
-    
-    /**
-     * 新增阅读次数.
-     * 
-     * @param id 博客的ID
-     */
-    public boolean addCount(Integer id) {
-        try {
-            return blogMapper.addCount(id) == 1;
-        } catch (Exception e) {
-            logger.error("增加[博客阅读次数]异常,原因:{}", e.getMessage());
+            logger.error(String.format("删除[博客文章]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
@@ -169,7 +155,7 @@ public class BlogService {
         try {
             return blogMapper.addCountByUrl(url) == 1;
         } catch (Exception e) {
-            logger.error("增加[博客阅读次数]异常,原因:{}", e.getMessage());
+            logger.error(String.format("增加[博客阅读次数]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }

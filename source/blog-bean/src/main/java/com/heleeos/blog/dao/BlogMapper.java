@@ -27,7 +27,5 @@ public interface BlogMapper {
     
     int changeState(@Param("id") Integer id, @Param("state") Byte newState) throws Exception;
     
-    int addCount(@Param("id") Integer id) throws Exception;
-    
     int addCountByUrl(@Param("url") String url) throws Exception;
 }
