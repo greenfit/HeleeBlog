@@ -57,6 +57,7 @@ echo "11.copy node-js"
 rm -rf "$targetPath/blog-web-NodeJS"
 cp -r "$sourcePath/blog-web-NodeJS" "$targetPath/"
 cp -r "$targetPath/node_modules" "$targetPath/blog-web-NodeJS/"
+mkdir "$targetPath/blog-web-NodeJS/blog"
 \cp -f "$commonjsFile" "$targetPath/blog-web-NodeJS/routes"
 
 echo "12.start node-js"
