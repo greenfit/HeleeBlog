@@ -40,16 +40,6 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("main/index");
         modelAndView.addObject("admin", request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY));
         modelAndView.addObject("imageHost", imageHost);
-//        logger.info("BeanVersion:" + versionService.getBeanVersion());
-        return modelAndView;
-    }
-    
-    /**
-     * 管理端开发日志界面.
-     */
-    @RequestMapping(value = "logs.html")
-    public ModelAndView toLogs(){
-        ModelAndView modelAndView = new ModelAndView("main/logs");
         return modelAndView;
     }
     
