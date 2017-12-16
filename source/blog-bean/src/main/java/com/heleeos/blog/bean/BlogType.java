@@ -1,16 +1,23 @@
 package com.heleeos.blog.bean;
 
 /**
- * 博客分类.
- * 
+ * 博客文章的分类.
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class BlogType {
-    private Integer id;
 
-    private String name;
-    
-    private Integer count;
+    //自增ID
+    private Integer id;
+    //大的分类
+    private String typeModule;
+    //小类分类的名字
+    private String typeName;
+    //当前分类的个数
+    private Integer typeCount;
 
     public BlogType() {
         setId(0);
@@ -24,19 +31,27 @@ public class BlogType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeModule() {
+        return typeModule;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeModule(String typeModule) {
+        this.typeModule = typeModule;
     }
-    
-    public void setCount(Integer count) {
-        this.count = count;
+
+    public String getTypeName() {
+        return typeName;
     }
-    
-    public Integer getCount() {
-        return count;
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Integer getTypeCount() {
+        return typeCount;
+    }
+
+    public void setTypeCount(Integer typeCount) {
+        this.typeCount = typeCount;
     }
 }

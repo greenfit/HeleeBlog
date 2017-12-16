@@ -1,5 +1,13 @@
-package com.heleeos.blog.constant;
+package com.heleeos.blog.common;
 
+/**
+ * Session用到的所有key.
+ * Created with Li Yu on 2017/12/16.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
+ */
 public final class SessionKey {
 
     /**

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.heleeos.blog.bean.Manager;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.heleeos.blog.constant.SessionKey;
+import com.heleeos.blog.common.SessionKey;
 /**
  * 登陆过滤器.
  * 

@@ -3,9 +3,12 @@ package com.heleeos.blog.bean;
 import java.util.Date;
 
 /**
- * 管理者.
- * 
+ * 管理员账户.
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class Manager {
     private Integer id;

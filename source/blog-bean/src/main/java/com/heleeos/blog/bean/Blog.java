@@ -1,13 +1,16 @@
 package com.heleeos.blog.bean;
 
 import java.util.Date;
-import com.heleeos.blog.constant.BlogState;
-import com.heleeos.blog.constant.ContentType;
+import com.heleeos.blog.common.BlogState;
+import com.heleeos.blog.common.ContentType;
 
 /**
  * 博客文章.
- * 
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class Blog {
     //ID

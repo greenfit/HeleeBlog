@@ -1,7 +1,7 @@
 package com.heleeos.blog.test.service;
 
 import com.google.gson.Gson;
-import com.heleeos.blog.constant.BlogState;
+import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.test.TestConfig;
 import org.junit.Test;
 import org.slf4j.Logger;

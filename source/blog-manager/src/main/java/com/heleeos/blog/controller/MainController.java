@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
-import com.heleeos.blog.constant.SessionKey;
+import com.heleeos.blog.common.SessionKey;
 import com.heleeos.blog.service.ManagerService;
 
 @RestController

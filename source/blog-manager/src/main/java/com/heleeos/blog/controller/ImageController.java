@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.heleeos.blog.bean.Result;
-import com.heleeos.blog.constant.SessionKey;
+import com.heleeos.blog.common.SessionKey;
 
 /**
  * 图片相关的控制器.

@@ -11,9 +11,12 @@ import com.heleeos.blog.bean.BlogType;
 import com.heleeos.blog.dao.BlogTypeMapper;
 
 /**
- * 博客分类数据服务层.
- * 
+ * 博客分类数据服务层, t_blog_type.
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @Service
 public class BlogTypeService {
@@ -22,7 +25,11 @@ public class BlogTypeService {
     
     @Autowired
     private BlogTypeMapper blogTypeMapper;
-    
+
+    /**
+     * 保存博客分类
+     * @param bean 博客分类
+     */
     public boolean save(BlogType bean) {
         if(bean == null) return false;
         try {
@@ -32,35 +39,34 @@ public class BlogTypeService {
                 return blogTypeMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[博客分类]异常,原因:{}", e.getMessage());
+            logger.error(String.format("保存[博客分类]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
-    
+
+    /**
+     * 通过ID获取博客分类
+     * @param id 分类的ID
+     */
     public BlogType get(Integer id) {
         if(id == null || id == 0) return null;
         try {
             return blogTypeMapper.get(id);
         } catch (Exception e) {
-            logger.error("获取[博客分类]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客分类]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }
 
-    public List<BlogType> gets() {
+
+    /**
+     * 获取分类列表
+     */
+    public List<BlogType> getList() {
         try {
-            return blogTypeMapper.gets();
+            return blogTypeMapper.getList();
         } catch (Exception e) {
-            logger.error("获取[博客分类列表]异常,原因:{}", e.getMessage());
-            return null;
-        }
-    }
-    
-    public List<BlogType> getCount() {
-        try {
-            return blogTypeMapper.getCount();
-        } catch (Exception e) {
-            logger.error("获取[博客分类列表个数]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[博客分类列表]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }

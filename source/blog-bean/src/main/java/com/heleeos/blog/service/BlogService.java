@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heleeos.blog.bean.Blog;
-import com.heleeos.blog.constant.BlogState;
+import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.dao.BlogMapper;
 
 /**
