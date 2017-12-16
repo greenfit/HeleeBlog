@@ -2,7 +2,7 @@ package com.heleeos.blog.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.heleeos.blog.constant.BlogState;
+import com.heleeos.blog.common.BlogState;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +57,7 @@ public class BlogController {
         result.putMessage("start", start);
         result.putMessage("end", end);
         result.putMessage("max", max);
-        result.putMessage("types", blogTypeService.getCount());
+        result.putMessage("types", blogTypeService.getList());
         
         return result;
     }
@@ -76,7 +76,7 @@ public class BlogController {
             result.putInfo("文章未找到");
         }
         
-        result.putMessage("types", blogTypeService.getCount());
+        result.putMessage("types", blogTypeService.getList());
         return result;
     }
 }

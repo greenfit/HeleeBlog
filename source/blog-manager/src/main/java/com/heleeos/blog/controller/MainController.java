@@ -180,12 +180,12 @@ public class MainController {
         }
         
         if(StringUtils.trimToNull(password) != null){
-            manager.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
+            manager.setPassWord(DigestUtils.md5DigestAsHex(password.getBytes()));
         }
         
-        manager.setUsername(username);
-        manager.setRealname(realname);
-        manager.setPicture(picture);
+        manager.setUserName(username);
+        manager.setRealName(realname);
+        manager.setManagerPicture(picture);
         
         boolean bol = managerService.save(manager);
         if(bol){

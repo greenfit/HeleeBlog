@@ -1,54 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heleeos.blog.dao.ManagerMapper">
-    <resultMap id="BaseResultMap" type="com.heleeos.blog.bean.Manager">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="username" jdbcType="VARCHAR" property="username" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-        <result column="realname" jdbcType="VARCHAR" property="realname" />
-        <result column="picture" jdbcType="VARCHAR" property="picture" />
-        <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
-        <result column="info" jdbcType="VARCHAR" property="info" />
-        <result column="state" jdbcType="TINYINT" property="state" />
-    </resultMap>
-    
     <sql id="Base_Column_List">
-        id, username, password, nickname, realname, picture, loginTime, info, state
+        id, user_name, pass_word, nick_name, real_name, manager_picture, login_time, manager_state
     </sql>
-    
-    <insert id="insert" parameterType="com.heleeos.blog.bean.Manager">
-        insert into t_manager (id, username, password, nickname, realname, picture, loginTime, info, state)
-                       values (#{id,jdbcType=INTEGER},          #{username,jdbcType=VARCHAR},
-                               #{password,jdbcType=VARCHAR},    #{nickname,jdbcType=VARCHAR}, 
-                               #{realname,jdbcType=VARCHAR},    #{picture,jdbcType=VARCHAR}, 
-                               #{logintime,jdbcType=TIMESTAMP}, #{info,jdbcType=VARCHAR},
-                               #{state,jdbcType=TINYINT})
+
+    <insert id="insert" parameterType="com.heleeos.blog.bean.Manager" keyProperty="id">
+        insert into t_manager (user_name, pass_word, nick_name, real_name, manager_picture, loginTime, manager_state)
+        values (#{userName}, #{passWord}, #{nickName}, #{realName}, #{managerPicture}, #{loginTime}, #{managerState})
     </insert>
-    
+
     <update id="update" parameterType="com.heleeos.blog.bean.Manager">
-        update t_manager set username = #{username,jdbcType=VARCHAR},
-                             password = #{password,jdbcType=VARCHAR},
-                             nickname = #{nickname,jdbcType=VARCHAR},
-                             realname = #{realname,jdbcType=VARCHAR},
-                              picture = #{picture,jdbcType=VARCHAR},
-                            loginTime = #{logintime,jdbcType=TIMESTAMP},
-                                 info = #{info,jdbcType=VARCHAR},
-                                state = #{state,jdbcType=TINYINT}
-                             where id = #{id,jdbcType=INTEGER}
+        update t_manager set user_name = #{userName}, pass_word = #{passWord}, nick_name = #{nickName},
+        real_name = #{realName}, manager_picture = #{managerPicture}, login_time = #{loginTime}, manager_state = #{managerState}
+        where id = #{id}
     </update>
     
-    <update id="updataState" parameterType="java.lang.Integer">
-        update t_manager set state = #{state,jdbcType=TINYINT} where id = #{id,jdbcType=INTEGER}
+    <update id="updateState">
+        update t_manager set manager_state = #{state} where id = #{id}
     </update>
     
-    <update id="updateLoginTime" parameterType="java.lang.Integer">
-        update t_manager set loginTime = now() where id = #{id,jdbcType=INTEGER}
+    <update id="updateLoginTime">
+        update t_manager set login_time = now() where id = #{id}
     </update>
-    
-    
-    <select id="get" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" /> from t_manager where username = #{0} and password = #{1} limit 1
+
+    <select id="get" resultType="com.heleeos.blog.bean.Manager">
+        select <include refid="Base_Column_List" /> from t_manager where user_name = #{userName} and pass_word = #{passWord} limit 1
     </select>
     
 </mapper>

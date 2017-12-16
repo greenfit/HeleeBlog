@@ -3,7 +3,7 @@ package com.heleeos.blog.ajax;
 import com.heleeos.blog.bean.Blog;
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
-import com.heleeos.blog.constant.BlogState;
+import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
 import com.heleeos.blog.common.SessionKey;
 import com.heleeos.blog.service.BlogService;

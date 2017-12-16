@@ -35,7 +35,7 @@ public class BlogController {
             //非0表示编辑功能
             modelAndView.addObject("bean", blogService.get(id));
         }
-        modelAndView.addObject("types", blogTypeService.gets());
+        modelAndView.addObject("types", blogTypeService.getList());
         return modelAndView;
     }
 }

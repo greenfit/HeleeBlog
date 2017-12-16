@@ -1,5 +1,6 @@
-package com.heleeos.blog.test;
+package com.heleeos.blog.test.service;
 
+import com.heleeos.blog.test.TestConfig;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

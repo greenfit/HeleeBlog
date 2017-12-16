@@ -13,9 +13,12 @@ import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.dao.BlogMapper;
 
 /**
- * 博客文章数据服务层.
- * 
+ * 博客数据服务层, t_blog.
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @Service
 public class BlogService {

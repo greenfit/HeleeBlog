@@ -1,5 +1,7 @@
 package com.heleeos.blog.bean;
 
+import com.heleeos.blog.common.ManagerState;
+
 import java.util.Date;
 
 /**
@@ -13,25 +15,23 @@ import java.util.Date;
 public class Manager {
     private Integer id;
 
-    private String username;
+    private String userName;
 
-    private String password;
+    private String passWord;
     
-    private String nickname;
+    private String nickName;
     
-    private String realname;
+    private String realName;
 
-    private String picture;
+    private String managerPicture;
 
-    private Date logintime;
+    private Date loginTime;
 
-    private String info;
-
-    private byte state;
+    private byte managerState;
     
     public Manager() {
         setId(0);
-        setState(state);
+        setManagerState(ManagerState.NORMAL.getState());
     }
 
     public Integer getId() {
@@ -42,67 +42,59 @@ public class Manager {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getManagerPicture() {
+        return managerPicture;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setManagerPicture(String managerPicture) {
+        this.managerPicture = managerPicture;
     }
 
-    public Date getLogintime() {
-        return logintime;
+    public Date getLoginTime() {
+        return loginTime;
     }
 
-    public void setLogintime(Date logintime) {
-        this.logintime = logintime;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
     }
 
-    public String getInfo() {
-        return info;
+    public byte getManagerState() {
+        return managerState;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public Byte getState() {
-        return state;
-    }
-
-    public void setState(Byte state) {
-        this.state = state;
+    public void setManagerState(byte managerState) {
+        this.managerState = managerState;
     }
 }

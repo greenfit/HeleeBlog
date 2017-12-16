@@ -10,30 +10,17 @@
          <include refid="blog_base_column_list"/>, blog_content
     </sql>
 
-    <insert id="insert" parameterType="com.heleeos.blog.bean.Blog">
+    <insert id="insert" parameterType="com.heleeos.blog.bean.Blog" keyProperty="id">
         insert into t_blog (blog_title, disp_url, blog_summary, create_time, update_time, manager_id, blog_type, read_count, blog_tags, content_type, blog_state, disp_index, blog_content)
-                    values (#{blogTitle,jdbcType=VARCHAR},   #{dispUrl,jdbcType=VARCHAR},
-                            #{blogSummary,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
-                            #{managerId,jdbcType=INTEGER},   #{blogType,jdbcType=VARCHAR},     #{readCount,jdbcType=INTEGER},
-                            #{blogTags,jdbcType=VARCHAR},    #{contentType,jdbcType=TINYINT},  #{blogState,jdbcType=TINYINT},
-                            #{dispIndex,jdbcType=TINYINT},   #{blogContent,jdbcType=LONGVARCHAR})
+        values (#{blogTitle}, #{dispUrl}, #{blogSummary}, #{createTime}, #{updateTime}, #{managerId}, #{blogType}, #{readCount}, #{blogTags}, #{contentType}, #{blogState}, #{dispIndex}, #{blogContent})
     </insert>
     
     <update id="update" parameterType="com.heleeos.blog.bean.Blog">
-        update t_blog set blog_title = #{blogTitle,jdbcType=VARCHAR},
-                          disp_url = #{dispUrl,jdbcType=VARCHAR},
-                          blog_summary = #{blogSummary,jdbcType=VARCHAR},
-                          create_time = #{createTime,jdbcType=TIMESTAMP},
-                          update_time = #{updateTime,jdbcType=TIMESTAMP},
-                          manager_id = #{managerId,jdbcType=INTEGER},
-                          blog_type = #{blogType,jdbcType=VARCHAR},
-                          read_count = #{readCount,jdbcType=INTEGER},
-                          blog_tags = #{blogTags,jdbcType=VARCHAR},
-                          content_type = #{contentType,jdbcType=TINYINT},
-                          blog_state = #{blogState,jdbcType=TINYINT},
-                          disp_index = #{dispIndex,jdbcType=TINYINT},
-                          blog_content = #{blogContent,jdbcType=LONGVARCHAR}
-                    where id = #{id,jdbcType=INTEGER}
+        update t_blog set
+        blog_title = #{blogTitle}, disp_url = #{dispUrl}, blog_summary = #{blogSummary}, create_time = #{createTime},
+        update_time = #{updateTime}, manager_id = #{managerId}, blog_type = #{blogType}, read_count = #{readCount},
+        blog_tags = #{blogTags}, content_type = #{contentType}, blog_state = #{blogState}, disp_index = #{dispIndex},
+        blog_content = #{blogContent} where id = #{id}
     </update>
     
     <select id="get" resultType="com.heleeos.blog.bean.Blog">

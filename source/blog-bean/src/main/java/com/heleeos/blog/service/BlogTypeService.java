@@ -2,6 +2,7 @@ package com.heleeos.blog.service;
 
 import java.util.List;
 
+import com.heleeos.blog.bean.Blog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +59,20 @@ public class BlogTypeService {
         }
     }
 
+    /**
+     * 获取博客分类列表, 个数为0的不展示
+     */
+    public List<BlogType> getList() {
+        return getList(true);
+    }
 
     /**
      * 获取分类列表
+     * @param filterZero 是否过滤数量为0
      */
-    public List<BlogType> getList() {
+    public List<BlogType> getList(boolean filterZero) {
         try {
-            return blogTypeMapper.getList();
+            return blogTypeMapper.getList(filterZero);
         } catch (Exception e) {
             logger.error(String.format("获取[博客分类列表]异常,原因:%s", e.getMessage()), e);
             return null;

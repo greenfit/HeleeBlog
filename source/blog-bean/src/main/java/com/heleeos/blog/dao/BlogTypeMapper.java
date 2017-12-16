@@ -2,6 +2,7 @@ package com.heleeos.blog.dao;
 
 import java.util.List;
 import com.heleeos.blog.bean.BlogType;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 博客分类表的操作, t_blog_type.
@@ -19,5 +20,5 @@ public interface BlogTypeMapper {
 
     BlogType get(Integer id) throws Exception;
 
-    List<BlogType> getList() throws Exception;
+    List<BlogType> getList(@Param("filterZero") boolean filterZero) throws Exception;
 }

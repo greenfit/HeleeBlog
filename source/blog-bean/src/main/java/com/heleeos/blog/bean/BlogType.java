@@ -21,6 +21,7 @@ public class BlogType {
 
     public BlogType() {
         setId(0);
+        setTypeCount(0);
     }
 
     public Integer getId() {

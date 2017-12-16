@@ -6,7 +6,12 @@ import com.heleeos.blog.bean.Blog;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 博客表操作，t_blog 表操作
+ * 博客表的操作, t_blog.
+ * Created with Li Yu on 2017/12/16.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public interface BlogMapper {
 

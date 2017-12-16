@@ -26,6 +26,7 @@ public class TestBlogTypeService extends TestConfig {
     
     @Test
     public void getList() {
-        toLogger(logger, blogTypeService.getList());
+        toLogger(logger, blogTypeService.getList(true));
+        toLogger(logger, blogTypeService.getList(false));
     }
 }

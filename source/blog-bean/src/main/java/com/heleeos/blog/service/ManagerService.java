@@ -11,9 +11,12 @@ import com.heleeos.blog.common.ManagerState;
 import com.heleeos.blog.dao.ManagerMapper;
 
 /**
- * 管理员信息数据服务层.
- * 
+ * 管理员信息数据服务层, t_manager.
+ * Created with Li Yu on 2017/12/16.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @Service
 public class ManagerService {
@@ -37,24 +40,24 @@ public class ManagerService {
                 return managerMapper.update(bean) == 1;
             }
         } catch (Exception e) {
-            logger.error("保存[管理员信息]异常,原因:{}", e.getMessage());
+            logger.error(String.format("保存[管理员信息]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
     
     /**
-     * 禁用管理员.
+     * 修改管理员状态.
      * 
      * @param id 管理员ID
      * @param state 管理员状态
      * @see ManagerState
      */
-    public boolean updataState(Integer id, Byte state) {
+    public boolean updateState(Integer id, Byte state) {
         if(id == null || id == 0) return false;
         try {
-            return managerMapper.updataState(id, state) == 1;
+            return managerMapper.updateState(id, state) == 1;
         } catch (Exception e) {
-            logger.error("修改[管理员状态]异常,原因:{}", e.getMessage());
+            logger.error(String.format("修改[管理员状态]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
@@ -69,7 +72,7 @@ public class ManagerService {
         try {
             return managerMapper.updateLoginTime(id) == 1;
         } catch (Exception e) {
-            logger.error("修改[管理员时间]异常,原因:{}", e.getMessage());
+            logger.error(String.format("修改[管理员时间]异常,原因:%s", e.getMessage()), e);
             return false;
         }
     }
@@ -85,7 +88,7 @@ public class ManagerService {
         try {
             return managerMapper.get(username, password);
         } catch (Exception e) {
-            logger.error("获取[管理员信息]异常,原因:{}", e.getMessage());
+            logger.error(String.format("获取[管理员信息]异常,原因:%s", e.getMessage()), e);
             return null;
         }
     }

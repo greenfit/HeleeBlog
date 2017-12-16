@@ -1,11 +1,9 @@
 package com.heleeos.blog.test.service;
 
-import com.google.gson.Gson;
 import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.test.TestConfig;
+import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.heleeos.blog.bean.Blog;
@@ -13,43 +11,27 @@ import com.heleeos.blog.service.BlogService;
 
 public class TestBlogService extends TestConfig {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = Logger.getLogger(getClass());
 
     @Autowired
     private BlogService blogService;
 
-    private Gson gson = new Gson();
-        
     @Test
     public void save() {
-        String tags = "Spring,Spring 生命周期";
-        
-        Blog blog = new Blog();
-        blog.setBlogTitle("标题");
-        blog.setDispUrl("spring-test1");
-        blog.setBlogSummary("摘要");
-        blog.setBlogType("Spring精通之路");
-        blog.setBlogTags(tags);
-        blog.setBlogContent("内容");
-        blog.setManagerId(1);
-
-        boolean flag = blogService.save(blog);
-        logger.info("保存成功？" + flag);
+        toLogger(logger, blogService.save(blogService.get(1)));
     }
 
     @Test
     public void getBlog() {
-        Blog blog1 = blogService.get(1);
-        Blog blog2 = blogService.getByURL("spring-info");
-        logger.info(gson.toJson(blog1));
-        logger.info(gson.toJson(blog2));
+        toLogger(logger, blogService.get(1));
+        toLogger(logger, blogService.getByURL("spring-info"));
     }
 
     @Test
     public void getList() {
         int count = blogService.getCount(null, null, null);
         logger.info("Count:" + count);
-        blogService.getList(null, null, null, 1, 10).forEach((blog) -> logger.info(gson.toJson(blog)));
+        toLogger(logger, blogService.getList(null, null, null, 1, 10));
     }
     
     @Test
