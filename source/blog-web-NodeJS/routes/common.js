@@ -8,7 +8,7 @@ var writeFile = function(url, context) {
     var input = path.join(__dirname, '../views/blogTemplate.hbs');
     var output = path.join(__dirname, '../blog/' + url + ".html");
 
-    fs.readFile(input, function(err,data){
+    fs.readFile(input, function(err, data){
         if(err) throw err;
         //console.log(data.toString());
         var template = hbs.handlebars.compile(data.toString());

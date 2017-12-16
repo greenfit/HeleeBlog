@@ -63,4 +63,4 @@ work/
 # Node JS #
 ###########
 node_modules/
-blog/
+source/blog-web-NodeJS/blog/

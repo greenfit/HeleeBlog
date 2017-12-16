@@ -1,3 +1,4 @@
+npm install
 
 //windows
 set DEBUG=myblog:* & npm start
