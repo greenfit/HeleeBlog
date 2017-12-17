@@ -42,11 +42,16 @@ public class Result implements Serializable {
     public Result putInfo(Object value) {
         return putMessage("info", value);
     }
-    
+
     public Result putBean(Object value) {
+        return putMessage("bean", value);
+    }
+
+    public Result putBeanList(Object value) {
         return putMessage("beans", value);
     }
-    
+
+
     public Result putMessage(String key, Object value) {
         if(message == null)
             message = new HashMap<>();

@@ -22,7 +22,7 @@ public class BlogTypeController {
     @RequestMapping(value = "blog/type.json")
     public Result getBlogType() {
         Result result = new Result();
-        result.putBean(blogTypeService.getList(false));
+        result.putBeanList(blogTypeService.getList(false));
         return result;
     }
 }

@@ -47,7 +47,7 @@
        var vm = new Vue({
            el : "#bodyDiv",
            data: {
-               src : "logs.html"
+               src : "info.html"
            }
        });
        function load(page) {

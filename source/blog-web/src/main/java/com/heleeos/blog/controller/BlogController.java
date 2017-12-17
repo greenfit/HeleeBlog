@@ -70,7 +70,7 @@ public class BlogController {
         if(url != null) {
             Blog blog = blogService.getByURL(url);
             result.setCode(200);
-            result.putBean(blog);
+            result.putBeanList(blog);
         } else {
             result.setCode(404);
             result.putInfo("文章未找到");

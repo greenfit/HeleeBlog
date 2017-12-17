@@ -1,5 +1,6 @@
 package com.heleeos.blog.service;
 
+import com.heleeos.blog.bean.SystemInfo;
 import com.heleeos.blog.util.TextFormatUtil;
 import com.sun.management.OperatingSystemMXBean;
 import org.springframework.stereotype.Service;
@@ -25,20 +26,46 @@ public class SystemService {
     /**
      *
      */
-    public Map<String, Object> getSystemInfo() {
-        Map<String, Object> systemMap = new HashMap<>();
-
-        Runtime runtime = Runtime.getRuntime();
-        systemMap.put("availableProcessors", runtime.availableProcessors());
-        systemMap.put("totalMemory", TextFormatUtil.formatMemory(runtime.totalMemory()));
-        systemMap.put("freeMemory", TextFormatUtil.formatMemory(runtime.freeMemory()));
-        systemMap.put("maxMemory", TextFormatUtil.formatMemory(runtime.maxMemory()));
-
-        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        systemMap.put("totalPhysicalMemory", TextFormatUtil.formatMemory(operatingSystemMXBean.getTotalPhysicalMemorySize()));
-        systemMap.put("freePhysicalMemory", TextFormatUtil.formatMemory(operatingSystemMXBean.getFreePhysicalMemorySize()));
-        return systemMap;
+    public SystemInfo getSystemInfo() {
+        SystemInfo systemInfo = new SystemInfo();
+        systemInfo.setJvmInfo(getJVMInfo());
+        systemInfo.setServerMemory(getServerMemory());
+        return systemInfo;
     }
 
+    /**
+     * 获取JVM的信息
+     */
+    private Map<String, Object> getJVMInfo() {
+        Map<String, Object> jvmMap = new HashMap<>();
 
+        Runtime runtime = Runtime.getRuntime();
+        jvmMap.put("可用内存", TextFormatUtil.formatMemory(runtime.totalMemory()));
+        jvmMap.put("剩余内存", TextFormatUtil.formatMemory(runtime.freeMemory()));
+        jvmMap.put("最大可用内存", TextFormatUtil.formatMemory(runtime.maxMemory()));
+
+        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        jvmMap.put("虚拟机CPU使用时间", TextFormatUtil.formatTime(operatingSystemMXBean.getProcessCpuTime()));
+        jvmMap.put("虚拟机CPU使用率",TextFormatUtil.formatDouble(operatingSystemMXBean.getProcessCpuLoad()));
+
+        return jvmMap;
+    }
+
+    /**
+     * 获取服务器上的内存信息
+     */
+    private Map<String, Object> getServerMemory() {
+        Map<String, Object> systemMap = new HashMap<>();
+
+        OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        systemMap.put("用于运行的虚拟内存", TextFormatUtil.formatMemory(operatingSystemMXBean.getCommittedVirtualMemorySize()));
+        systemMap.put("可用交换空间", TextFormatUtil.formatMemory(operatingSystemMXBean.getFreeSwapSpaceSize()));
+        systemMap.put("最大交换空间", TextFormatUtil.formatMemory(operatingSystemMXBean.getTotalSwapSpaceSize()));
+
+        systemMap.put("最大物理内存", TextFormatUtil.formatMemory(operatingSystemMXBean.getTotalPhysicalMemorySize()));
+        systemMap.put("可用物理内存", TextFormatUtil.formatMemory(operatingSystemMXBean.getFreePhysicalMemorySize()));
+
+        systemMap.put("CPU使用率", TextFormatUtil.formatDouble(operatingSystemMXBean.getSystemCpuLoad()));
+        return systemMap;
+    }
 }

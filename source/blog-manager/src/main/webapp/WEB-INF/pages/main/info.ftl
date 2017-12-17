@@ -1,12 +1,38 @@
 <head>
     <link rel="stylesheet" href="https://static.heleeos.com/lib/layui/css/layui.css">
     <link rel="stylesheet" href="https://static.heleeos.com/blog-manager/css/style.css">
+    <style>
+        .info-table {
+            width: 500px;
+        }
+    </style>
 </head>
-<body style="min-width: 1380px;">
-<h1>服务器管理</h1>
-<div id="blog-list">
+<body id="info-list" style="min-width: 1380px;">
 
-</div>
+<table class="layui-table info-table">
+    <colgroup>
+        <col width="150">
+        <col width="350">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>属性</th>
+            <th>数值</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" style="text-align: center">虚拟机信息</td>
+        </tr>
+        <tr v-for="info in bean.jvmInfo">
+            <td>{{info}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">辅助</td>
+        </tr>
+    </tbody>
+</table>
+
 <script src="https://static.heleeos.com/lib/jquery.min.js"></script>
 <script src="https://static.heleeos.com/lib/vue.min.js"></script>
 <script src="https://static.heleeos.com/lib/layui/lay/dest/layui.all.js"></script>
@@ -14,67 +40,21 @@
 <script type="text/javascript">
     $(function(){
         var vm = new Vue({
-            el : "#blog-list",
+            el : "#info-list",
             data: {
-                load : true,
-                error: false,
-                beans: [],
-                page : 1,
-                rows : 10,
-                count: 0
+                bean : {}
             },
             methods: {
-                dispState: function(state) {
-                    switch (state) {
-                        case 0: return "正常状态";
-                        case 1: return "删除状态";
-                        case 2: return "草稿状态";
-                        default: return "其他状态";
-                    }
-                },
-                editor: function(id) {
-                    parent.openDiv('', 'blog/add.html?id=' + id, loadBean);
-                },
-                changeIndex: function(id, change) {
-                    $.post("/ajax/blog/changeIndex.json", { "id" : id, "change" : change}).done(function(res){
-                        if(res.code === 200) {
-                            parent.dispTip("修改成功");
-                            vm.loadBean();
-                        } else {
-                            parent.dispTip(res.message.info);
-                        }
-                    }).fail(function(){
-                        parent.dispMessage("调整位置", "接口请求失败", true);
-                    })
-                },
-                changeState: function(id, state) {
-                    $.post("/ajax/blog/changeState.json", { "id" : id, "state" : state}).done(function(res){
-                        if(res.code === 200) {
-                            parent.dispTip("修改成功");
-                            vm.loadBean();
-                        } else {
-                            parent.dispTip(res.message.info);
-                        }
-                    }).fail(function(){
-                        parent.dispMessage("修改状态", "接口请求失败", true);
-                    })
-                },
-                loadBean: function() {
-                    $.post("/ajax/blog/list.json").done(function(res){
+                loadInfo: function() {
+                    $.post("/ajax/main/systemInfo.json").done(function(res){
                         if(res.code === 0) {
-                            vm.beans = res.message.beans;
-                            vm.page = res.message.page;
-                            vm.rows = res.message.rows;
-                            vm.count = res.message.count;
-                            if(vm.loadr) vm.loadr = false;
+                            vm.bean = res.message.bean;
                         }
-                    }).fail(function(err){
-                        vm.error = true;
                     });
                 }
             }
         });
-        vm.loadBean();
+        vm.loadInfo();
     });
 </script>
 </body>
