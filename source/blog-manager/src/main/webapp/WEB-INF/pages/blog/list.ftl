@@ -76,10 +76,10 @@
                         }
                     },
                     editor: function(id) {
-                        parent.openDiv('', 'blog/add.html?id=' + id, loadBean);
+                        parent.openDiv('', 'blog/add.html?id=' + id, vm.loadBean);
                     },
                     changeIndex: function(id, change) {
-                        $.post("/ajax/blog/changeIndex.json", { "id" : id, "change" : change}).done(function(res){
+                        $.post("${request.contextPath}/ajax/blog/changeIndex.json", { "id" : id, "change" : change}).done(function(res){
                             if(res.code === 200) {
                                 parent.dispTip("修改成功");
                                 vm.loadBean();
@@ -91,7 +91,7 @@
                         })
                     },
                     changeState: function(id, state) {
-                        $.post("/ajax/blog/changeState.json", { "id" : id, "state" : state}).done(function(res){
+                        $.post("${request.contextPath}/ajax/blog/changeState.json", { "id" : id, "state" : state}).done(function(res){
                             if(res.code === 200) {
                                 parent.dispTip("修改成功");
                                 vm.loadBean();
@@ -103,7 +103,7 @@
                         })
                     },
                     loadBean: function() {
-                        $.post("/ajax/blog/list.json").done(function(res){
+                        $.post("${request.contextPath}/ajax/blog/list.json").done(function(res){
                             if(res.code === 0) {
                                 vm.beans = res.message.beans;
                                 vm.page = res.message.page;

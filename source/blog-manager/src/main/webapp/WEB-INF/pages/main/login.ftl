@@ -52,7 +52,7 @@
             var username = $("#username").val();
             var password = $("#password").val();
             var captcha =  $("#captcha").val();
-            $.post("ajax/main/login.json", { "username" : username, "password" : password, "captcha" : captcha }, function(res){
+            $.post("${request.contextPath}/ajax/main/login.json", { "username" : username, "password" : password, "captcha" : captcha }, function(res){
                 if(res.code == 200){
                     //登录成功
                     location.href = "index.html";

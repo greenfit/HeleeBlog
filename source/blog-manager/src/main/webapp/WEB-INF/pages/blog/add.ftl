@@ -132,7 +132,7 @@
             }
             
             var data = {"id" : id, "title" : title, "type" : type, "disp" : disp, "tags" : tags, "summary" : summary, "contentType" : contentType, "content" : content};
-            $.post("/ajax/blog/update.json", data, function(res){
+            $.post("${request.contextPath}/ajax/blog/update.json", data, function(res){
                 if(res.code === 200){
                     layer.msg("提交成功!", {icon : 1});
                     parent.divCall();

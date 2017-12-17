@@ -38,4 +38,10 @@ public class BlogController {
         modelAndView.addObject("types", blogTypeService.getList());
         return modelAndView;
     }
+
+    @RequestMapping(value = "blog/type.html")
+    public ModelAndView toBlogType() {
+        return new ModelAndView("blog_type/type");
+    }
+
 }

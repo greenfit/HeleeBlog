@@ -42,7 +42,7 @@
             });
             
             var data = { "module" : 1 };
-            $.post("type.json", data).done(function(res){
+            $.post("${request.contextPath}/ajax/blog-type/list.json", data).done(function(res){
                 if(res.code == 0) {
                     vm.beans = res.message.beans;
                     if(vm.loadr) vm.loadr = false;

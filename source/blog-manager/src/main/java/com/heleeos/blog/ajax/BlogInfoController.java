@@ -7,6 +7,7 @@ import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
 import com.heleeos.blog.common.ConstantKey;
 import com.heleeos.blog.service.BlogService;
+import com.heleeos.blog.service.BlogTypeService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
