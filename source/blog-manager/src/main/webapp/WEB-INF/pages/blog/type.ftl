@@ -14,15 +14,15 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>分类</th>
-                    <th>说明</th>
+                    <th>分类模块</th>
+                    <th>分类名称</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="bean in beans">
                     <td>{{ bean.id }}</td>
-                    <td>{{ bean.name }}</td>
-                    <td>{{ bean.content }}</td>
+                    <td>{{ bean.typeModule }}</td>
+                    <td>{{ bean.typeName }}</td>
                 </tr>
             </tbody>
         </table>
