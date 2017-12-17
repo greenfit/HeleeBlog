@@ -12,9 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * 登陆过滤器.
- * 
+ * 权限验证过滤器
+ * Created with Li Yu on 2017/12/17.
+ *
  * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class AuthorInterceptor extends HandlerInterceptorAdapter {
 

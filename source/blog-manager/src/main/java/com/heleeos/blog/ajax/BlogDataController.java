@@ -7,7 +7,6 @@ import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
 import com.heleeos.blog.common.ConstantKey;
 import com.heleeos.blog.service.BlogService;
-import com.heleeos.blog.service.BlogTypeService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 文章相关的内容接口
- * Created by liyu on 2017/10/13.
+ * 文章相关的接口
+ * Created with Li Yu on 2017/10/13.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @RestController
 @RequestMapping("ajax/blog/")
-public class BlogInfoController {
+public class BlogDataController {
 
     @Autowired
     private BlogService blogService;

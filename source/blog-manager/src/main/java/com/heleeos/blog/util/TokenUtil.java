@@ -4,8 +4,12 @@ import com.heleeos.blog.bean.Manager;
 import org.springframework.util.DigestUtils;
 
 /**
+ * 令牌相关的工具
+ * Created with Li Yu on 2017/12/17.
  *
- * Created by liyu on 17/12/2017.
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class TokenUtil {
 

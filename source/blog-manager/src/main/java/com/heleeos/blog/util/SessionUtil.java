@@ -11,7 +11,11 @@ import java.util.Arrays;
 
 /**
  * 会话相关的工具
- * Created by liyu on 17/12/2017.
+ * Created with Li Yu on 2017/12/17.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 public class SessionUtil {
 
@@ -76,5 +80,16 @@ public class SessionUtil {
         Cookie cookie = new Cookie(ConstantKey.COOKIE_MANAGER_KEY, token);
         cookie.setMaxAge(3 * 24 * 60 * 60);
         response.addCookie(cookie);
+    }
+
+    /**
+     * 把当前会话中的管理信息保存到cookie中
+     */
+    public static void saveCookieFromSession(HttpServletRequest request, HttpServletResponse response) {
+        String token = SessionUtil.getTokenFromCookie(request);
+        if(token == null) {
+            Manager manager = SessionUtil.getManagerFromSession(request);
+            SessionUtil.saveTokenToCookie(response, manager.getLoginToken());
+        }
     }
 }

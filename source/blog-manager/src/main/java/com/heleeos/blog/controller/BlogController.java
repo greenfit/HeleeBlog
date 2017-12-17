@@ -12,6 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.heleeos.blog.service.BlogService;
 import com.heleeos.blog.service.BlogTypeService;
 
+/**
+ * 博客页面控制器
+ * Created with Li Yu on 2017/12/17.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
+ */
 @Controller
 @RequestMapping("blog/")
 public class BlogController {

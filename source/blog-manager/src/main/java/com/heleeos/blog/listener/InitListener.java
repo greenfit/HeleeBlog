@@ -6,8 +6,12 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 /**
- * 初始化监听器
- * Created by liyu on 15/12/2017.
+ * 容器监听器
+ * Created with Li Yu on 2017/12/17.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @Component
 public class InitListener implements ApplicationListener<ContextRefreshedEvent> {

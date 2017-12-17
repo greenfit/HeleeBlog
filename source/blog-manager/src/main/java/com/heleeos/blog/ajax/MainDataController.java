@@ -17,12 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 主页使用到的所有接口内容
- * Created by liyu on 17/12/2017.
+ * 主页使用到的接口
+ * Created with Li Yu on 2017/12/17.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
  */
 @RestController
 @RequestMapping("ajax/main/")
-public class MainInfoController {
+public class MainDataController {
 
     @Autowired
     private ManagerService managerService;

@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 主页控制器
+ * Created with Li Yu on 2017/12/17.
+ *
+ * @author liyu
+ * @author kissaoe@gmail.com
+ * @version 1.0.1
+ */
 @RestController
 public class MainController {
 
@@ -22,12 +30,7 @@ public class MainController {
      */
     @RequestMapping(value = {"/", "index.html"})
     public ModelAndView toIndex(HttpServletRequest request, HttpServletResponse response) {
-        String token = SessionUtil.getTokenFromCookie(request);
-        if(token == null) {
-            Manager manager = SessionUtil.getManagerFromSession(request);
-            SessionUtil.saveTokenToCookie(response, manager.getLoginToken());
-        }
-
+        SessionUtil.saveCookieFromSession(request, response);
         return new ModelAndView("main/index");
     }
 
