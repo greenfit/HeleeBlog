@@ -83,6 +83,15 @@ public class SessionUtil {
     }
 
     /**
+     * 移除Cookie中的令牌
+     */
+    public static void removeCookieToken(HttpServletResponse response) {
+        Cookie cookie = new Cookie(ConstantKey.COOKIE_MANAGER_KEY, "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+    }
+
+    /**
      * 把当前会话中的管理信息保存到cookie中
      */
     public static void saveCookieFromSession(HttpServletRequest request, HttpServletResponse response) {

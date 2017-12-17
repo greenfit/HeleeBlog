@@ -109,7 +109,7 @@ public class MainDataController {
     @RequestMapping(value = "logout.json")
     public Result logout(HttpServletRequest request, HttpServletResponse response){
         SessionUtil.removeSessionManager(request);
-        SessionUtil.saveTokenToCookie(response, "");
+        SessionUtil.removeCookieToken(response);
 
         Result result = new Result();
         result.setCode(200);

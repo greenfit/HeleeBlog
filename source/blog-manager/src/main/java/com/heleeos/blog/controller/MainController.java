@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.service.ManagerService;
 import com.heleeos.blog.util.SessionUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,9 +47,14 @@ public class MainController {
 
         String token = SessionUtil.getTokenFromCookie(request);
         manager = managerService.getManagerByToken(token);
-        if(manager != null) {
+        if(manager != null){
             SessionUtil.saveManagerToSession(request, manager);
             return toIndex(request, response);
+        }
+
+        if(StringUtils.trimToNull(token) != null) {
+            //说明token已经失效了, 需要清空
+            SessionUtil.removeCookieToken(response);
         }
         return new ModelAndView("main/login");
     }
