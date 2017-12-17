@@ -13,7 +13,7 @@ import org.springframework.util.DigestUtils;
  */
 public class TokenUtil {
 
-    public static String grentorToken(Manager manager) {
+    public static String createToken(Manager manager) {
         String temp = manager.hashCode() + System.currentTimeMillis() + Math.random() + "md5";
         return DigestUtils.md5DigestAsHex(temp.getBytes()).toUpperCase();
     }

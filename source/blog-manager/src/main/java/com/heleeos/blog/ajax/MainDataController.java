@@ -79,7 +79,7 @@ public class MainDataController {
                 String password = request.getParameter("password");
                 Manager manager = managerService.login(username, DigestUtils.md5DigestAsHex(password.getBytes()));
                 if(manager != null) {
-                    String token = TokenUtil.grentorToken(manager);
+                    String token = TokenUtil.createToken(manager);
                     managerService.updateLoginTime(manager.getId());
                     managerService.updateToken(manager.getId(), token);
 
