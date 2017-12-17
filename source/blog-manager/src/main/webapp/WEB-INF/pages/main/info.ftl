@@ -46,7 +46,7 @@
             },
             methods: {
                 loadInfo: function() {
-                    $.post("/ajax/main/systemInfo.json").done(function(res){
+                    $.post("ajax/main/systemInfo.json").done(function(res){
                         if(res.code === 0) {
                             vm.bean = res.message.bean;
                         }

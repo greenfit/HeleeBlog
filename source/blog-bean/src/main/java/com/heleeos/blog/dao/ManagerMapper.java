@@ -22,4 +22,8 @@ public interface ManagerMapper {
     int updateLoginTime(Integer id) throws Exception;
     
     Manager get(@Param("userName") String username, @Param("passWord") String password) throws Exception;
+
+    Manager getByToken(@Param("token") String token) throws Exception;
+
+    int updateToken(@Param("id") int id, @Param("token") String token) throws Exception;
 }

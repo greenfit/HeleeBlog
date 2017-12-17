@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.heleeos.blog.util.SessionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.heleeos.blog.bean.Result;
-import com.heleeos.blog.common.SessionKey;
+import com.heleeos.blog.common.ConstantKey;
 
 /**
  * 图片相关的控制器.
@@ -54,7 +55,7 @@ public class ImageController {
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
         String text = createCaptcha();
-        request.getSession().setAttribute(SessionKey.SESSION_CPTCHA_KEY, text);
+        SessionUtil.saveCaptchaToSession(request, text);
         ImageIO.write(createImage(text), "jpg", response.getOutputStream());
         try {
             response.getOutputStream().flush();

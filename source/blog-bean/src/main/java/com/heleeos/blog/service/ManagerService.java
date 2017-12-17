@@ -83,13 +83,41 @@ public class ManagerService {
      * @param username 用户名
      * @param password 密码
      */
-    public Manager get(String username, String password) {
+    public Manager login(String username, String password) {
         if(StringUtils.trimToNull(username) == null || StringUtils.trimToNull(password) == null) return null;
         try {
             return managerMapper.get(username, password);
         } catch (Exception e) {
+            logger.error(String.format("登录[管理员]异常,原因:%s", e.getMessage()), e);
+            return null;
+        }
+    }
+
+    /**
+     * 通过令牌获取管理员
+     * @param token 令牌
+     */
+    public Manager getManagerByToken(String token) {
+        if(StringUtils.trimToNull(token) == null) return null;
+        try {
+            return managerMapper.getByToken(token);
+        } catch (Exception e) {
             logger.error(String.format("获取[管理员信息]异常,原因:%s", e.getMessage()), e);
             return null;
+        }
+    }
+
+    /**
+     * 更新管理员的令牌
+     * @param id 管理员ID
+     * @param token 令牌
+     */
+    public boolean updateToken(Integer id, String token) {
+        try {
+            return managerMapper.updateToken(id, token) == 1;
+        } catch (Exception e) {
+            logger.error(String.format("更新[管理员令牌]异常,原因:%s", e.getMessage()), e);
+            return false;
         }
     }
 }

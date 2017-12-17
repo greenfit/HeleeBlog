@@ -28,6 +28,8 @@ public class Manager {
     private Date loginTime;
 
     private byte managerState;
+
+    private String loginToken;
     
     public Manager() {
         setId(0);
@@ -96,5 +98,13 @@ public class Manager {
 
     public void setManagerState(byte managerState) {
         this.managerState = managerState;
+    }
+
+    public String getLoginToken() {
+        return loginToken;
+    }
+
+    public void setLoginToken(String loginToken) {
+        this.loginToken = loginToken;
     }
 }

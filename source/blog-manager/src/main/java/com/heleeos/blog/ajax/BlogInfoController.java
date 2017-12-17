@@ -5,7 +5,7 @@ import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
-import com.heleeos.blog.common.SessionKey;
+import com.heleeos.blog.common.ConstantKey;
 import com.heleeos.blog.service.BlogService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
@@ -140,7 +140,7 @@ public class BlogInfoController {
         blog.setBlogContent(content);
         blog.setUpdateTime(new Date());
 
-        Manager manager = (Manager) request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
+        Manager manager = (Manager) request.getSession().getAttribute(ConstantKey.SESSION_MANAGER_KEY);
         blog.setManagerId(manager.getId());
 
         boolean flag = blogService.save(blog);

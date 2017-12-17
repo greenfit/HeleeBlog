@@ -4,10 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.service.ManagerService;
+import com.heleeos.blog.util.SessionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.heleeos.blog.common.SessionKey;
+
 /**
  * 登陆过滤器.
  * 
@@ -17,12 +20,23 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
 
     @Value("#{configProperties.image_host}")
     private String imageHost;
-    
-    /* 检测是否登陆,没有登录的跳转到登陆页面 */
+
+    @Autowired
+    private ManagerService managerService;
+
+    /**
+     * 检测是否登陆, 没有登录的跳转到登陆页面
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object obj = request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
-        if (obj == null || !(obj instanceof Manager)) {
+        Manager manager = SessionUtil.getManagerFromSession(request);
+        if(manager == null) {
+            String token = SessionUtil.getTokenFromCookie(request);
+            manager = managerService.getManagerByToken(token);
+            SessionUtil.saveManagerToSession(request, manager);
+        }
+
+        if(manager == null) {
             response.sendRedirect(request.getContextPath() + "/login.html");
             return false;
         }
@@ -33,8 +47,7 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         super.postHandle(request, response, handler, modelAndView);
         if(modelAndView != null) {
-            Object admin = request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
-            modelAndView.addObject("admin", admin);
+            modelAndView.addObject("admin", SessionUtil.getManagerFromSession(request));
             modelAndView.addObject("imageHost", imageHost);
         }
     }

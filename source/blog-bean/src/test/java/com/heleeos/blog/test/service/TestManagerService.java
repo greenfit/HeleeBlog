@@ -34,6 +34,6 @@ public class TestManagerService extends TestConfig {
     
     @Test
     public void login() {
-        toLogger(logger, managerService.get("admin", DigestUtils.md5DigestAsHex("li123456".getBytes())));
+        toLogger(logger, managerService.login("admin", DigestUtils.md5DigestAsHex("li123456".getBytes())));
     }
 }

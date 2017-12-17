@@ -27,5 +27,13 @@
     <select id="get" resultType="com.heleeos.blog.bean.Manager">
         select <include refid="Base_Column_List" /> from t_manager where user_name = #{userName} and pass_word = #{passWord} limit 1
     </select>
+
+    <select id="getByToken" resultType="com.heleeos.blog.bean.Manager">
+        select <include refid="Base_Column_List" /> from t_manager where login_token = #{token} limit 1
+    </select>
+
+    <update id="updateToken">
+        update t_manager set login_token = #{token} where id = #{id}
+    </update>
     
 </mapper>

@@ -27,7 +27,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">验证码</label>
             <div class="layui-input-block cptcha">
-                <input id="cptcha" type="text" class="layui-input" onkeydown='if(event.keyCode == 13) login();'>
+                <input id="captcha" type="text" class="layui-input" onkeydown='if(event.keyCode == 13) login();'>
             </div>
             <div class="cptcha-image">
                 <img id="codeImage" alt="点击刷新验证码" src="image/code.jpg" onclick="reloadCode()">
@@ -51,8 +51,8 @@
         function login(){
             var username = $("#username").val();
             var password = $("#password").val();
-            var cptcha =   $("#cptcha").val();
-            $.post("login.json", { "username" : username, "password" : password, "cptcha" : cptcha }, function(res){
+            var captcha =  $("#captcha").val();
+            $.post("ajax/main/login.json", { "username" : username, "password" : password, "captcha" : captcha }, function(res){
                 if(res.code == 200){
                     //登录成功
                     location.href = "index.html";

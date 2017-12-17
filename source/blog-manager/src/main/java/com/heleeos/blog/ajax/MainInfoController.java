@@ -2,18 +2,19 @@ package com.heleeos.blog.ajax;
 
 import com.heleeos.blog.bean.Manager;
 import com.heleeos.blog.bean.Result;
-import com.heleeos.blog.common.SessionKey;
 import com.heleeos.blog.service.ManagerService;
 import com.heleeos.blog.service.SystemService;
+import com.heleeos.blog.util.SessionUtil;
+import com.heleeos.blog.util.TokenUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 主页使用到的所有接口内容
@@ -37,14 +38,23 @@ public class MainInfoController {
     @RequestMapping(value = "isLogin.json")
     public Result isLogin(HttpServletRequest request){
         Result result = new Result();
-        Object obj = request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
-        if(obj != null && obj instanceof Manager){
+        Manager manager = SessionUtil.getManagerFromSession(request);
+        if(manager != null) {
             result.setCode(200);
-            result.putInfo(System.currentTimeMillis());
-        }else{
-            result.setCode(400);
-            result.putInfo("未登录");
+            result.putInfo("session:" + System.currentTimeMillis());
+            return result;
         }
+
+        String token = SessionUtil.getTokenFromCookie(request);
+        manager = managerService.getManagerByToken(token);
+        if(manager != null) {
+            result.setCode(200);
+            result.putInfo("cookie:" + System.currentTimeMillis());
+            return result;
+        }
+
+        result.setCode(400);
+        result.putInfo("未登录");
         return result;
     }
 
@@ -56,17 +66,21 @@ public class MainInfoController {
      * password 密码
      */
     @RequestMapping(value = "login.json")
-    public Result login(HttpServletRequest request){
+    public Result login(HttpServletRequest request, HttpServletResponse response){
         Result result = new Result();
         try {
-            String cptcha = request.getSession().getAttribute(SessionKey.SESSION_CPTCHA_KEY).toString();
-            if(cptcha != null && cptcha.equals(request.getParameter("cptcha"))) {
+            String captcha = SessionUtil.getCaptchaFromSession(request);
+            if(captcha != null && captcha.equals(request.getParameter("captcha"))) {
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                Manager manager = managerService.get(username, DigestUtils.md5DigestAsHex(password.getBytes()));
+                Manager manager = managerService.login(username, DigestUtils.md5DigestAsHex(password.getBytes()));
                 if(manager != null) {
+                    String token = TokenUtil.grentorToken(manager);
                     managerService.updateLoginTime(manager.getId());
-                    request.getSession().setAttribute(SessionKey.SESSION_MANAGER_KEY, manager);
+                    managerService.updateToken(manager.getId(), token);
+
+                    manager.setLoginToken(token);
+                    SessionUtil.saveManagerToSession(request, manager);
                     result.setCode(200);
                     result.putInfo("");
                 } else{
@@ -89,8 +103,10 @@ public class MainInfoController {
      * 退出管理端.
      */
     @RequestMapping(value = "logout.json")
-    public Result logout(HttpServletRequest request){
-        request.getSession().removeAttribute(SessionKey.SESSION_MANAGER_KEY);
+    public Result logout(HttpServletRequest request, HttpServletResponse response){
+        SessionUtil.removeSessionManager(request);
+        SessionUtil.saveTokenToCookie(response, "");
+
         Result result = new Result();
         result.setCode(200);
         result.putInfo("");
@@ -111,7 +127,7 @@ public class MainInfoController {
         Result result = new Result();
 
         /* 获取当前登陆的管理员 */
-        Manager manager = (Manager) request.getSession().getAttribute(SessionKey.SESSION_MANAGER_KEY);
+        Manager manager = SessionUtil.getManagerFromSession(request);
         if(manager == null){
             result.setCode(-1);
             result.putInfo("登陆失效,请刷新页面!");

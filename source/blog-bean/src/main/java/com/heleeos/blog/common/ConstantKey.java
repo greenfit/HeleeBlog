@@ -8,7 +8,7 @@ package com.heleeos.blog.common;
  * @author kissaoe@gmail.com
  * @version 1.0.1
  */
-public final class SessionKey {
+public final class ConstantKey {
 
     /**
      * 管理员key
@@ -18,6 +18,9 @@ public final class SessionKey {
     /**
      * 验证码key
      */
-    public static final String SESSION_CPTCHA_KEY = "SESSION_CPTCHA_KEY";
+    public static final String SESSION_CAPTCHA_KEY = "SESSION_CAPTCHA_KEY";
+
+
+    public static final String COOKIE_MANAGER_KEY = "COOKIE_MANAGER_KEY";
     
 }
