@@ -43,7 +43,7 @@
             <if test="tags != null">
                 and blog_tags like "%${tags}%"
             </if>
-        order by disp_index desc, id desc limit #{index}, #{rows}
+        order by disp_index desc, update_time desc limit #{index}, #{rows}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
