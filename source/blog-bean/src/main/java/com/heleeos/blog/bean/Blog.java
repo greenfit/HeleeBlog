@@ -1,8 +1,9 @@
 package com.heleeos.blog.bean;
 
-import java.util.Date;
 import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
+
+import java.util.Date;
 
 /**
  * 博客文章.
@@ -39,8 +40,9 @@ public class Blog {
     private String blogContent;
     //博客状态
     private Byte blogState;
-
+    //显示顺序
     private Byte dispIndex;
+
     
     public Blog() {
         setId(0);
