@@ -1,34 +1,35 @@
-package com.heleeos.blog.bean;
+package com.heleeos.blog.dto;
 
 import com.heleeos.blog.common.ManagerState;
 
 import java.util.Date;
 
 /**
- * 管理员账户.
+ * 管理员账户, t_manager 表
  * Created with Li Yu on 2017/12/16.
  *
  * @author liyu
  * @author kissaoe@gmail.com
- * @version 1.0.1
  */
 public class Manager {
+
+    /** 自增ID */
     private Integer id;
-
+    /** 用户名 */
     private String userName;
-
+    /** 密码 */
     private String passWord;
-    
+    /** 昵称 */
     private String nickName;
-    
+    /** 真实姓名 */
     private String realName;
-
+    /** 头像 */
     private String managerPicture;
-
+    /** 上次登录时间 */
     private Date loginTime;
-
+    /** 状态 */
     private byte managerState;
-
+    /** 登录令牌 */
     private String loginToken;
     
     public Manager() {

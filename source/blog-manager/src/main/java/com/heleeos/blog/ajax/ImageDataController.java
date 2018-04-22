@@ -88,7 +88,6 @@ public class ImageDataController {
      */
     @RequestMapping(value = "/upload.json", method = RequestMethod.POST)
     public Result uploadImage(HttpServletRequest request, @RequestParam MultipartFile upload) {
-        Result result = new Result();
         String path = request.getParameter("path");
         try {
             if (StringUtils.trimToNull(path) == null) {
@@ -101,19 +100,14 @@ public class ImageDataController {
             boolean bol = saveFile(dir, name, upload);
             if (bol) {
                 String filepath = path + name;
-                result.setCode(0);
-                result.putMessage("host", imageHost);
-                result.putMessage("file", filepath);
+                return Result.ofMap(0, "", "host", imageHost, "file", filepath);
             } else {
-                result.setCode(0);
-                result.putInfo("复制失败!");
+                return Result.FAILED();
             }
         } catch (Exception e) {
             logger.error(String.format("图片上传失败, 原因:%s", e.getMessage()), e);
-            result.setCode(0);
-            result.putInfo("上传失败!");
+            return Result.FAILED();
         }
-        return result;
     }
 
     /**

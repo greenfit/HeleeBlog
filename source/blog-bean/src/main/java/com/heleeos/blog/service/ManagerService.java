@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.common.ManagerState;
 import com.heleeos.blog.dao.ManagerMapper;
 

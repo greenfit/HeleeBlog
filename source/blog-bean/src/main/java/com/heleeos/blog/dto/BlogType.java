@@ -1,22 +1,21 @@
-package com.heleeos.blog.bean;
+package com.heleeos.blog.dto;
 
 /**
- * 博客文章的分类.
+ * 博客文章的分类, t_blog_type 表.
  * Created with Li Yu on 2017/12/16.
  *
  * @author liyu
  * @author kissaoe@gmail.com
- * @version 1.0.1
  */
 public class BlogType {
 
-    //自增ID
+    /** 自增ID */
     private Integer id;
-    //大的分类
+    /** 所属模块 */
     private String typeModule;
-    //小类分类的名字
+    /** 分类的名字 */
     private String typeName;
-    //当前分类的个数
+    /** 当前分类的个数 */
     private Integer typeCount;
 
     public BlogType() {

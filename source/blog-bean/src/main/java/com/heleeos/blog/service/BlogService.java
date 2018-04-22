@@ -2,13 +2,14 @@ package com.heleeos.blog.service;
 
 import java.util.List;
 
+import com.heleeos.blog.bean.PageInfo;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.heleeos.blog.bean.Blog;
+import com.heleeos.blog.dto.Blog;
 import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.dao.BlogMapper;
 
@@ -86,13 +87,15 @@ public class BlogService {
      * @param page 开始位置
      * @param rows 显示条数
      */
-    public List<Blog> getList(Integer type, String tags, Byte state, Integer page, Integer rows) {
+    public PageInfo<Blog> getList(Integer type, String tags, Byte state, Integer page, Integer rows) {
         int index = (page - 1) * rows;
         if(index < 0) index = 0;
         if(type == null || type == 0) type = null;
         if(StringUtils.trim(tags) == null) tags = null;
         try {
-            return blogMapper.getList(type, tags, state, index, rows);
+            int count = getCount(type, tags, state);
+            List<Blog> blogList = blogMapper.getList(type, tags, state, index, rows);
+            return new PageInfo<>(page, rows,count , blogList);
         } catch (Exception e) {
             logger.error(String.format("获取[博客文章列表]异常,原因:%s", e.getMessage()), e);
             return null;

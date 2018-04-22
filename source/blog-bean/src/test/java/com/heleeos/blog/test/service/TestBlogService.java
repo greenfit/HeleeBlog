@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.heleeos.blog.bean.Blog;
 import com.heleeos.blog.service.BlogService;
 
 public class TestBlogService extends TestConfig {

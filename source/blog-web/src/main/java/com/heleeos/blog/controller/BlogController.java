@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.heleeos.blog.bean.Blog;
+import com.heleeos.blog.dto.Blog;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.service.BlogService;
 import com.heleeos.blog.service.BlogTypeService;

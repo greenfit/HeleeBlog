@@ -3,7 +3,7 @@ package com.heleeos.blog.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.service.ManagerService;
 import com.heleeos.blog.util.SessionUtil;
 import org.apache.commons.lang.StringUtils;

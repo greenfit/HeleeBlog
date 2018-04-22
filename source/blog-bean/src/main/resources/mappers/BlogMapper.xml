@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heleeos.blog.dao.BlogMapper">
     <sql id="blog_base_column_list">
-        id, blog_title, disp_url, blog_summary, create_time, update_time, manager_id,
-        blog_type, read_count, blog_tags, content_type, blog_state, disp_index
+        id, blog_title, display_url, blog_summary, create_time, update_time, manager_id,
+        blog_type, read_count, blog_tags, content_type, blog_state, sort_index
     </sql>
     
     <sql id="blog_all_column_list">
          <include refid="blog_base_column_list"/>, blog_content
     </sql>
 
-    <insert id="insert" parameterType="com.heleeos.blog.bean.Blog" keyProperty="id">
-        insert into t_blog (blog_title, disp_url, blog_summary, create_time, update_time, manager_id, blog_type, read_count, blog_tags, content_type, blog_state, disp_index, blog_content)
-        values (#{blogTitle}, #{dispUrl}, #{blogSummary}, #{createTime}, #{updateTime}, #{managerId}, #{blogType}, #{readCount}, #{blogTags}, #{contentType}, #{blogState}, #{dispIndex}, #{blogContent})
+    <insert id="insert" parameterType="com.heleeos.blog.dto.Blog" keyProperty="id">
+        insert into t_blog (blog_title, display_url, blog_summary, create_time, update_time, manager_id, blog_type, read_count, blog_tags, content_type, blog_state, sort_index, blog_content)
+        values (#{blogTitle}, #{displayURL}, #{blogSummary}, #{createTime}, #{updateTime}, #{managerId}, #{blogType}, #{readCount}, #{blogTags}, #{contentType}, #{blogState}, #{sortIndex}, #{blogContent})
     </insert>
     
-    <update id="update" parameterType="com.heleeos.blog.bean.Blog">
+    <update id="update" parameterType="com.heleeos.blog.dto.Blog">
         update t_blog set
-        blog_title = #{blogTitle}, disp_url = #{dispUrl}, blog_summary = #{blogSummary}, create_time = #{createTime},
+        blog_title = #{blogTitle}, display_url = #{displayURL}, blog_summary = #{blogSummary}, create_time = #{createTime},
         update_time = #{updateTime}, manager_id = #{managerId}, blog_type = #{blogType}, read_count = #{readCount},
-        blog_tags = #{blogTags}, content_type = #{contentType}, blog_state = #{blogState}, disp_index = #{dispIndex},
+        blog_tags = #{blogTags}, content_type = #{contentType}, blog_state = #{blogState}, sort_index = #{sortIndex},
         blog_content = #{blogContent} where id = #{id}
     </update>
     
-    <select id="get" resultType="com.heleeos.blog.bean.Blog">
+    <select id="get" resultType="com.heleeos.blog.dto.Blog">
         select <include refid="blog_all_column_list" /> from t_blog where id = #{id} limit 1
     </select>
     
-    <select id="getByURL" resultType="com.heleeos.blog.bean.Blog">
-        select <include refid="blog_all_column_list" /> from t_blog where disp_url = #{url} limit 1
+    <select id="getByURL" resultType="com.heleeos.blog.dto.Blog">
+        select <include refid="blog_all_column_list" /> from t_blog where display_url = #{url} limit 1
     </select>
     
-    <select id="getList" resultType="com.heleeos.blog.bean.Blog">
+    <select id="getList" resultType="com.heleeos.blog.dto.Blog">
         select <include refid="blog_base_column_list" /> from t_blog
         where 1=1
             <if test="type != null">
@@ -43,7 +43,7 @@
             <if test="tags != null">
                 and blog_tags like "%${tags}%"
             </if>
-        order by disp_index desc, update_time desc limit #{index}, #{rows}
+        order by sort_index desc, create_time desc limit #{index}, #{rows}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
@@ -61,7 +61,7 @@
     </select>
     
     <update id="changeIndex">
-        update t_blog set disp_index = #{index} where id = #{id}
+        update t_blog set sort_index = #{index} where id = #{id}
     </update>
     
     <update id="changeState">
@@ -73,6 +73,6 @@
     </update>
     
     <update id="addCountByUrl">
-        update t_blog set read_count = read_count + 1 where disp_url = #{url}
+        update t_blog set read_count = read_count + 1 where display_url = #{url}
     </update>
 </mapper>

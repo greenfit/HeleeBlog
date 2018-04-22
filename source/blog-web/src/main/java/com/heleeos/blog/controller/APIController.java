@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class APIController {
     /**
      * 新增博客文章阅读的次数.
      */
-    @RequestMapping(value = "blog/{url}.js")
+    @GetMapping(value = "blog/{url}.js")
     public String addBlogCount(HttpServletRequest request, HttpServletResponse response, @PathVariable String url) {
         if(StringUtils.trimToNull(url) == null) return "";
         String key = "BLOG_READ_TIME_" + url;

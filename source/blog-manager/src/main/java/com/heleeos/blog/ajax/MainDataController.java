@@ -1,6 +1,6 @@
 package com.heleeos.blog.ajax;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.service.ManagerService;
 import com.heleeos.blog.service.SystemService;
@@ -41,25 +41,17 @@ public class MainDataController {
      */
     @RequestMapping(value = "isLogin.json")
     public Result isLogin(HttpServletRequest request){
-        Result result = new Result();
         Manager manager = SessionUtil.getManagerFromSession(request);
         if(manager != null) {
-            result.setCode(200);
-            result.putInfo("session:" + System.currentTimeMillis());
-            return result;
+            return Result.SUCCESS("session - " + System.currentTimeMillis());
         }
 
         String token = SessionUtil.getTokenFromCookie(request);
         manager = managerService.getManagerByToken(token);
         if(manager != null) {
-            result.setCode(200);
-            result.putInfo("cookie:" + System.currentTimeMillis());
-            return result;
+            return Result.SUCCESS("cookie - " + System.currentTimeMillis());
         }
-
-        result.setCode(400);
-        result.putInfo("未登录");
-        return result;
+        return Result.FAILED("未登录!");
     }
 
     /**
@@ -71,7 +63,6 @@ public class MainDataController {
      */
     @RequestMapping(value = "login.json")
     public Result login(HttpServletRequest request, HttpServletResponse response){
-        Result result = new Result();
         try {
             String captcha = SessionUtil.getCaptchaFromSession(request);
             if(captcha != null && captcha.equals(request.getParameter("captcha"))) {
@@ -85,22 +76,17 @@ public class MainDataController {
 
                     manager.setLoginToken(token);
                     SessionUtil.saveManagerToSession(request, manager);
-                    result.setCode(200);
-                    result.putInfo("");
-                } else{
-                    result.setCode(400);
-                    result.putInfo("用户名或密码错误!");
+                    return Result.SUCCESS();
+                } else {
+                    return Result.FAILED("用户名或密码错误!");
                 }
             } else {
-                result.setCode(400);
-                result.putInfo("验证码错误!");
+                return Result.FAILED("验证码错误!");
             }
         } catch (Exception e) {
             logger.error("登录失败，失败原因：" + e.getMessage(), e);
-            result.setCode(403);
-            result.putInfo("请勿非法调用!");
+            return Result.FAILED("用户名或密码错误!");
         }
-        return result;
     }
 
     /**
@@ -111,10 +97,7 @@ public class MainDataController {
         SessionUtil.removeSessionManager(request);
         SessionUtil.removeCookieToken(response);
 
-        Result result = new Result();
-        result.setCode(200);
-        result.putInfo("");
-        return result;
+        return Result.SUCCESS();
     }
 
     /**
@@ -128,65 +111,44 @@ public class MainDataController {
      */
     @RequestMapping(value = "update_manager.json")
     public Result update(HttpServletRequest request){
-        Result result = new Result();
-
         /* 获取当前登陆的管理员 */
         Manager manager = SessionUtil.getManagerFromSession(request);
         if(manager == null){
-            result.setCode(-1);
-            result.putInfo("登陆失效,请刷新页面!");
-            return result;
+            return Result.AUTHOR_ERROR();
         }
 
-        String username = request.getParameter("username");
-        String realname = request.getParameter("realname");
-        String password = request.getParameter("password");
+        String userName = request.getParameter("userName");
+        String realName = request.getParameter("realName");
+        String passWord = request.getParameter("passWord");
         String picture = request.getParameter("picture");
 
-        if(StringUtils.trimToNull(username) == null){
-            result.setCode(-1);
-            result.putInfo("用户名不能为空!");
-            return result;
+        if(StringUtils.trimToNull(userName) == null) {
+            return Result.PARAMETER_ERROR("用户名不能为空!");
         }
 
-        if(StringUtils.trimToNull(realname) == null){
-            result.setCode(-1);
-            result.putInfo("真实姓名不能为空!");
-            return result;
+        if(StringUtils.trimToNull(realName) == null) {
+            return Result.PARAMETER_ERROR("真实姓名不能为空!");
         }
 
-        if(StringUtils.trimToNull(password) != null){
-            manager.setPassWord(DigestUtils.md5DigestAsHex(password.getBytes()));
+        if(StringUtils.trimToNull(passWord) != null) {
+            manager.setPassWord(DigestUtils.md5DigestAsHex(passWord.getBytes()));
         }
 
-        manager.setUserName(username);
-        manager.setRealName(realname);
+        manager.setUserName(userName);
+        manager.setRealName(realName);
         manager.setManagerPicture(picture);
 
         boolean bol = managerService.save(manager);
-        if(bol){
-            result.setCode(200);
-            result.putInfo("");
-        }else{
-            result.setCode(400);
-            result.putInfo("提交失败");
-        }
-        return result;
+        return Result.of(bol);
     }
 
     @RequestMapping(value = "version.json")
     public Result version() {
-        Result result = new Result();
-        result.setCode(200);
-        result.putMessage("version", systemService.getBeanVersion());
-        return result;
+        return Result.SUCCESS(systemService.getBeanVersion());
     }
 
     @RequestMapping(value = "systemInfo.json")
     public Result systemInfo() {
-        Result result = new Result();
-        result.setCode(200);
-        result.putBean(systemService.getSystemInfo());
-        return result;
+        return Result.SUCCESS(systemService.getSystemInfo());
     }
 }

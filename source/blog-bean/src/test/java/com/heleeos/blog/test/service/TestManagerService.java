@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.common.ManagerState;
 import com.heleeos.blog.service.ManagerService;
 

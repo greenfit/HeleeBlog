@@ -2,13 +2,12 @@ package com.heleeos.blog.service;
 
 import java.util.List;
 
-import com.heleeos.blog.bean.Blog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.heleeos.blog.bean.BlogType;
+import com.heleeos.blog.dto.BlogType;
 import com.heleeos.blog.dao.BlogTypeMapper;
 
 /**

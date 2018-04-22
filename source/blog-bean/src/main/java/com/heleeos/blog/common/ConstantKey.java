@@ -10,17 +10,13 @@ package com.heleeos.blog.common;
  */
 public final class ConstantKey {
 
-    /**
-     * 管理员key
-     */
+    /** 管理员key */
     public static final String SESSION_MANAGER_KEY = "SESSION_MANAGER_KEY";
 
-    /**
-     * 验证码key
-     */
+    /** 验证码key */
     public static final String SESSION_CAPTCHA_KEY = "SESSION_CAPTCHA_KEY";
 
-
+    /** 自动登录的CookieKey */
     public static final String COOKIE_MANAGER_KEY = "COOKIE_MANAGER_KEY";
     
 }

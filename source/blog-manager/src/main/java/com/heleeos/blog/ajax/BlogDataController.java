@@ -1,7 +1,8 @@
 package com.heleeos.blog.ajax;
 
-import com.heleeos.blog.bean.Blog;
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.bean.PageInfo;
+import com.heleeos.blog.dto.Blog;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.common.BlogState;
 import com.heleeos.blog.common.ContentType;
@@ -34,27 +35,17 @@ public class BlogDataController {
 
     @RequestMapping(value = "list.json")
     public Result getBlogType(HttpServletRequest request) {
-        Result result = new Result();
-
         int page = NumberUtils.toInt(request.getParameter("page"), 1);
         int rows = NumberUtils.toInt(request.getParameter("rows"), 10);
         int type = NumberUtils.toInt(request.getParameter("type"), 0);
         String tags = request.getParameter("tags");
 
-        List<Blog> beans = blogService.getList(type, tags, null, page, rows);
-        int count        = blogService.getCount(type, tags, null);
-
-        result.putMessage("beans", beans);
-        result.putMessage("page", page);
-        result.putMessage("rows", rows);
-        result.putMessage("count", count);
-        return result;
+        PageInfo<Blog> beans = blogService.getList(type, tags, null, page, rows);
+        return Result.SUCCESS(beans);
     }
 
     @RequestMapping(value = "changeIndex.json")
     public Result changeIndex(HttpServletRequest request) {
-        Result result = new Result();
-
         int id = NumberUtils.toInt(request.getParameter("id"), 0);
         int change = NumberUtils.toInt(request.getParameter("change"), 0);
         boolean flag = false;
@@ -62,15 +53,11 @@ public class BlogDataController {
             flag = blogService.changeIndex(id, (byte) change);
         }
 
-        result.setCode(flag ? 200 : 400);
-        result.putInfo(flag ? "" : "修改失败");
-        return result;
+        return Result.of(flag);
     }
 
     @RequestMapping(value = "changeState.json")
     public Result changeState(HttpServletRequest request) {
-        Result result = new Result();
-
         int id = NumberUtils.toInt(request.getParameter("id"), 0);
         String state = request.getParameter("state");
 
@@ -79,15 +66,11 @@ public class BlogDataController {
             flag = blogService.changeState(id, BlogState.of(state));
         }
 
-        result.setCode(flag ? 200 : 400);
-        result.putInfo(flag ? "" : "修改失败");
-        return result;
+        return Result.of(flag);
     }
 
     @RequestMapping(value = "update.json")
     public Result update(HttpServletRequest request) {
-        Result result = new Result();
-
         Blog blog;
         int id = NumberUtils.toInt(request.getParameter("id"), -1);
         if(id == -1){
@@ -99,45 +82,35 @@ public class BlogDataController {
 
         String title = request.getParameter("title");
         String type = request.getParameter("type");
-        String disp = request.getParameter("disp");
+        String url  = request.getParameter("url");
         String tags = request.getParameter("tags");
         String summary = request.getParameter("summary");
         String content = request.getParameter("content");
         int contentType = NumberUtils.toInt(request.getParameter("contentType"), 0);
 
         if(StringUtils.trimToNull(title) == null){
-            result.setCode(400);
-            result.putInfo("标题不能为空!");
-            return result;
+            return Result.PARAMETER_ERROR("标题不能为空");
         }
 
         if(StringUtils.trimToNull(type) == null){
-            result.setCode(400);
-            result.putInfo("类型不能为空!");
-            return result;
+            return Result.PARAMETER_ERROR("类型不能为空");
         }
 
-        if(StringUtils.trimToNull(disp) == null){
-            result.setCode(400);
-            result.putInfo("显示URL不能为空!");
-            return result;
+        if(StringUtils.trimToNull(url) == null){
+            return Result.PARAMETER_ERROR("显示URL不能为空");
         }
 
         if(StringUtils.trimToNull(summary) == null){
-            result.setCode(400);
-            result.putInfo("摘要不能为空!");
-            return result;
+            return Result.PARAMETER_ERROR("摘要不能为空");
         }
 
         if(StringUtils.trimToNull(content) == null){
-            result.setCode(400);
-            result.putInfo("内容不能为空!");
-            return result;
+            return Result.PARAMETER_ERROR("内容不能为空");
         }
 
         blog.setBlogTitle(title);
         blog.setBlogType(type);
-        blog.setDispUrl(disp);
+        blog.setDisplayURL(url);
         blog.setBlogTags(tags);
         blog.setBlogSummary(summary);
         blog.setContentType(ContentType.of(contentType).getType());
@@ -149,8 +122,6 @@ public class BlogDataController {
 
         boolean flag = blogService.save(blog);
 
-        result.setCode(flag ? 200 : 400);
-        result.putInfo(flag ? "" : "保存失败");
-        return result;
+        return Result.of(flag);
     }
 }

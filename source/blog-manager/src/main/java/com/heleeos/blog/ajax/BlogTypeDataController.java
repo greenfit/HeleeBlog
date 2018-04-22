@@ -1,10 +1,13 @@
 package com.heleeos.blog.ajax;
 
+import com.heleeos.blog.dto.BlogType;
 import com.heleeos.blog.bean.Result;
 import com.heleeos.blog.service.BlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 文章分类接口
@@ -22,9 +25,7 @@ public class BlogTypeDataController {
     private BlogTypeService blogTypeService;
 
     @RequestMapping(value = "list.json")
-    public Result getBlogType() {
-        Result result = new Result();
-        result.putBeanList(blogTypeService.getList(false));
-        return result;
+    public Result<List<BlogType>> getBlogType() {
+        return Result.SUCCESS(blogTypeService.getList(false));
     }
 }

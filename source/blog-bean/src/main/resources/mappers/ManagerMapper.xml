@@ -5,12 +5,12 @@
         id, user_name, pass_word, nick_name, real_name, manager_picture, login_time, manager_state
     </sql>
 
-    <insert id="insert" parameterType="com.heleeos.blog.bean.Manager" keyProperty="id">
+    <insert id="insert" parameterType="com.heleeos.blog.dto.Manager" keyProperty="id">
         insert into t_manager (user_name, pass_word, nick_name, real_name, manager_picture, loginTime, manager_state)
         values (#{userName}, #{passWord}, #{nickName}, #{realName}, #{managerPicture}, #{loginTime}, #{managerState})
     </insert>
 
-    <update id="update" parameterType="com.heleeos.blog.bean.Manager">
+    <update id="update" parameterType="com.heleeos.blog.dto.Manager">
         update t_manager set user_name = #{userName}, pass_word = #{passWord}, nick_name = #{nickName},
         real_name = #{realName}, manager_picture = #{managerPicture}, login_time = #{loginTime}, manager_state = #{managerState}
         where id = #{id}
@@ -24,11 +24,11 @@
         update t_manager set login_time = now() where id = #{id}
     </update>
 
-    <select id="get" resultType="com.heleeos.blog.bean.Manager">
+    <select id="get" resultType="com.heleeos.blog.dto.Manager">
         select <include refid="Base_Column_List" /> from t_manager where user_name = #{userName} and pass_word = #{passWord} limit 1
     </select>
 
-    <select id="getByToken" resultType="com.heleeos.blog.bean.Manager">
+    <select id="getByToken" resultType="com.heleeos.blog.dto.Manager">
         select <include refid="Base_Column_List" /> from t_manager where login_token = #{token} limit 1
     </select>
 

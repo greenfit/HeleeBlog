@@ -1,6 +1,6 @@
 package com.heleeos.blog.util;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import org.springframework.util.DigestUtils;
 
 /**

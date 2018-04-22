@@ -1,6 +1,6 @@
 package com.heleeos.blog.interceptor;
 
-import com.heleeos.blog.bean.Manager;
+import com.heleeos.blog.dto.Manager;
 import com.heleeos.blog.service.ManagerService;
 import com.heleeos.blog.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
